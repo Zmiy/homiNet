@@ -1,0 +1,34 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ <PropertyGroup>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42020,42021,42022,42024,42025,42026,42029,42030,42031,42032,42036,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Platform.Contains('x86'))">  
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+ <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DefineConstants>DEBUG,TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="$(Configuration.Contains('Release'))">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('330'))">
+    <DefineConstants>$(DefineConstants),MiniBarVer="330"</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('226'))">
+    <DefineConstants>$(DefineConstants),MiniBarVer="226"</DefineConstants>
+  </PropertyGroup>
+
+</Project>

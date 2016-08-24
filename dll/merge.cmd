@@ -1,0 +1,1 @@
+ilmerge /lib:"C:\Windows\Microsoft.NET\Framework64\v3.5" /lib:"C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies"   /targetplatform:v2   /out:model.dll Unit.dll svm.dll

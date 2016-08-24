@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+ 
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+    <BaseOutputDirectory>$(MSBuildProjectDirectory)</BaseOutputDirectory>
+    <ProjectTarget Condition="'$(ProjectTarget)'==''">Build</ProjectTarget>
+    <FrameworksPath>$(MSBuildProjectDirectory)\Frameworks</FrameworksPath>    
+    <BuildAllFrameworks>true</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX35)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX40)' == 'true'">false</BuildAllFrameworks>
+    <BuildAllFrameworks Condition="'$(BuildNetFX45)' == 'true'">false</BuildAllFrameworks>	
+    <IgnoreBuildFailures>false</IgnoreBuildFailures>
+    <IgnoreBuildFailures Condition=" '$(BuildAllFrameworks)'=='true' ">true</IgnoreBuildFailures>
+    <IgnoreBuildFailures Condition=" '$(IsNightlyBuild)'=='true' ">false</IgnoreBuildFailures>
+    <DisableStyleCop Condition="'$(DisableStyleCop)' == ''">false</DisableStyleCop>
+    <InfoZip>$(MSBuildProjectDirectory)\tools\zip.exe</InfoZip>
+    <Tar>$(MSBuildProjectDirectory)\tools\tar.exe</Tar>
+    <BZip2>$(MSBuildProjectDirectory)\tools\bzip2.exe</BZip2>
+    <Zip7>"$(MSBuildProjectDirectory)\tools\7z.exe"</Zip7>
+    <ArchiveOutputPath>$(BaseOutputDirectory)bin\$(Configuration)\Packages</ArchiveOutputPath>
+    <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
+    <VN Condition="'VersionNumber' == ''">undefine</VN>
+    <VN Condition="'VersionNumber' != ''">$(VersionNumber)</VN>    
+    <SourceArchivePath>$(BaseOutputDirectory)\build\$(VN)\Source</SourceArchivePath> 
+    <SourceArchive>"$(SourceArchivePath)\HomiNet"</SourceArchive>
+    <ArchiveExcl>"$(MSBuildProjectDirectory)\SRC\*.*"</ArchiveExcl>
+  </PropertyGroup>
+
+  <!-- detect location of various SDKs and tools-->
+  <PropertyGroup>
+    <DotNet4Version>v4.0.30319</DotNet4Version>
+
+	<StyleCopTargetsFile>$(MSBuildExtensionsPath)\StyleCop\v4.5\StyleCop.Targets</StyleCopTargetsFile>
+    <StyleCopProperties Condition="'$(DisableStyleCop)' == 'false' and Exists('$(StyleCopTargetsFile)')">StyleCopTargetsFile=$(StyleCopTargetsFile)</StyleCopProperties>
+  </PropertyGroup>
+
+  <!-- at this point, if $(BuildAllFrameworks)=='true' it means that the user has not requested 
+    any specific framework, so we build all that are available -->
+  <PropertyGroup Condition="'$(BuildAllFrameworks)' == 'true'">
+    <BuildNetFX35>true</BuildNetFX35>
+    <BuildNetFX40>true</BuildNetFX40>
+    <BuildNetFX45>true</BuildNetFX45>
+    <!-- now disable those that we know cannot be built -->
+    <BuildNetFX35 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\v3.5') == ''">false</BuildNetFX35>
+    <BuildNetFX40 Condition="!Exists('$(WINDIR)\Microsoft.NET\Framework\$(DotNet4Version)') == ''">false</BuildNetFX40>
+    <BuildNetFX45 Condition="$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full@Release) == ''">false</BuildNetFX45>
+    <!-- don't build 4.0 or above if we're using MSBuild 3.5 -->
+    <BuildNetFX40 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX40>
+	<BuildNetFX45 Condition="'$(MSBuildToolsVersion)'=='3.5'">false</BuildNetFX45>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TargetFramework Include=".NET Framework 3.5" Condition="'$(BuildNetFX35)'=='true'">
+        <ProjectFileSuffix>.netfx35</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <ShortIdentity>Net V3.5</ShortIdentity>
+    </TargetFramework>
+    <TargetFramework Include=".NET Framework 4.0" Condition="'$(BuildNetFX40)'=='true'">
+        <ProjectFileSuffix>.netfx40</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <ShortIdentity>Net V4.0</ShortIdentity>
+    </TargetFramework>
+	<TargetFramework Include=".NET Framework 4.5" Condition="'$(BuildNetFX45)'=='true'">
+        <ProjectFileSuffix>.netfx45</ProjectFileSuffix>
+        <ToolsVersion>4.0</ToolsVersion>
+        <ShortIdentity>Net V4.5</ShortIdentity>
+    </TargetFramework>
+  </ItemGroup>
+
+
+  <Target Name="All" DependsOnTargets="DeepClean;Clean;Build">
+  </Target>
+
+  <Target Name="NightlyBuild">
+     <PropertyGroup>
+       <CommonProperties>IsNightlyBuild=true</CommonProperties>
+     </PropertyGroup>
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="DeepClean;Clean;Build;Archive" Properties="Configuration=Release;$(CommonProperties)" />
+     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean;Build;Archive" Properties="Configuration=Debug;$(CommonProperties)" />
+     <CallTarget Targets="SourceArchive" />
+  </Target>
+
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+  </Target>
+                                   
+  <Target Name="Build">
+
+    <MakeDir Directories="$(BaseOutputDirectory)\build" />
+    <MSBuild Projects="SRC\HomiNet\$(MSBuildProjectName)%(TargetFramework.ProjectFileSuffix).vbproj" 
+             Targets="Build" 
+             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)\build\$(VN)\" 
+             ToolsVersion="%(TargetFramework.ToolsVersion)" 
+             ContinueOnError="$(IgnoreBuildFailures)" 
+             StopOnFirstFailure="false" />
+  </Target>
+
+
+  <Target Name="CheckinSuite">
+    <CallTarget Targets="SyncProjectItems" />
+    <CallTarget Targets="DeepClean" />
+    <CallTarget Targets="Rebuild" />
+    <CallTarget Targets="DumpApi" />
+    <CallTarget Targets="BuildTests" />
+    <CallTarget Targets="RunTests" />
+  </Target>
+
+  <Target Name="Clean">
+     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)\build\$(Platform)\$(Configuration)\%(ShortIdentity)')" />
+     <RemoveDir Directories="@(TargetFramework -> '$(BaseOutputDirectory)\build\obj\$(Configuration)\%(ShortIdentity)')" />
+  </Target>
+
+  <Target Condition="!Exists('$(SourceArchivePath)')" Name="BeforeArchive">
+      <MakeDir Directories="$(SourceArchivePath)" />
+  </Target>
+
+  <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
+   <Exec Command="$(Zip7) a $(SourceArchive)$(VN)_$(DateOfComp).7z -t7z -mx=9 -ir!$(ArchiveExcl) -xr!bin\ -xr!obj\"/>
+  </Target>
+
+
+  <UsingTask TaskName="TokenReplace" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Path ParameterType="System.String" Required="true" />
+      <Token ParameterType="System.String" Required="true" />
+      <Replacement ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs"><![CDATA[
+string content = File.ReadAllText(Path);
+content = content.Replace(Token, Replacement);
+File.WriteAllText(Path, content);
+
+]]></Code>
+    </Task>
+  </UsingTask>
+
+  <ItemGroup>
+    <FilesToCleanup Include="..\**\*.suo" />
+    <FilesToCleanup Include="..\**\*.ncb" />
+    <FilesToCleanup Include="..\**\*.user" />
+    <FilesToCleanup Include="..\**\*.cache" />
+    <DirectoriesToCleanup Include="_ReSharper.*" />
+    <DirectoriesToCleanup Include="..\build\bin" />
+    <DirectoriesToCleanup Include="..\build\obj" />
+    <DirectoriesToCleanup Include="Docs\Working" />
+    <DirectoriesToCleanup Include="TestResults" />
+    <ProjectsToCleanup Include="NLog" />
+    <ProjectsToCleanup Include="Doc" />
+    <ProjectsToCleanup Include="..\tests\NLog.AsyncBenchmark" />
+    <ProjectsToCleanup Include="..\tests\NLog.Benchmark" />
+    <ProjectsToCleanup Include="..\tests\NLog.Test" />
+    <ProjectsToCleanup Include="..\tests\NLog.UnitTests" />
+    <ProjectsToCleanup Include="..\tests\NLog.UnitTests.Web" />
+    <ProjectsToCleanup Include="..\tools\SilverlightConsoleRunner" />
+    <ProjectsToCleanup Include="..\tools\MakeNLogXSD" />
+    <ProjectsToCleanup Include="..\tools\DumpApiXml" />
+    <SolutionFiles Include="..\**\*.sln" />
+  </ItemGroup>
+
+  <Target Name="DeepClean">
+     <Delete Files="@(FilesToCleanup)" />
+     <RemoveDir Directories="@(DirectoriesToCleanup)" />
+     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\bin')" />
+     <RemoveDir Directories="@(ProjectsToCleanup -> '%(Identity)\obj')" />
+     <RemoveDir Directories="@(SolutionFiles -> '%(RelativeDir)_ReSharper.%(filename)')" />
+  </Target>
+
+</Project>

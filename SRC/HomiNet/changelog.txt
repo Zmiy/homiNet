@@ -1,0 +1,45 @@
+Version 8.1.4.97
+--------------------------------------------------------------
+= Fixed minor bugs of refill list
+= Fixed bugs on sales report
+
+
+Version 8.1.4.96
+--------------------------------------------------------------
++ Reformat refill list
++ New Homi Logo
+
+
+Version 8.1.4.95
+--------------------------------------------------------------
++ Add 'Guest Products' to refill list
+
+Version 8.1.4.94
+--------------------------------------------------------------
++ Add information of rerned products and plugin back electrition
+  to the refill list
+- Fixed bugs 
+
+Version 8.1.4.93
+--------------------------------------------------------------
+- Fixed bugs of make refill list
+
+Version 8.1.4.93
+--------------------------------------------------------------
+- Fixed 'system information' bugs. 
++ Add sorting by room N in 'system information'
+- Bug Fixed
+
+Version 8.1.4.92
+--------------------------------------------------------------
++ Add 'Demo' routine
++ Add to refill list last refill like as bartech refill list
+
+Version 8.1.4.91
+--------------------------------------------------------------
+= Bug fixed
+
+Version 8.1.4.9
+--------------------------------------------------------------
++ Add to refill list information about last check in/check out
+= Bug fixed

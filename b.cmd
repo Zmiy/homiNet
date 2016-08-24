@@ -1,0 +1,1 @@
+"D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\tools\7z.exe" a "D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\build\8.2.4.97_1test\Source\HomiNet8.2.4.97_1test_160823_1047.7z" -t7z -mx=9 -ir!"D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\SRC\*.*" -xr!bin\ -xr!obj\
