@@ -141,6 +141,9 @@ Public Class basemodele
     End Sub
 
     Private Sub lstbListOfModels_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstbListOfModels.SelectedIndexChanged
+        If Not Me.Visible Then
+            Exit Sub
+        End If
         lstbListOfModels.Tag = lstbListOfModels.SelectedIndex.ToString()
 
         If lstbListOfModels.SelectedIndex < 0 Then

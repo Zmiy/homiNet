@@ -1,3 +1,7 @@
+Version 8.1.4.98
+--------------------------------------------------------------
++ Improve refill list. Value in Ini file: Imprimer\SecondText
++ Ready to 'Rent'
 Version 8.1.4.97
 --------------------------------------------------------------
 = Fixed minor bugs of refill list

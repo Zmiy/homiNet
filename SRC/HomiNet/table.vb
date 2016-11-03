@@ -203,7 +203,7 @@ Public Class Table
         gbtnMaintenance.Text = Trans(27)
         gbtnUpdate.Text = Trans(189)
         GlassButton9.Text = Trans(4)
-        GlassButton10.Text = Trans(348)
+        gbtnEnvoice.Text = Trans(348)
         Label2.Text = Trans(48)
         Label3.Text = Trans(204)
         Label4.Text = Trans(205)
@@ -353,7 +353,7 @@ Public Class Table
         dv1.Sort = "numchambre"
         dvch.Sort = "numchambre"
         dv1.RowFilter = "numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
-        Label5.Text = Trans(49)
+        lblFilterNane.Text = Trans(49)
         dgvMain.DataSource = dv1
         '      TextBox2.DataBindings.Add("Text", dv1, "numchambre")
         '     TextBox2.AutoCompleteSource = AutoCompleteSource.RecentlyUsedList
@@ -366,7 +366,8 @@ Public Class Table
         dtMomentaryPickUp.PrimaryKey = New DataColumn() {dtMomentaryPickUp.Columns("nummodule")}
 
     End Sub
-    Public Sub initapplication()
+
+    Private Sub Initapplication()
         'mise a jour logiciel
         Dim fe3 As New FileInfo(Application.StartupPath + "\Param.ini")
 
@@ -380,41 +381,79 @@ Public Class Table
 
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles rbAnomaly.CheckedChanged, rbMaintenance.CheckedChanged, rbUnlocked.CheckedChanged, rbLocked.CheckedChanged, rbCheckOut.CheckedChanged, rbCheckIn.CheckedChanged, rbAll.CheckedChanged
-        If rbAll.Checked = True Then
-            Dv1.RowFilter = "numchambre <>'R*' and " + "test<>'" + Trans(37) + "'"
-            Label5.Text = Trans(49)
+    Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles rbAnomaly.CheckedChanged, rbMaintenance.CheckedChanged, rbUnlocked.CheckedChanged, rbLocked.CheckedChanged, rbCheckOut.CheckedChanged, rbCheckIn.CheckedChanged, rbAll.CheckedChanged, rbRent.CheckedChanged
+        If Not Visible Then
+            Exit Sub
         End If
-        If rbCheckIn.Checked = True Then
-            dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(21) + "' and test<>'" + Trans(37) + "'"
-            Label5.Text = Trans(21)
+        Dim rb As RadioButton = DirectCast(sender, RadioButton)
+        If rb IsNot Nothing AndAlso rb.Checked Then
+            Select Case rb.Name.ToLower()
+                Case "rbAll".ToLower()
+                    Dv1.RowFilter = "numchambre <>'R*' and " + "test<>'" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(49)
+                Case "rbCheckIn".ToLower()
+                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "check='" + Trans(21) + "' and test<>'" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(21)
+                Case "rbCheckout".ToLower()
+                    Dv1.RowFilter = "numchambre Not Like'R*' and " + "check='" + Trans(22) + "' and test<>'" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(22)
+                Case "rbLocked".ToLower()
+                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "serrure='" + Trans(35) + "' and test<>'" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(35)
+                Case "rbUnlocked".ToLower()
+                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "serrure='" + Trans(36) + "' and test<>'" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(36)
+                Case "rbMaintenance".ToLower()
+                    Dv1.RowFilter = "test='" + Trans(37) + "'"
+                    lblFilterNane.Text = Trans(37)
+                Case "rbAnomaly".ToLower()
+                    Dv1.RowFilter = "test<>'" + Trans(97) + "' and test<>'" + Trans(37) + "'and test<>'" + Trans(26) + "'"
+                    lblFilterNane.Text = Trans(20)
+                Case "rbRent".ToLower()
+                    Dv1.RowFilter = String.Format("test ='{0}'", Trans(43))
+                    lblFilterNane.Text = Trans(43)
+            End Select
         End If
-        If rbCheckOut.Checked = True Then
-            dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(22) + "' and test<>'" + Trans(37) + "'"
-            Label5.Text = Trans(22)
-        End If
-        If rbLocked.Checked = True Then
-            dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(35) + "' and test<>'" + Trans(37) + "'"
-            Label5.Text = Trans(35)
-        End If
-        If rbUnlocked.Checked = True Then
-            dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(36) + "' and test<>'" + Trans(37) + "'"
-            Label5.Text = Trans(36)
-        End If
-        If rbMaintenance.Checked = True Then
-            dv1.RowFilter = "test='" + Trans(37) + "'"
-            Label5.Text = Trans(37)
-        End If
-        If rbAnomaly.Checked = True Then
-            dv1.RowFilter = "test<>'" + Trans(97) + "' and test<>'" + Trans(37) + "'and test<>'" + Trans(26) + "'"
-            Label5.Text = Trans(20)
-        End If
+
+
+
+
+
+
+        'If rbAll.Checked = True Then
+        '    Dv1.RowFilter = "numchambre <>'R*' and " + "test<>'" + Trans(37) + "'"
+        '    Label5.Text = Trans(49)
+        'End If
+        'If rbCheckIn.Checked = True Then
+        '    Dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(21) + "' and test<>'" + Trans(37) + "'"
+        '    Label5.Text = Trans(21)
+        'End If
+        'If rbCheckOut.Checked = True Then
+        '    Dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(22) + "' and test<>'" + Trans(37) + "'"
+        '    Label5.Text = Trans(22)
+        'End If
+        'If rbLocked.Checked = True Then
+        '    Dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(35) + "' and test<>'" + Trans(37) + "'"
+        '    Label5.Text = Trans(35)
+        'End If
+        'If rbUnlocked.Checked = True Then
+        '    Dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(36) + "' and test<>'" + Trans(37) + "'"
+        '    Label5.Text = Trans(36)
+        'End If
+        'If rbMaintenance.Checked = True Then
+        '    Dv1.RowFilter = "test='" + Trans(37) + "'"
+        '    Label5.Text = Trans(37)
+        'End If
+        'If rbAnomaly.Checked = True Then
+        '    Dv1.RowFilter = "test<>'" + Trans(97) + "' and test<>'" + Trans(37) + "'and test<>'" + Trans(26) + "'"
+        '    Label5.Text = Trans(20)
+        'End If
 
     End Sub
     Private Sub Dv1ListChanged(sender As Object, e As ListChangedEventArgs)
         Try
             Label2.Text = Trans(48)
-            Me.TextBox1.Text = Str(dv1.Count)
+            TextBox1.Text = Str(Dv1.Count)
             ' facture.TextBox1.Text = Str(dv1.Count)
 
         Catch ex As Exception
@@ -422,9 +461,9 @@ Public Class Table
         End Try
     End Sub
 
-    Private Sub GlassButton7_Click(sender As Object, e As EventArgs) Handles gbtnUpdate.Click
+    Private Sub gbtnUpdate_Click(sender As Object, e As EventArgs) Handles gbtnUpdate.Click
         MAINFORM.Actualiser()
-        RadioButton1_CheckedChanged(Nothing, Nothing)
+        RadioButton_CheckedChanged(Nothing, Nothing)
     End Sub
 
     Private Sub GlassButton0_Click(sender As Object, e As EventArgs) Handles gbtnCheckIn.Click, gbtnMaintenance.Click, gbtnTest.Click, gbtnLock.Click, GbtnUnlock.Click, gbtnCheckOut.Click, gbtnRent.Click
@@ -539,7 +578,7 @@ Public Class Table
 
         dv.Sort = "numchambre"
 
-        Dim pos As Integer = -1
+        Dim pos As Integer
         pos = dv.Find(tbFind.Text.ToString())
         If pos > -1 Then
             currManager.Position = pos
@@ -558,13 +597,13 @@ Public Class Table
         tbFind.SelectAll()
     End Sub
 
-    Private Sub GlassButton10_Click(sender As Object, e As EventArgs) Handles GlassButton10.Click
-        MAINFORM.tabMain.TabPages(facture).Select()
+    Private Sub gbtnEnvoice_Click(sender As Object, e As EventArgs) Handles gbtnEnvoice.Click
+        Mainform.tabMain.TabPages(facture).Select()
     End Sub
 
 
     Private Sub table_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Me.Visible = True Then RadioButton1_CheckedChanged(Nothing, Nothing)
+        If Me.Visible = True Then RadioButton_CheckedChanged(Nothing, Nothing)
     End Sub
 
     Private Sub gbtnPrint_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click
@@ -627,10 +666,10 @@ Public Class Table
             Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value
             Dim lblProduct As Label
             For casier As Integer = 1 To MaxCountOfProducts
-                lblProduct = New Label()
+                'lblProduct = New Label()
                 lblProduct = Me.grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
                 lblProduct.Text = journalrefill.nomproduit(nummodule, casier).nom
-                lblProduct = New Label()
+                'lblProduct = New Label()
                 lblProduct = Me.grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
                 lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value
             Next
@@ -685,11 +724,11 @@ Public Class Table
                     Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value
                     Dim lblProduct As Label
                     For casier As Integer = 1 To MaxCountOfProducts
-                        lblProduct = New Label()
-                        lblProduct = Me.grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
+                        'lblProduct = New Label()
+                        lblProduct = grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
                         lblProduct.Text = journalrefill.nomproduit(nummodule, casier).nom
-                        lblProduct = New Label()
-                        lblProduct = Me.grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
+                        'lblProduct = New Label()
+                        lblProduct = grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
                         lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value
                     Next
                 Else
@@ -700,7 +739,7 @@ Public Class Table
 
         End Try
     End Sub
-    Public Sub traitejournal(data As String)
+    Public Sub Traitejournal(data As String)
         Try
             Dim s As String() = data.Split(";")
             Dim c As Color = Color.Black
@@ -709,8 +748,8 @@ Public Class Table
                 Case "JOURNAL|open"
                     '  MsgBox(convdate(s(2)))
                     '  MsgBox(convdate(s(3)))
-                    Dim db As Integer = convdate(s(2))
-                    Dim df As Integer = convdate(s(3))
+                    Dim db As Integer = Convdate(s(2))
+                    Dim df As Integer = Convdate(s(3))
                     Dim tmp As String = (df - db).ToString
                     c = Color.DarkBlue
                     r = Trans(51) + ": " + s(1) + "   " + Trans(284) + ": " + tmp + "s"
@@ -744,11 +783,12 @@ Public Class Table
 
         End Try
     End Sub
-    Public Sub finjournal()
+    Public Sub Finjournal()
         rt.ScrollToCaret()
 
     End Sub
-    Public Function convdate(s As String) As Integer
+
+    Private Shared Function Convdate(s As String) As Integer
         Try
             Dim t As String() = s.Split(" ")
             Dim tj As String() = t(0).Split("/")
@@ -793,6 +833,22 @@ Public Class Table
         Dim currRow As DataGridViewRow = CType(sender, DataGridView).Rows(e.RowIndex)
         Select Case dgvMain.Columns(e.ColumnIndex).Name.ToLower()
             Case "test"
+                Select Case currRow.Cells("test").Value.ToString().ToLower()
+                    Case Trans(208).ToLower()
+                        Dim ts As TimeSpan = New TimeSpan(1000000000)
+                        Try
+                            ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateanomalie").Value)
+                        Catch ex As Exception
+
+                        End Try
+                        Dim backGroundColor As Color = Color.Red
+                        If ts.TotalHours > 3.0 Then
+                            backGroundColor = Color.Purple
+                        End If
+                        e.CellStyle.BackColor = backGroundColor
+                    Case Trans(43).ToLower()
+                        e.CellStyle.BackColor = Color.DarkCyan
+                End Select
                 If currRow.Cells("test").Value = Trans(208) Then 'And dgvMain.Columns("test").Index = dgvMain.CurrentCell.ColumnIndex Then
                     Dim ts As TimeSpan = New TimeSpan(1000000000)
                     Try
@@ -840,7 +896,7 @@ Public Class Table
                         If Not currRow.Cells("numchambre").Value.ToString().ToLower().StartsWith("r") Then
                             backGroundColor = Color.LightSlateGray
                         End If
-                    
+
                 End Select
                 e.CellStyle.BackColor = backGroundColor
 

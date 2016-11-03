@@ -750,7 +750,7 @@ Public Class Remplissage
                                               On maint.Field(Of String)("modelefrigo") Equals model.Field(Of String)("nom") _
                                               Where maint.Field(Of String)("numchambre").ToString() = numchambre _
                                               Select New Stockcasier With {.Nom = model.Field(Of String)(casier), .Max = CInt(model.Field(Of String)(casier + MaxCountOfProducts))}).ToList()
-        If queryNom IsNot Nothing Then
+        If queryNom IsNot Nothing AndAlso queryNom.Count > 0 Then
             result.Nom = queryNom(0).Nom
             result.Max = queryNom(0).Max
         End If

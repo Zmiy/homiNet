@@ -198,7 +198,7 @@
     <CodeAnalysisLogFile>bin\x86\Debug44\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
@@ -753,8 +753,8 @@
     <None Include="Resources\plus16.png" />
     <None Include="packages.config" />
     <None Include="Resources\BASE64.png" />
-	<None Include="Resources\moin16.png" />
-	<None Include="Resources\moin16.png" />
+    <None Include="Resources\moin16.png" />
+    <None Include="Resources\moin16.png" />
     <None Include="Resources\fleche48.png" />
     <None Include="Resources\rentPng2.png" />
     <None Include="Resources\rentPng.png" />
@@ -811,7 +811,6 @@
     <None Include="Resources\facture48.png" />
     <None Include="Resources\LOUPE24.png" />
   </ItemGroup>
-
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

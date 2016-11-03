@@ -33,6 +33,7 @@ Partial Class Table
         Me.ColorWithAlpha1 = New BlueActivity.Controls.ColorWithAlpha()
         Me.ColorWithAlpha2 = New BlueActivity.Controls.ColorWithAlpha()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.rbRent = New System.Windows.Forms.RadioButton()
         Me.rbAnomaly = New System.Windows.Forms.RadioButton()
         Me.rbMaintenance = New System.Windows.Forms.RadioButton()
         Me.rbUnlocked = New System.Windows.Forms.RadioButton()
@@ -45,7 +46,7 @@ Partial Class Table
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvMain = New System.Windows.Forms.DataGridView()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblFilterNane = New System.Windows.Forms.Label()
         Me.AlphaGradientPanel1 = New BlueActivity.Controls.AlphaGradientPanel()
         Me.ColorWithAlpha3 = New BlueActivity.Controls.ColorWithAlpha()
         Me.ColorWithAlpha4 = New BlueActivity.Controls.ColorWithAlpha()
@@ -102,7 +103,7 @@ Partial Class Table
         Me.gbtnCheckOut = New Glass.GlassButton()
         Me.gbtnCheckIn = New Glass.GlassButton()
         Me.GlassButton9 = New Glass.GlassButton()
-        Me.GlassButton10 = New Glass.GlassButton()
+        Me.gbtnEnvoice = New Glass.GlassButton()
         Me.ConErrAndSWErr = New System.Windows.Forms.Timer(Me.components)
         Me.gbtnRent = New Glass.GlassButton()
         Me.GroupBox1.SuspendLayout()
@@ -133,6 +134,7 @@ Partial Class Table
         '
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.rbRent)
         Me.GroupBox1.Controls.Add(Me.rbAnomaly)
         Me.GroupBox1.Controls.Add(Me.rbMaintenance)
         Me.GroupBox1.Controls.Add(Me.rbUnlocked)
@@ -149,10 +151,21 @@ Partial Class Table
         Me.GroupBox1.Text = "GroupBox1"
         Me.GroupBox1.UseCompatibleTextRendering = True
         '
+        'rbRent
+        '
+        Me.rbRent.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbRent.Location = New System.Drawing.Point(321, 32)
+        Me.rbRent.Name = "rbRent"
+        Me.rbRent.Size = New System.Drawing.Size(80, 24)
+        Me.rbRent.TabIndex = 7
+        Me.rbRent.Tag = "rent"
+        Me.rbRent.Text = "Rent"
+        Me.rbRent.UseVisualStyleBackColor = True
+        '
         'rbAnomaly
         '
         Me.rbAnomaly.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbAnomaly.Location = New System.Drawing.Point(321, 35)
+        Me.rbAnomaly.Location = New System.Drawing.Point(439, 16)
         Me.rbAnomaly.Name = "rbAnomaly"
         Me.rbAnomaly.Size = New System.Drawing.Size(80, 17)
         Me.rbAnomaly.TabIndex = 6
@@ -316,18 +329,18 @@ Partial Class Table
         Me.dgvMain.Size = New System.Drawing.Size(631, 240)
         Me.dgvMain.TabIndex = 38
         '
-        'Label5
+        'lblFilterNane
         '
-        Me.Label5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.lblFilterNane.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label5.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Font = New System.Drawing.Font("Arial Black", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(2, 55)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(631, 23)
-        Me.Label5.TabIndex = 39
-        Me.Label5.Text = "Label5"
+        Me.lblFilterNane.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblFilterNane.Font = New System.Drawing.Font("Arial Black", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFilterNane.ForeColor = System.Drawing.Color.White
+        Me.lblFilterNane.Location = New System.Drawing.Point(2, 55)
+        Me.lblFilterNane.Name = "lblFilterNane"
+        Me.lblFilterNane.Size = New System.Drawing.Size(631, 23)
+        Me.lblFilterNane.TabIndex = 39
+        Me.lblFilterNane.Text = "Label5"
         '
         'AlphaGradientPanel1
         '
@@ -1062,23 +1075,23 @@ Partial Class Table
         Me.GlassButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.GlassButton9.UseCompatibleTextRendering = True
         '
-        'GlassButton10
+        'gbtnEnvoice
         '
-        Me.GlassButton10.AutoEllipsis = True
-        Me.GlassButton10.BackColor = System.Drawing.Color.LightBlue
-        Me.GlassButton10.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton10.GlowColor = System.Drawing.Color.Navy
-        Me.GlassButton10.Image = CType(resources.GetObject("GlassButton10.Image"), System.Drawing.Image)
-        Me.GlassButton10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.GlassButton10.Location = New System.Drawing.Point(134, 4)
-        Me.GlassButton10.Name = "GlassButton10"
-        Me.GlassButton10.OuterBorderColor = System.Drawing.Color.Transparent
-        Me.GlassButton10.ShineColor = System.Drawing.Color.Transparent
-        Me.GlassButton10.Size = New System.Drawing.Size(135, 57)
-        Me.GlassButton10.TabIndex = 42
-        Me.GlassButton10.Text = "Remplissage"
-        Me.GlassButton10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.GlassButton10.UseCompatibleTextRendering = True
+        Me.gbtnEnvoice.AutoEllipsis = True
+        Me.gbtnEnvoice.BackColor = System.Drawing.Color.LightBlue
+        Me.gbtnEnvoice.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbtnEnvoice.GlowColor = System.Drawing.Color.Navy
+        Me.gbtnEnvoice.Image = CType(resources.GetObject("gbtnEnvoice.Image"), System.Drawing.Image)
+        Me.gbtnEnvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.gbtnEnvoice.Location = New System.Drawing.Point(134, 4)
+        Me.gbtnEnvoice.Name = "gbtnEnvoice"
+        Me.gbtnEnvoice.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.gbtnEnvoice.ShineColor = System.Drawing.Color.Transparent
+        Me.gbtnEnvoice.Size = New System.Drawing.Size(135, 57)
+        Me.gbtnEnvoice.TabIndex = 42
+        Me.gbtnEnvoice.Text = "Remplissage"
+        Me.gbtnEnvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.gbtnEnvoice.UseCompatibleTextRendering = True
         '
         'gbtnRent
         '
@@ -1112,7 +1125,7 @@ Partial Class Table
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.AlphaGradientPanel1)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblFilterNane)
         Me.Controls.Add(Me.dgvMain)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -1124,7 +1137,7 @@ Partial Class Table
         Me.Controls.Add(Me.gbtnCheckOut)
         Me.Controls.Add(Me.gbtnCheckIn)
         Me.Controls.Add(Me.GlassButton9)
-        Me.Controls.Add(Me.GlassButton10)
+        Me.Controls.Add(Me.gbtnEnvoice)
         Me.Controls.Add(Me.gbtnExtendetView)
         Me.ForeColor = System.Drawing.Color.Black
         Me.Name = "Table"
@@ -1168,7 +1181,7 @@ Partial Class Table
     Friend WithEvents Label4 As Label
     Friend WithEvents gbtnUpdate As GlassButton
     Friend WithEvents dgvMain As DataGridView
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblFilterNane As Label
     Friend WithEvents AlphaGradientPanel1 As AlphaGradientPanel
     Friend WithEvents ColorWithAlpha3 As ColorWithAlpha
     Friend WithEvents ColorWithAlpha4 As ColorWithAlpha
@@ -1176,7 +1189,7 @@ Partial Class Table
     Friend WithEvents tbFind As TextBox
     Friend WithEvents gbtnFind As GlassButton
     Friend WithEvents GlassButton9 As GlassButton
-    Friend WithEvents GlassButton10 As GlassButton
+    Friend WithEvents gbtnEnvoice As GlassButton
     Friend WithEvents tabcntrlExtendedRoomActivity As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
@@ -1220,4 +1233,5 @@ Partial Class Table
     Friend WithEvents gbtnExtendetView As GlassButton
     Friend WithEvents ConErrAndSWErr As Timer
     Friend WithEvents gbtnRent As Glass.GlassButton
+    Friend WithEvents rbRent As System.Windows.Forms.RadioButton
 End Class

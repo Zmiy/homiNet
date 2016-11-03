@@ -53,24 +53,31 @@ Module ModINI2
             Return defval
         End Try
     End Function
-
-    Function LireINISmart(Entete As String, Variable As String, defValue As String) As String
-        Dim StrBuild As New StringBuilder(MAX_ENTRY)
-        Dim Ret As Integer = GetPrivateProfileString(Entete, Variable, "", StrBuild, MAX_ENTRY, Fichier)
-        If Ret > 0 Then
-            Return StrBuild.ToString
+    'Function LireIniSmart(sectionName As String, keyName As String, defValue As String)
+    '    Dim resultStr As New StringBuilder(MAX_ENTRY)
+    '    Dim retVal = GetPrivateProfileString(sectionName, keyName, defValue, resultStr, MAX_ENTRY, Fichier)
+    '    If retVal = 0 Then
+    '        EcrireINI(sectionName, keyName, defValue)
+    '    End If
+    '    Return resultStr.ToString
+    'End Function
+    Function LireIniSmart(sectionName As String, keyName As String, defValue As String) As String
+        Dim resultStr As New StringBuilder(MAX_ENTRY)
+        Dim numberOfCharactersRead As Integer = GetPrivateProfileString(sectionName, keyName, "", resultStr, MAX_ENTRY, Fichier)
+        If numberOfCharactersRead > 0 Then
+            Return resultStr.ToString
         Else
-            EcrireINI(Entete, Variable, defValue)
+            EcrireINI(sectionName, keyName, defValue)
             Return defValue
         End If
     End Function
 
-    Function LireIniBoolSmart(Entete As String, Variable As String, defValue As Boolean) As Boolean
-        Dim StrBuild As New StringBuilder(MAX_ENTRY)
-        Dim Ret As Integer = GetPrivateProfileString(Entete, Variable, "", StrBuild, MAX_ENTRY, Fichier)
+    Function LireIniBoolSmart(sectionName As String, keyName As String, defValue As Boolean) As Boolean
+        Dim resultStr As New StringBuilder(MAX_ENTRY)
+        Dim numberOfCharactersRead As Integer = GetPrivateProfileString(sectionName, keyName, "", resultStr, MAX_ENTRY, Fichier)
         Dim result As Boolean
-        If Ret > 0 Then
-            Select Case StrBuild.ToString
+        If numberOfCharactersRead > 0 Then
+            Select Case resultStr.ToString
                 Case "0", "False", "false", "FALSE"
                     result = False
                 Case "1", "True", "true", "TRUE"
@@ -80,7 +87,7 @@ Module ModINI2
             End Select
             Return result
         Else
-            EcrireINI(Entete, Variable, defValue)
+            EcrireINI(sectionName, keyName, defValue)
             Return defValue
         End If
     End Function
