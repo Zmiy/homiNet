@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
+    <BaseOutPath>D:\Work Files OneDrive\Binary\HomiNet\</BaseOutPath>
+    <BaseIntermediateOutputPath>$(BaseOutPath)obj\</BaseIntermediateOutputPath>
     <BaseOutputDirectory Condition=" '$(BaseOutputDirectory)' == '' ">$(MSBuildProjectDirectory)\</BaseOutputDirectory>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -293,12 +295,14 @@
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
     <TargetFrameworkName>Net V3.5</TargetFrameworkName>
     <DefineConstants>$(DefineConstants),NET3_5</DefineConstants>
-    <OutputPath>$(BaseOutputDirectory)\..\..\bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+    <OutputPath>$(BaseOutPath)bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.0'">
     <TargetFrameworkName>Net V4.0</TargetFrameworkName>
     <DefineConstants>$(DefineConstants),NET4_0</DefineConstants>
-    <OutputPath>$(BaseOutputDirectory)\..\..\bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+    <OutputPath>$(BaseOutPath)bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GlassButton, Version=1.2.0.686, Culture=neutral, PublicKeyToken=2e983e6e44d23a4f, processorArchitecture=MSIL">
@@ -329,6 +333,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="TcpLibrary, Version=1.0.0.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
@@ -702,6 +707,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\unlock24.png" />
     <None Include="Resources\CAD64.png" />
     <None Include="Resources\CARTE64.png" />
     <None Include="Resources\con32x22.png" />
@@ -792,6 +798,7 @@
     <None Include="Resources\homi-newLogo1.png" />
     <None Include="Resources\homi-newLogo2.png" />
     <None Include="Resources\Homi-hewLogoForPrint2.png" />
+    <None Include="Resources\LOCK24.png" />
     <Content Include="Resources\Project1.ico" />
     <Content Include="Resources\Project11.ico" />
     <None Include="Resources\depart.png" />

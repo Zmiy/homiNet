@@ -11,7 +11,7 @@ if not exist %MSBUILD% (
 ) 
 
 for /f "delims=" %%# in ('powershell get-date -format "{yyMMdd_hhmm}"') do @set _date=%%#
-set _verNum=8.2.4.98
+set _verNum=file8.2.4.910_assembly8.2.4.9
 
 %MSBUILD% /nologo /fl %MSBUILD_SCRIPT% /t:SourceArchive /p:VersionNumber=%_verNum%,DateOfComp=%_date%  /fileLogger7
 

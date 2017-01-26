@@ -26,7 +26,7 @@ Partial Class Imprimer
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Imprimer))
         Me.panel3 = New System.Windows.Forms.Panel()
-        Me.GlassButton6 = New Glass.GlassButton()
+        Me.gbtnClosePreview = New Glass.GlassButton()
         Me.GlassButton4 = New Glass.GlassButton()
         Me.GlassButton3 = New Glass.GlassButton()
         Me.GlassButton2 = New Glass.GlassButton()
@@ -46,7 +46,7 @@ Partial Class Imprimer
         'panel3
         '
         Me.panel3.BackColor = System.Drawing.Color.LightSteelBlue
-        Me.panel3.Controls.Add(Me.GlassButton6)
+        Me.panel3.Controls.Add(Me.gbtnClosePreview)
         Me.panel3.Controls.Add(Me.GlassButton4)
         Me.panel3.Controls.Add(Me.GlassButton3)
         Me.panel3.Controls.Add(Me.GlassButton2)
@@ -63,20 +63,21 @@ Partial Class Imprimer
         Me.panel3.Size = New System.Drawing.Size(88, 462)
         Me.panel3.TabIndex = 1
         '
-        'GlassButton6
+        'gbtnClosePreview
         '
-        Me.GlassButton6.AutoEllipsis = True
-        Me.GlassButton6.BackColor = System.Drawing.Color.Red
-        Me.GlassButton6.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton6.GlowColor = System.Drawing.Color.LightCoral
-        Me.GlassButton6.Location = New System.Drawing.Point(3, 421)
-        Me.GlassButton6.Name = "GlassButton6"
-        Me.GlassButton6.OuterBorderColor = System.Drawing.Color.Transparent
-        Me.GlassButton6.ShineColor = System.Drawing.Color.Transparent
-        Me.GlassButton6.Size = New System.Drawing.Size(72, 38)
-        Me.GlassButton6.TabIndex = 45
-        Me.GlassButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.GlassButton6.UseCompatibleTextRendering = True
+        Me.gbtnClosePreview.AutoEllipsis = True
+        Me.gbtnClosePreview.BackColor = System.Drawing.Color.Red
+        Me.gbtnClosePreview.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.gbtnClosePreview.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbtnClosePreview.GlowColor = System.Drawing.Color.LightCoral
+        Me.gbtnClosePreview.Location = New System.Drawing.Point(3, 421)
+        Me.gbtnClosePreview.Name = "gbtnClosePreview"
+        Me.gbtnClosePreview.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.gbtnClosePreview.ShineColor = System.Drawing.Color.Transparent
+        Me.gbtnClosePreview.Size = New System.Drawing.Size(72, 38)
+        Me.gbtnClosePreview.TabIndex = 45
+        Me.gbtnClosePreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.gbtnClosePreview.UseCompatibleTextRendering = True
         '
         'GlassButton4
         '
@@ -225,6 +226,7 @@ Partial Class Imprimer
         'Imprimer
         '
         Me.BackColor = System.Drawing.Color.Lavender
+        Me.CancelButton = Me.gbtnClosePreview
         Me.ClientSize = New System.Drawing.Size(584, 462)
         Me.Controls.Add(Me.PP1)
         Me.Controls.Add(Me.panel3)
@@ -248,7 +250,7 @@ Partial Class Imprimer
     Friend WithEvents GlassButton3 As GlassButton
     Friend WithEvents GlassButton2 As GlassButton
     Friend WithEvents GlassButton1 As GlassButton
-    Friend WithEvents GlassButton6 As GlassButton
+    Friend WithEvents gbtnClosePreview As GlassButton
     Friend WithEvents Doc As PrintDocument
     Friend WithEvents PP1 As PrintPreviewControl
 End Class

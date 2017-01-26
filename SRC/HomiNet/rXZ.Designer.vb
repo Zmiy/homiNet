@@ -33,7 +33,7 @@ Partial Class rXZ
         Me.ColorWithAlpha1 = New BlueActivity.Controls.ColorWithAlpha()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.rtf = New System.Windows.Forms.ListBox()
+        Me.lbPeriodResults = New System.Windows.Forms.ListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.gbtnReadingPeriod = New Glass.GlassButton()
@@ -66,7 +66,7 @@ Partial Class rXZ
         Me.AlphaGradientPanel2.ContentPadding = New System.Windows.Forms.Padding(0)
         Me.AlphaGradientPanel2.Controls.Add(Me.Label3)
         Me.AlphaGradientPanel2.Controls.Add(Me.Label1)
-        Me.AlphaGradientPanel2.Controls.Add(Me.rtf)
+        Me.AlphaGradientPanel2.Controls.Add(Me.lbPeriodResults)
         Me.AlphaGradientPanel2.CornerRadius = 20
         Me.AlphaGradientPanel2.Corners = CType((((BlueActivity.Controls.Corner.TopLeft Or BlueActivity.Controls.Corner.TopRight) _
             Or BlueActivity.Controls.Corner.BottomLeft) _
@@ -115,20 +115,20 @@ Partial Class rXZ
         Me.Label1.Text = "Label1"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'rtf
+        'lbPeriodResults
         '
-        Me.rtf.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.lbPeriodResults.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.rtf.BackColor = System.Drawing.Color.Honeydew
-        Me.rtf.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.rtf.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtf.FormattingEnabled = True
-        Me.rtf.ItemHeight = 11
-        Me.rtf.Location = New System.Drawing.Point(13, 50)
-        Me.rtf.Name = "rtf"
-        Me.rtf.ScrollAlwaysVisible = True
-        Me.rtf.Size = New System.Drawing.Size(324, 352)
-        Me.rtf.TabIndex = 0
+        Me.lbPeriodResults.BackColor = System.Drawing.Color.Honeydew
+        Me.lbPeriodResults.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lbPeriodResults.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPeriodResults.FormattingEnabled = True
+        Me.lbPeriodResults.ItemHeight = 11
+        Me.lbPeriodResults.Location = New System.Drawing.Point(13, 50)
+        Me.lbPeriodResults.Name = "lbPeriodResults"
+        Me.lbPeriodResults.ScrollAlwaysVisible = True
+        Me.lbPeriodResults.Size = New System.Drawing.Size(324, 352)
+        Me.lbPeriodResults.TabIndex = 0
         '
         'GroupBox1
         '
@@ -351,7 +351,7 @@ Partial Class rXZ
     Friend WithEvents AlphaGradientPanel2 As AlphaGradientPanel
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents rtf As ListBox
+    Friend WithEvents lbPeriodResults As ListBox
     Friend WithEvents ColorWithAlpha1 As ColorWithAlpha
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Month As MonthCalendar

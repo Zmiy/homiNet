@@ -1,14 +1,14 @@
 Imports System.ComponentModel
 Imports System.Globalization
 
-Public Class basedlc
-    Dim dvd As New DataView
+Public Class Basedlc
+    ReadOnly _dvd As New DataView
 
     Private Sub basedlc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dlc.Columns.Add("nummodule", Type.GetType("System.String"))
+        Dlc.Columns.Add("nummodule", Type.GetType("System.String"))
         For i As Integer = 1 To MaxCountOfProducts
             For j As Integer = 1 To 6
-                dlc.Columns.Add("dlc_" + i.ToString() + "_" + j.ToString(), Type.GetType("System.String"))
+                Dlc.Columns.Add("dlc_" + i.ToString() + "_" + j.ToString(), Type.GetType("System.String"))
             Next
         Next
 
@@ -27,10 +27,10 @@ Public Class basedlc
         'dfrigo2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
         'dfrigo2.ColumnHeadersHeight = 10
 
-        dvd.Table = dlc
-        dvd.Sort = "nummodule"
+        _dvd.Table = Dlc
+        _dvd.Sort = "nummodule"
 
-        dch.DataSource = maintable
+        dch.DataSource = Maintable
         dch.Sort(dch.Columns("numchambre"), ListSortDirection.Ascending)
         For i As Integer = 0 To dch.Columns.Count - 1
             dch.Columns(i).Visible = False
@@ -55,32 +55,32 @@ Public Class basedlc
         initlangue()
     End Sub
 
-    Public Sub initlangue()
-        Me.Text = Trans(312)
+    Public Sub Initlangue()
+        Text = Trans(312)
         dch.Columns("numchambre").HeaderText = Trans(15)
         dch.Columns("nbconso").HeaderText = Trans(342)
         dch.Columns("factureclient").HeaderText = Trans(345)
         Label1.Text = Trans(312)
         Label2.Text = Trans(313)
     End Sub
-    Public Sub adddlc(s As String())
-        Dim i As Integer = dvd.Find(s(1))
+    Public Sub Adddlc(s As String())
+        Dim i As Integer = _dvd.Find(s(1))
         If i < 0 Then
             Dim r As DataRow
-            r = dlc.NewRow
+            r = Dlc.NewRow
             r(0) = s(1)
-            dlc.Rows.Add(r)
-            i = dvd.Find(s(1))
+            Dlc.Rows.Add(r)
+            i = _dvd.Find(s(1))
         End If
-        dvd(i).BeginEdit()
+        _dvd(i).BeginEdit()
         For j As Integer = 1 To MaxCountOfProducts * 6 '72  
             If (j + 1) < s.Length Then
-                dvd(i)(j) = s(j + 1)
+                _dvd(i)(j) = s(j + 1)
             Else
-                dvd(i)(j) = ""
+                _dvd(i)(j) = ""
             End If
         Next
-        dvd(i).EndEdit()
+        _dvd(i).EndEdit()
     End Sub
 
 
@@ -114,14 +114,14 @@ Public Class basedlc
             Next
         Next
         'recherche dlc
-        Dim d As Integer = dvd.Find(dch.CurrentRow.Cells("nummodule").Value)
+        Dim d As Integer = _dvd.Find(dch.CurrentRow.Cells("nummodule").Value)
         If d = -1 Then Exit Sub
         For i As Integer = 0 To MaxCountOfProducts - 1 '11
             For j As Integer = 0 To 5
-                If dfrigo1.Rows(j).Cells(i).Style.BackColor <> Me.BackColor Then
-                    If dvd(d)((i * 6) + 1 + j) <> "0" Then
+                If dfrigo1.Rows(j).Cells(i).Style.BackColor <> BackColor Then
+                    If _dvd(d)((i * 6) + 1 + j) <> "0" Then
 
-                        Dim tempDateString As String = dvd(d)((i * 6) + 1 + j)
+                        Dim tempDateString As String = _dvd(d)((i * 6) + 1 + j)
                         'Dim temp As DateTime = DateTime.Parse(tempDateString, System.Globalization.DateTimeFormatInfo.InvariantInfo)
 
                         Dim dd As Date = DateTime.Parse(tempDateString, DateTimeFormatInfo.InvariantInfo) 'dvd(d)((i * 6) + 1 + j)
@@ -158,10 +158,10 @@ Public Class basedlc
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If Me.Visible = True Then dch_MouseClick(Nothing, Nothing)
+        If Visible = True Then dch_MouseClick(Nothing, Nothing)
     End Sub
 
-    Public Sub returndlc(indx As Integer)
+    Public Sub Returndlc(indx As Integer)
         For i As Integer = 0 To 5
             For j As Integer = 0 To MaxCountOfProducts - 1 '11
                 dfrigo1.Rows(i).Cells(j).Style.BackColor = Color.White
@@ -190,17 +190,17 @@ Public Class basedlc
             Next
         Next
         'recherche dlc
-        Dim d As Integer = dvd.Find(dch.Rows(indx).Cells("nummodule").Value)
+        Dim d As Integer = _dvd.Find(dch.Rows(indx).Cells("nummodule").Value)
         If d = -1 Then Exit Sub
         For i As Integer = 0 To MaxCountOfProducts - 1 '11
             For j As Integer = 0 To 5
-                If dfrigo1.Rows(j).Cells(i).Style.BackColor <> Me.BackColor Then
-                    If dvd(d)((i * 6) + 1 + j) <> "0" And Not String.IsNullOrEmpty(dvd(d)((i * 6) + 1 + j)) Then
+                If dfrigo1.Rows(j).Cells(i).Style.BackColor <> BackColor Then
+                    If _dvd(d)((i * 6) + 1 + j) <> "0" And Not String.IsNullOrEmpty(_dvd(d)((i * 6) + 1 + j)) Then
                         Dim dd As Date
                         Try
-                            dd = DateTime.Parse(dvd(d)((i * 6) + 1 + j), DateTimeFormatInfo.InvariantInfo) 'dvd(d)((i * 6) + 1 + j)
+                            dd = DateTime.Parse(_dvd(d)((i * 6) + 1 + j), DateTimeFormatInfo.InvariantInfo) 'dvd(d)((i * 6) + 1 + j)
                         Catch
-                            dd = dvd(d)((i * 6) + 1 + j)
+                            dd = _dvd(d)((i * 6) + 1 + j)
                         End Try
                         dfrigo1.Rows(j).Cells(i).Style.BackColor = Color.Green
                         dfrigo1.Rows(j).Cells(i).Value = dd.Subtract(Now).Days
@@ -233,17 +233,17 @@ Public Class basedlc
     End Sub
 
     Private Sub basedlc_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-        Dim a As String = ""
+        'Dim a As String = ""
 
     End Sub
 
     Private Sub basedlc_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
 
-        If Me.Visible = True Then
+        If Visible = True Then
             'InitializeComponent()
             dfrigo1.Columns.Clear()
             dfrigo2.Columns.Clear()
-            Dim sCasier As String = String.Empty
+            Dim sCasier As String '= String.Empty
             For casier As Integer = 1 To MaxCountOfProducts
                 sCasier = casier.ToString()
                 dfrigo1.Columns.Add("Column" + sCasier, sCasier)

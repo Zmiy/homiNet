@@ -1,4 +1,5 @@
 Imports System.Drawing.Printing
+Imports System.Text.RegularExpressions
 
 Public Class rXZ
     Dim memd As Boolean = False
@@ -70,13 +71,24 @@ Public Class rXZ
     End Sub
     'Reading period
     Private Sub gbtnReadingPeriod_Click(sender As Object, e As EventArgs) Handles gbtnReadingPeriod.Click   'Reading period
-        rtf.Items.Clear()
+        lbPeriodResults.Items.Clear()
         table.AddEmis(0, "LECTUREDATE|" + Datedebut.Value.ToUniversalTime().ToString("u") + "|" + Datefin.Value.ToUniversalTime().ToString("u"))
         Label1.Text = Trans(374)
         Label3.Text = Datedebut.Value + " - " + Datefin.Value
-        rtf.Items.Add("Please wait!!!")
+        lbPeriodResults.Items.Add("Please wait!!!")
     End Sub
+    Public Sub ResultsToTable()
+        Dim indx As Integer = lbPeriodResults.FindString("------------------------------------------")
+        Dim result() As String
+        If indx > -1 Then
+            Dim pattern As String = "\s{2,}"
+            For indx = indx + 3 To lbPeriodResults.FindString("__________________________________________") - 1
+                Dim str As String = Regex.Replace(lbPeriodResults.Items(indx).ToString().Trim(), pattern, "~")
+                result = str.Split("~"c)
+            Next
 
+        End If
+    End Sub
     Private Sub GlassButton1_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click   'Print
         EcrireINI("imprimante", "xygauche", gauche.Text)
         EcrireINI("imprimante", "xyhaut", haut.Text)

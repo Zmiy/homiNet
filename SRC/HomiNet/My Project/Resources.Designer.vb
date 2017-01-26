@@ -271,7 +271,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Version 8.1.4.97
+        '''  Looks up a localized string similar to Version 8.1.4.98
+        '''--------------------------------------------------------------
+        '''+ Improve refill list. Value in Ini file: Imprimer\SecondText
+        '''+ Ready to &apos;Rent&apos;
+        '''Version 8.1.4.97
         '''--------------------------------------------------------------
         '''= Fixed minor bugs of refill list
         '''= Fixed bugs on sales report
@@ -284,12 +288,7 @@ Namespace My.Resources
         '''
         '''
         '''Version 8.1.4.95
-        '''--------------------------------------------------------------
-        '''+ Add &apos;Guest Products&apos; to refill list
-        '''
-        '''Version 8.1.4.94
-        '''--------------------------------------------------------------
-        '''+ Add information of rerned p [rest of string was truncated]&quot;;.
+        '''---------------------------------------------------- [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property changelog() As String
             Get
@@ -750,6 +749,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property LOCK24() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("LOCK24", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property LOCK48() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("LOCK48", resourceCulture)
@@ -993,6 +1002,16 @@ Namespace My.Resources
         Friend ReadOnly Property UNLOCK() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("UNLOCK", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property unlock24() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("unlock24", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

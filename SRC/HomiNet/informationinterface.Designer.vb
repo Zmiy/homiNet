@@ -30,7 +30,7 @@ Partial Class Informationinterface
         Me.rtbInformationView = New System.Windows.Forms.RichTextBox()
         Me.pnlCalendare = New System.Windows.Forms.Panel()
         Me.btnUpdate = New Glass.GlassButton()
-        Me.d1 = New System.Windows.Forms.MonthCalendar()
+        Me.mcalendarInformation = New System.Windows.Forms.MonthCalendar()
         Me.pnlExtention = New System.Windows.Forms.Panel()
         Me.gbExtention = New System.Windows.Forms.GroupBox()
         Me.cmbExtension = New System.Windows.Forms.ComboBox()
@@ -74,7 +74,7 @@ Partial Class Informationinterface
         '
         Me.pnlCalendare.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCalendare.Controls.Add(Me.btnUpdate)
-        Me.pnlCalendare.Controls.Add(Me.d1)
+        Me.pnlCalendare.Controls.Add(Me.mcalendarInformation)
         Me.pnlCalendare.Location = New System.Drawing.Point(560, 2)
         Me.pnlCalendare.Name = "pnlCalendare"
         Me.pnlCalendare.Size = New System.Drawing.Size(263, 191)
@@ -98,12 +98,12 @@ Partial Class Informationinterface
         Me.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnUpdate.UseCompatibleTextRendering = True
         '
-        'd1
+        'mcalendarInformation
         '
-        Me.d1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.d1.Location = New System.Drawing.Point(5, 1)
-        Me.d1.Name = "d1"
-        Me.d1.TabIndex = 39
+        Me.mcalendarInformation.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.mcalendarInformation.Location = New System.Drawing.Point(5, 1)
+        Me.mcalendarInformation.Name = "mcalendarInformation"
+        Me.mcalendarInformation.TabIndex = 39
         '
         'pnlExtention
         '
@@ -322,7 +322,7 @@ Partial Class Informationinterface
     Friend WithEvents rtbInformationView As RichTextBox
     Friend WithEvents pnlCalendare As Panel
     Friend WithEvents btnUpdate As GlassButton
-    Friend WithEvents d1 As MonthCalendar
+    Friend WithEvents mcalendarInformation As MonthCalendar
     Friend WithEvents pnlExtention As Panel
     Friend WithEvents gbExtention As GroupBox
     Friend WithEvents cmbExtension As ComboBox

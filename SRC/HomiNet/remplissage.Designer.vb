@@ -46,7 +46,7 @@ Partial Class Remplissage
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.n1 = New System.Windows.Forms.NumericUpDown()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.imprimante = New System.Windows.Forms.ComboBox()
+        Me.cmbRefill = New System.Windows.Forms.ComboBox()
         Me.gbtnPrint = New Glass.GlassButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.cmbTo = New System.Windows.Forms.ComboBox()
@@ -241,7 +241,7 @@ Partial Class Remplissage
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlLeft.Controls.Add(Me.GroupBox3)
         Me.pnlLeft.Controls.Add(Me.CheckBox1)
-        Me.pnlLeft.Controls.Add(Me.imprimante)
+        Me.pnlLeft.Controls.Add(Me.cmbRefill)
         Me.pnlLeft.Controls.Add(Me.gbtnPrint)
         Me.pnlLeft.Controls.Add(Me.GroupBox2)
         Me.pnlLeft.Controls.Add(Me.GroupBox1)
@@ -281,14 +281,14 @@ Partial Class Remplissage
         Me.CheckBox1.Text = "CheckBox1"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'imprimante
+        'cmbRefill
         '
-        Me.imprimante.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.imprimante.FormattingEnabled = True
-        Me.imprimante.Location = New System.Drawing.Point(5, 370)
-        Me.imprimante.Name = "imprimante"
-        Me.imprimante.Size = New System.Drawing.Size(285, 21)
-        Me.imprimante.TabIndex = 47
+        Me.cmbRefill.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmbRefill.FormattingEnabled = True
+        Me.cmbRefill.Location = New System.Drawing.Point(5, 370)
+        Me.cmbRefill.Name = "cmbRefill"
+        Me.cmbRefill.Size = New System.Drawing.Size(285, 21)
+        Me.cmbRefill.TabIndex = 47
         '
         'gbtnPrint
         '
@@ -579,7 +579,7 @@ Partial Class Remplissage
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents n1 As NumericUpDown
     Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents imprimante As ComboBox
+    Friend WithEvents cmbRefill As ComboBox
     Friend WithEvents gbtnPrint As GlassButton
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents cmbTo As ComboBox

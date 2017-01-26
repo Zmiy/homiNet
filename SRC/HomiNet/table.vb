@@ -11,7 +11,7 @@ Public Class Table
         inittable()
         InitLabelView()
         initlangue()
-        initapplication()
+        Initapplication()
         AddHandler Dv1.ListChanged, AddressOf Dv1ListChanged
         dgvMain.AutoResizeColumnHeadersHeight()
         dgvMain.AutoResizeColumns()
@@ -36,7 +36,7 @@ Public Class Table
                     Case "nummodule"
                         .Width = 70
 
-                   Case "test"
+                    Case "test"
                         .Width = 110
 
                     Case Else
@@ -279,43 +279,43 @@ Public Class Table
 
     End Sub
     Private Sub Inittable()
-        maintable.Columns.Add("e", Type.GetType("System.String")) '0
-        maintable.Columns.Add("numchambre", Type.GetType("System.String"))
-        maintable.Columns.Add("etatporte", Type.GetType("System.String"))
-        maintable.Columns.Add("serrure", Type.GetType("System.String"))
-        maintable.Columns.Add("etattemp", Type.GetType("System.String"))
-        maintable.Columns.Add("signal", Type.GetType("System.String"))
-        maintable.Columns.Add("check", Type.GetType("System.String"))
-        maintable.Columns.Add("ouverture", GetType(Int32))
-        maintable.Columns.Add("status", Type.GetType("System.String"))
-        maintable.Columns.Add("nummodule", Type.GetType("System.String"))
-        maintable.Columns.Add("savserrure", Type.GetType("System.String")) '10
-        maintable.Columns.Add("test", Type.GetType("System.String"))
-        maintable.Columns.Add("dateex", Type.GetType("System.String"))
-        maintable.Columns.Add("dateremplissage", Type.GetType("System.String"))
-        maintable.Columns.Add("datecheckin", Type.GetType("System.String"))
-        maintable.Columns.Add("datecheckout", Type.GetType("System.String"))
-        maintable.Columns.Add("datelock", Type.GetType("System.String"))
-        maintable.Columns.Add("dateunlock", Type.GetType("System.String"))
-        maintable.Columns.Add("datemaintenance", Type.GetType("System.String"))
-        maintable.Columns.Add("dateanomalie", Type.GetType("System.String"))
-        maintable.Columns.Add("libre1", GetType(Int32))                      '20
-        maintable.Columns.Add("libre2", GetType(Int32))
-        maintable.Columns.Add("libre3", GetType(Int32))
-        maintable.Columns.Add("libre4", GetType(Int32))
-        maintable.Columns.Add("zone", GetType(Int32))
-        maintable.Columns.Add("nummessage", Type.GetType("System.String"))  '25
-        maintable.Columns.Add("messencours", Type.GetType("System.String"))
-        maintable.Columns.Add("messageattente", Type.GetType("System.String"))
-        maintable.Columns.Add("numtelecommande", Type.GetType("System.String"))
-        maintable.Columns.Add("dateouvert", Type.GetType("System.String"))
-        maintable.Columns.Add("datefermer", Type.GetType("System.String"))
-        maintable.Columns.Add("remplissage", GetType(Int32))                   '30
-        maintable.Columns.Add("maintenance", GetType(Int32))
-        maintable.Columns.Add("service", GetType(Int32))
+        Maintable.Columns.Add("e", Type.GetType("System.String")) '0
+        Maintable.Columns.Add("numchambre", Type.GetType("System.String"))
+        Maintable.Columns.Add("etatporte", Type.GetType("System.String"))
+        Maintable.Columns.Add("serrure", Type.GetType("System.String"))
+        Maintable.Columns.Add("etattemp", Type.GetType("System.String"))
+        Maintable.Columns.Add("signal", Type.GetType("System.String"))
+        Maintable.Columns.Add("check", Type.GetType("System.String"))
+        Maintable.Columns.Add("ouverture", GetType(Int32))
+        Maintable.Columns.Add("status", Type.GetType("System.String"))
+        Maintable.Columns.Add("nummodule", Type.GetType("System.String"))
+        Maintable.Columns.Add("savserrure", Type.GetType("System.String")) '10
+        Maintable.Columns.Add("test", Type.GetType("System.String"))
+        Maintable.Columns.Add("dateex", Type.GetType("System.String"))
+        Maintable.Columns.Add("dateremplissage", Type.GetType("System.String"))
+        Maintable.Columns.Add("datecheckin", Type.GetType("System.String"))
+        Maintable.Columns.Add("datecheckout", Type.GetType("System.String"))
+        Maintable.Columns.Add("datelock", Type.GetType("System.String"))
+        Maintable.Columns.Add("dateunlock", Type.GetType("System.String"))
+        Maintable.Columns.Add("datemaintenance", Type.GetType("System.String"))
+        Maintable.Columns.Add("dateanomalie", Type.GetType("System.String"))
+        Maintable.Columns.Add("libre1", GetType(Int32))                      '20
+        Maintable.Columns.Add("libre2", GetType(Int32))
+        Maintable.Columns.Add("libre3", GetType(Int32))
+        Maintable.Columns.Add("libre4", GetType(Int32))
+        Maintable.Columns.Add("zone", GetType(Int32))
+        Maintable.Columns.Add("nummessage", Type.GetType("System.String"))  '25
+        Maintable.Columns.Add("messencours", Type.GetType("System.String"))
+        Maintable.Columns.Add("messageattente", Type.GetType("System.String"))
+        Maintable.Columns.Add("numtelecommande", Type.GetType("System.String"))
+        Maintable.Columns.Add("dateouvert", Type.GetType("System.String"))
+        Maintable.Columns.Add("datefermer", Type.GetType("System.String"))
+        Maintable.Columns.Add("remplissage", GetType(Int32))                   '30
+        Maintable.Columns.Add("maintenance", GetType(Int32))
+        Maintable.Columns.Add("service", GetType(Int32))
 
         For casier As Integer = 1 To MaxCountOfProducts
-            maintable.Columns.Add("c" + casier.ToString(), GetType(Int32))
+            Maintable.Columns.Add("c" + casier.ToString(), GetType(Int32))
         Next
         'maintable.Columns.Add("c1", GetType(Int32))
         'maintable.Columns.Add("c2", GetType(Int32))
@@ -336,38 +336,38 @@ Public Class Table
         'maintable.Columns.Add("c15", GetType(Int32))
         'maintable.Columns.Add("c16", GetType(Int32))
         '----------------------------------------------------------------------------
-        maintable.Columns.Add("modelefrigo", Type.GetType("System.String"))
-        maintable.Columns.Add("nbconso", GetType(Int32))
-        maintable.Columns.Add("aremplir", GetType(Int32))
-        maintable.Columns.Add("updateparamhomi", GetType(Int32))
-        maintable.Columns.Add("factureclient", Type.GetType("System.String"))
-        maintable.Columns.Add("tarif", GetType(Int32))
+        Maintable.Columns.Add("modelefrigo", Type.GetType("System.String"))
+        Maintable.Columns.Add("nbconso", GetType(Int32))
+        Maintable.Columns.Add("aremplir", GetType(Int32))
+        Maintable.Columns.Add("updateparamhomi", GetType(Int32))
+        Maintable.Columns.Add("factureclient", Type.GetType("System.String"))
+        Maintable.Columns.Add("tarif", GetType(Int32))
         'DEZ 23/06/10 add swr--------------------------------------------------------
-        maintable.Columns.Add("swr", GetType(String))
+        Maintable.Columns.Add("swr", GetType(String))
         '----------------------------------------------------------------------------
-        maintable.Columns.Add("coffre", GetType(Int32))
-        dv1.Table = maintable
-        dv.Table = maintable
-        dvch.Table = dv1.Table
-        dv.Sort = "nummodule"
-        dv1.Sort = "numchambre"
-        dvch.Sort = "numchambre"
-        dv1.RowFilter = "numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
+        Maintable.Columns.Add("coffre", GetType(Int32))
+        Dv1.Table = Maintable
+        Dv.Table = Maintable
+        Dvch.Table = Dv1.Table
+        Dv.Sort = "nummodule"
+        Dv1.Sort = "numchambre"
+        Dvch.Sort = "numchambre"
+        Dv1.RowFilter = "numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
         lblFilterNane.Text = Trans(49)
-        dgvMain.DataSource = dv1
+        dgvMain.DataSource = Dv1
         '      TextBox2.DataBindings.Add("Text", dv1, "numchambre")
         '     TextBox2.AutoCompleteSource = AutoCompleteSource.RecentlyUsedList
-        dtMomentaryPickUp.Columns.Add("nummodule", GetType(Int32))
+        DtMomentaryPickUp.Columns.Add("nummodule", GetType(Int32))
         For casier As Integer = 1 To MaxCountOfProducts
-            dtMomentaryPickUp.Columns.Add("c" + casier.ToString(), GetType(Int32))
-            dtMomentaryPickUp.Columns.Add("dmp" + casier.ToString(), GetType(String))
+            DtMomentaryPickUp.Columns.Add("c" + casier.ToString(), GetType(Int32))
+            DtMomentaryPickUp.Columns.Add("dmp" + casier.ToString(), GetType(String))
         Next
         '--------------------------------------------------------------------
-        dtMomentaryPickUp.PrimaryKey = New DataColumn() {dtMomentaryPickUp.Columns("nummodule")}
+        DtMomentaryPickUp.PrimaryKey = New DataColumn() {DtMomentaryPickUp.Columns("nummodule")}
 
     End Sub
 
-    Private Sub Initapplication()
+    Private Shared Sub Initapplication()
         'mise a jour logiciel
         Dim fe3 As New FileInfo(Application.StartupPath + "\Param.ini")
 
@@ -385,69 +385,34 @@ Public Class Table
         If Not Visible Then
             Exit Sub
         End If
-        Dim rb As RadioButton = DirectCast(sender, RadioButton)
-        If rb IsNot Nothing AndAlso rb.Checked Then
-            Select Case rb.Name.ToLower()
-                Case "rbAll".ToLower()
-                    Dv1.RowFilter = "numchambre <>'R*' and " + "test<>'" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(49)
-                Case "rbCheckIn".ToLower()
-                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "check='" + Trans(21) + "' and test<>'" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(21)
-                Case "rbCheckout".ToLower()
-                    Dv1.RowFilter = "numchambre Not Like'R*' and " + "check='" + Trans(22) + "' and test<>'" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(22)
-                Case "rbLocked".ToLower()
-                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "serrure='" + Trans(35) + "' and test<>'" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(35)
-                Case "rbUnlocked".ToLower()
-                    Dv1.RowFilter = "numchambre Not Like 'R*' and " + "serrure='" + Trans(36) + "' and test<>'" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(36)
-                Case "rbMaintenance".ToLower()
-                    Dv1.RowFilter = "test='" + Trans(37) + "'"
-                    lblFilterNane.Text = Trans(37)
-                Case "rbAnomaly".ToLower()
-                    Dv1.RowFilter = "test<>'" + Trans(97) + "' and test<>'" + Trans(37) + "'and test<>'" + Trans(26) + "'"
-                    lblFilterNane.Text = Trans(20)
-                Case "rbRent".ToLower()
-                    Dv1.RowFilter = String.Format("test ='{0}'", Trans(43))
-                    lblFilterNane.Text = Trans(43)
-            End Select
-        End If
 
+        Select Case True
+            Case rbAll.Checked
+                Dv1.RowFilter = String.Format("numchambre <> 'R*' and test <> '{0}'", Trans(37))
+                lblFilterNane.Text = Trans(49)
+            Case rbCheckIn.Checked
+                Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and {0} = '{1}' and test <> '{2}'", "check", Trans(21), Trans(37))
+                lblFilterNane.Text = Trans(21)
+            Case rbCheckOut.Checked
+                Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and {0} = '{1}' and test <> '{2}'", "check", Trans(22), Trans(37))
+                lblFilterNane.Text = Trans(22)
+            Case rbLocked.Checked
+                Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and {0} = '{1}' and test <> '{2}'", "serrure", Trans(35), Trans(37))
+                lblFilterNane.Text = Trans(35)
+            Case rbUnlocked.Checked
+                Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and {0} = '{1}' and test <> '{2}'", "serrure", Trans(36), Trans(37))
+                lblFilterNane.Text = Trans(36)
+            Case rbMaintenance.Checked
+                Dv1.RowFilter = String.Format("test = '{0}'", Trans(37))
+                lblFilterNane.Text = Trans(37)
+            Case rbAnomaly.Checked
+                Dv1.RowFilter = String.Format("test <> '{0}' and test <> '{1}' and test <> '{2}' and test <> '{3}'", Trans(97), Trans(37), Trans(26), Trans(43))
+                lblFilterNane.Text = Trans(20)
+            Case rbRent.Checked
+                Dv1.RowFilter = String.Format("test ='{0}'", Trans(43))
+                lblFilterNane.Text = Trans(43)
+        End Select
 
-
-
-
-
-        'If rbAll.Checked = True Then
-        '    Dv1.RowFilter = "numchambre <>'R*' and " + "test<>'" + Trans(37) + "'"
-        '    Label5.Text = Trans(49)
-        'End If
-        'If rbCheckIn.Checked = True Then
-        '    Dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(21) + "' and test<>'" + Trans(37) + "'"
-        '    Label5.Text = Trans(21)
-        'End If
-        'If rbCheckOut.Checked = True Then
-        '    Dv1.RowFilter = "numchambre<>'R*' and " + "check='" + Trans(22) + "' and test<>'" + Trans(37) + "'"
-        '    Label5.Text = Trans(22)
-        'End If
-        'If rbLocked.Checked = True Then
-        '    Dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(35) + "' and test<>'" + Trans(37) + "'"
-        '    Label5.Text = Trans(35)
-        'End If
-        'If rbUnlocked.Checked = True Then
-        '    Dv1.RowFilter = "numchambre<>'R*' and " + "serrure='" + Trans(36) + "' and test<>'" + Trans(37) + "'"
-        '    Label5.Text = Trans(36)
-        'End If
-        'If rbMaintenance.Checked = True Then
-        '    Dv1.RowFilter = "test='" + Trans(37) + "'"
-        '    Label5.Text = Trans(37)
-        'End If
-        'If rbAnomaly.Checked = True Then
-        '    Dv1.RowFilter = "test<>'" + Trans(97) + "' and test<>'" + Trans(37) + "'and test<>'" + Trans(26) + "'"
-        '    Label5.Text = Trans(20)
-        'End If
 
     End Sub
     Private Sub Dv1ListChanged(sender As Object, e As ListChangedEventArgs)
@@ -463,7 +428,14 @@ Public Class Table
 
     Private Sub gbtnUpdate_Click(sender As Object, e As EventArgs) Handles gbtnUpdate.Click
         MAINFORM.Actualiser()
+        'Dim rb As RadioButton = GroupBox1.Controls.OfType(Of RadioButton).FirstOrDefault(Function(x) x.Checked = True)
+        'Where item.GetType() Is GetType(RadioButton) AndAlso CType(item, RadioButton).Checked Select item)
         RadioButton_CheckedChanged(Nothing, Nothing)
+        'Dim qry = From item As Control In ctls _
+        '    Where item.ID = "ButtonOK" _
+        'Select item
+
+
     End Sub
 
     Private Sub GlassButton0_Click(sender As Object, e As EventArgs) Handles gbtnCheckIn.Click, gbtnMaintenance.Click, gbtnTest.Click, gbtnLock.Click, GbtnUnlock.Click, gbtnCheckOut.Click, gbtnRent.Click
@@ -603,7 +575,10 @@ Public Class Table
 
 
     Private Sub table_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Me.Visible = True Then RadioButton_CheckedChanged(Nothing, Nothing)
+        If Me.Visible = True Then
+            'Dim rb = (From item As Control In GroupBox1.Controls Where item.GetType() Is GetType(RadioButton) AndAlso CType(item, RadioButton).Checked Select item).ToList()
+            RadioButton_CheckedChanged(Nothing, Nothing)
+        End If
     End Sub
 
     Private Sub gbtnPrint_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click
@@ -774,6 +749,9 @@ Public Class Table
                 Case "JOURNAL|facture"
                     c = Color.DarkOrange
                     r = Trans(348) + ": " + s(1) + "   " + s(2) + "   " + s(3)
+                Case "JOURNAL|move"
+                    c = Color.Black
+                    r = s(1)
             End Select
             rt.SelectionStart = rt.TextLength
             rt.SelectionLength = 0

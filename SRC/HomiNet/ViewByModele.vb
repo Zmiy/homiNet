@@ -44,11 +44,15 @@ Public Class ViewByModele
     Private Sub GlassButton9_Click(sender As Object, e As EventArgs) Handles GlassButton9.Click
         MAINFORM.tabMain.TabPages(table).Select()
     End Sub
-
+    Private Sub InitLanguage()
+        btnUnlock.Text = Trans(25)
+        btnLock.Text = Trans(24)
+        btnSend.Text = Trans(216)
+    End Sub
     Private Shared Sub CreatePanel(pnl As Panel, panelName As String, cntrl As Control())
-        pnl.Anchor = CType((((AnchorStyles.Top Or AnchorStyles.Bottom) _
-        Or AnchorStyles.Left) _
-        Or AnchorStyles.Right), AnchorStyles)
+        pnl.Anchor = (((AnchorStyles.Top Or AnchorStyles.Bottom) _
+                       Or AnchorStyles.Left) _
+                      Or AnchorStyles.Right)
 
         pnl.AutoScroll = True
         pnl.BorderStyle = BorderStyle.Fixed3D
@@ -90,18 +94,18 @@ Public Class ViewByModele
         End If
         Return result
     End Function
-    Private Function CreateDescrLabel(name As String, Text As String) As Label
+    Private Function CreateDescrLabel(lblName As String, lblText As String) As Label
         Dim result As Label = New Label()
         result.BackColor = Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         result.Dock = DockStyle.Fill
         result.Font = New Font("Microsoft Sans Serif", 10.5!, FontStyle.Bold Or FontStyle.Italic, GraphicsUnit.Point, CType(0, Byte))
         'result.Location = New System.Drawing.Point(0, 0)
-        result.Name = "lbl" + name
+        result.Name = "lbl" + lblName
         'result.Size = New System.Drawing.Size(83, 20)
         result.TextAlign = ContentAlignment.MiddleLeft
         'result.Margin = New Padding(0, 0, 0, 0)
         'result.TabIndex = 0
-        result.Text = Text
+        result.Text = lblText
 
         Return result
     End Function
@@ -206,7 +210,7 @@ Public Class ViewByModele
         TblpanelBottomShelf.Location = New Point(TblpanelTopShelf.Left, TblpanelMiddleShelf.Bottom + 30)
 
         'Lay Down 2nd
-        LblMiddleName2Nd = CreateDescrLabel("MiddleDescr2nd", "2nd Lay Down Bottle")
+        LblMiddleName2Nd = CreateDescrLabel("MiddleDescr2nd", "Lay Down Bottle")
         TblpanelMiddleShelf2Nd = CreateLayoutPanel(4, 2, "tblpanelMiddleShelf", LblMiddleName2Nd)
         TblpanelMiddleShelf2Nd.Location = New Point(TblpanelBottomShelf.Left, TblpanelBottomShelf.Bottom + 30)
 
@@ -356,32 +360,40 @@ Public Class ViewByModele
                 hexSvm = ModelTools.ModelByIndex(iIndx, coffre) 'Model2Hex330(iIndx)
                 PositionByVisibleFor330(hexSvm)
             Case 3
-                TblpanelExtTray.Visible = False
-                TblpanelExtTray48.Visible = False
-                TblpanelBalcony2Nd.Visible = False
-                TblpanelMiddleShelf2Nd.Visible = False
+                hexSvm = ModelTools.ModelByIndex(iIndx, coffre)
                 swr = _selectedRow.Cells("swr").Value.PadLeft(13).Trim()
+                TblpanelExtTray.Visible = (hexSvm And &HFF0) <> 0
+                TblpanelExtTray48.Visible = (hexSvm And &HF00) <> 0
+                TblpanelBalcony2Nd.Visible = (hexSvm And &H3F000) <> 0
+                TblpanelMiddleShelf2Nd.Visible = (hexSvm And &HF000000000) <> 0
+                TblpanelMiddleShelf.Visible = (hexSvm And &HF000000000000) <> 0
                 'Dim hexSvm As Long = ModelTools.ModelByIndex(iIndx, coffre) 'Model2Hex226(iIndx)
-                hexSvm = ModelTools.ModelByIndex(iIndx, coffre) 'Model2Hex226(iIndx)
+                'Model2Hex226(iIndx)
                 If String.IsNullOrEmpty(swr) Then
                     swr = "0"
                 End If
                 'Dim flag = False
 
-                If (((Convert.ToInt64(swr, 16) And &HF00003F000) <> 0) AndAlso LireIniBoolSmart("HidenValues", "IsCanShow2ndBalconyAndMidleSHelf", False)) _
+                If (((Convert.ToInt64(swr, 16) And &HF00003F000) <> 0) AndAlso LireIniBoolSmart("HiddenValues", "IsCanShow2ndBalconyAndMidleSHelf", False)) _
                     OrElse (hexSvm And &HF00003F000) <> 0 Then
                     TblpanelBalcony2Nd.Visible = True
                     TblpanelMiddleShelf2Nd.Visible = True
                     'flag = True
                 End If
-                If (hexSvm And &HFF0) <> 0 Then
-                    'tblpanelExtTray.Location = New Point(IIf(flag, tblpanelBalcony2nd.Right + 10, tblpanelBalcony.Right + 10), tblpanelTopShelf.Top)
-                    TblpanelExtTray.Visible = True
-                    If (hexSvm And &HF00) <> 0 Then
-                        TblpanelExtTray48.Visible = True
-                    End If
-                End If
+                'If (hexSvm And &HFF0) <> 0 Then
+                '    'tblpanelExtTray.Location = New Point(IIf(flag, tblpanelBalcony2nd.Right + 10, tblpanelBalcony.Right + 10), tblpanelTopShelf.Top)
+                '    TblpanelExtTray.Visible = True
+                '    If (hexSvm And &HF00) <> 0 Then
+                '        TblpanelExtTray48.Visible = True
+                '    End If
+                'End If
                 'realTrayStatus = Convert.ToInt64(SelectedRow.Cells("swr").Value.PadLeft(13).Trim(), 16)
+                'If Not TblpanelMiddleShelf.Visible Then
+                '    TblpanelBottomShelf.Top = TblpanelMiddleShelf.Top
+                '    If TblpanelMiddleShelf2Nd.Visible Then
+                '        TblpanelMiddleShelf2Nd.Top = TblpanelBottomShelf.Bottom
+                '    End If
+                'End If
         End Select
         If String.IsNullOrEmpty(swr) Then
             swr = "0"
@@ -390,10 +402,12 @@ Public Class ViewByModele
 
         For ind As Integer = 0 To lbl.Count - 1
             lbl(ind).BackColor = Color.Green
+            lbl(ind).AutoEllipsis = True
             lbl(ind).Text = IIf(lbl(ind).Tag.ToString().Length > 0, lbl(ind).Tag + Chr(13), "")
             lbl(ind).Image = Nothing
         Next
-        Dim sProdactName As String = String.Empty, sFormatStr As String = "{0}{1}{2} / {3}"
+        Dim sProdactName As String
+        Const sFormatStr As String = "{0}{1}{2} / {3}"
         Dim iMaxQ As Integer = 0, iRealQ As Integer = 0, iMp As Integer
         Dim drMp As DataRow = (From mp In dtMomentaryPickUp.AsEnumerable Where mp.Field(Of Integer)("nummodule") = _selectedRow.Cells("nummodule").Value Select mp)(0)
         Dim i As Integer = 4
@@ -473,7 +487,6 @@ Public Class ViewByModele
                 i += 1
             End If
         Next
-
         pnl.Width = Me.Width - pnlLeft.Width - pnlLeft.Margin.Right - pnlLegend.Width - pnlLeft.Margin.Left - 15
         pnl.Height = Me.Height - pnlTop.Height - 20
         pnl.Visible = True
@@ -623,6 +636,7 @@ Public Class ViewByModele
 
 
     Private Sub ViewByModele_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitLanguage()
         CreatePanels()
 
         SetLabelHomi226New()
@@ -648,6 +662,7 @@ Public Class ViewByModele
     End Sub
 
     Private Sub ViewByModele_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
+        HideSearchPanel()
         lbRooms.DataSource = Nothing
     End Sub
 
@@ -674,6 +689,49 @@ Public Class ViewByModele
     Private Sub pnlHomi226New_VisibleChanged(sender As Object, e As EventArgs) Handles PnlHomi226New.VisibleChanged
         If PnlHomi226New.Visible Then
             TblpanelExtTray.Location = New Point(IIf(TblpanelBalcony2Nd.Visible, TblpanelBalcony2Nd.Right + 10, TblpanelBalcony.Right + 10), TblpanelTopShelf.Top)
+            TblpanelBottomShelf.Location = New Point(TblpanelTopShelf.Left, IIf(TblpanelMiddleShelf.Visible, TblpanelMiddleShelf.Bottom + 30, TblpanelMiddleShelf.Top))
+            TblpanelMiddleShelf2Nd.Location = New Point(TblpanelBottomShelf.Left, TblpanelBottomShelf.Bottom + 30)
         End If
+    End Sub
+
+    Private Sub btnLock_Click(sender As System.Object, e As System.EventArgs) Handles btnLock.Click
+        _selectedRow.Cells("e").Value = "*"
+        Table.AddEmis(_selectedRow.Cells("nummodule").Value, "LOCK")
+    End Sub
+
+    Private Sub lblRooms_Click(sender As System.Object, e As System.EventArgs) Handles lblRooms.Click
+        If Not gradpnlSearch.Visible Then
+            ShowSearchPanel()
+        Else
+            HideSearchPanel()
+        End If
+    End Sub
+    Private Sub ShowSearchPanel()
+        gradpnlSearch.Visible = True
+        lblRooms.SendToBack()
+    End Sub
+    Private Sub HideSearchPanel()
+        tbFind.Text = ""
+        gradpnlSearch.Visible = False
+        lblRooms.BringToFront()
+    End Sub
+    Private Sub gbtnFind_Click(sender As System.Object, e As System.EventArgs) Handles gbtnFind.Click
+        Dim currManager As CurrencyManager = CType(lbRooms.BindingContext(lbRooms.DataSource), CurrencyManager)
+        Dim dv As DataView = CType(currManager.List, DataView)
+        If tbFind.Text.ToString.Length = 0 OrElse currManager.Count = 0 Then
+            Exit Sub
+        End If
+
+        dv.Sort = "numchambre"
+
+        Dim pos As Integer
+        pos = dv.Find(tbFind.Text.ToString())
+        If pos > -1 Then
+            currManager.Position = pos
+            lbRooms.SetSelected(pos, True)
+        Else
+            MessageBox.Show(String.Format("{0} {1} not found", Trans(28), tbFind.Text.ToString()))
+        End If
+        HideSearchPanel()
     End Sub
 End Class

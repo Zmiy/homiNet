@@ -403,8 +403,14 @@
   <data name="homi_newLogo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homi-newLogo2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="rentPng2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rentPng2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LOCK24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LOCK24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="unlock24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unlock24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -62,20 +62,20 @@ Public Class Remplissage
         rbtnTotalStock.Text = "Total rooms stock" 'trans(451)
         gbtnPrint.Text = Trans(141)
         CheckBox1.Text = Trans(385)
-        imprimante.Items.Clear()
+        cmbRefill.Items.Clear()
 
 
         'For i As Integer = 0 To Printing.PrinterSettings.InstalledPrinters.Count - 1
         '    imprimante.Items.Add(Printing.PrinterSettings.InstalledPrinters.Item(i))
         'Next
-        imprimante.Items.AddRange(GetListOfPrinters().ToArray())
+        cmbRefill.Items.AddRange(GetListOfPrinters().ToArray())
 
         Try
             Dim usedPrinter As String = LireINI("imprimante", "remplissage")
             If GetListOfPrinters().Contains(usedPrinter) Then
-                imprimante.Text = usedPrinter
+                cmbRefill.Text = usedPrinter
             Else
-                imprimante.Text = GetDefaultPrinterName()
+                cmbRefill.Text = GetDefaultPrinterName()
             End If
             'imprimante.Text = LireINI("imprimante", "remplissage")
             CheckBox1.Checked = LireINI("imprimante", "remplissagepaysage")
@@ -179,7 +179,7 @@ Public Class Remplissage
             For j As Integer = 1 To DGRemp.ColumnCount - 1
                 DGRemp.Item(j, i).Value = 0
             Next
-            basedlc.returndlc(i)
+            Basedlc.returndlc(i)
 
             For j As Integer = 0 To MaxCountOfProducts - 1 '11
                 Dim cremp As Integer = Trouveremp(basedlc.dfrigo1.Columns(j).HeaderText) ' find index of column by name of product in dlc form
@@ -244,7 +244,7 @@ Public Class Remplissage
             For j As Integer = 1 To DGRemp.ColumnCount - 1
                 DGRemp.Item(j, i).Value = 0
             Next
-            basedlc.returndlc(i)
+            Basedlc.returndlc(i)
             For j As Integer = 0 To MaxCountOfProducts - 1 '11
                 Dim cremp As Integer = Trouveremp(basedlc.dfrigo1.Columns(j).HeaderText)
                 'test si perime
@@ -415,7 +415,7 @@ Public Class Remplissage
             '.Columns("LastRefill").Visible = False
             .Rows.Add()
         End With
-        
+
         Dim dgvTmp As New DataGridView()
         DGRemp.Columns(0).SortMode = DataGridViewColumnSortMode.Programmatic
         dgvTmp = DGRemp
@@ -472,7 +472,7 @@ Public Class Remplissage
         If f > _queryAlarm.Count Then f = _queryAlarm.Count
         If d < 0 Then d = 0
         For i As Integer = d To f - 1
-            Dim addCheck As Integer = CInt(_queryAlarm(i).door)+CInt(_queryAlarm(i).test)+CInt(_queryAlarm(i).service)+CInt(_queryAlarm(i).gp)
+            Dim addCheck As Integer = CInt(_queryAlarm(i).door) + CInt(_queryAlarm(i).test) + CInt(_queryAlarm(i).service) + CInt(_queryAlarm(i).gp)
             If _queryAlarm(i).maint("aremplir") > 0 OrElse chkbMomPickUp.Checked OrElse addCheck > 0 Then
                 Try
                     If chkbVacantOnly.Checked = True AndAlso String.Compare(_queryAlarm(i).maint("check").ToString().ToUpper, "CHECK IN", StringComparison.Ordinal) = 0 Then
@@ -861,7 +861,7 @@ Public Class Remplissage
         Try
             If rbtnOutOfday.Checked = True Then
                 Dim imp As New Imprimer
-                imp.imprimante = imprimante.Text
+                imp.imprimante = cmbRefill.Text
                 imp.imprime = "perime"
                 imp.paysage = CheckBox1.Checked
                 imp.go()
@@ -897,7 +897,7 @@ Public Class Remplissage
                 imp.Width = pnlRight.Width
                 imp.Height = pnlRight.Height
 
-                imp.imprimante = imprimante.Text
+                imp.imprimante = cmbRefill.Text
                 imp.imprime = "remplissage"
                 imp.paysage = CheckBox1.Checked
                 Dim dgvSaved As DataGridView = DGRemp.Clone()
@@ -950,8 +950,8 @@ Public Class Remplissage
         cmbTo.SelectedIndex = _sav(7)
     End Sub
 
-    Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles imprimante.SelectedIndexChanged
-        EcrireINI("imprimante", "remplissage", imprimante.Text)
+    Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbRefill.SelectedIndexChanged
+        EcrireINI("imprimante", "remplissage", cmbRefill.Text)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged

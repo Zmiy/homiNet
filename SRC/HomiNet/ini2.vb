@@ -71,7 +71,9 @@ Module ModINI2
             Return defValue
         End If
     End Function
-
+    ''' 
+    '''<summary> Read boolean parameter from ini file</summary>
+    '''
     Function LireIniBoolSmart(sectionName As String, keyName As String, defValue As Boolean) As Boolean
         Dim resultStr As New StringBuilder(MAX_ENTRY)
         Dim numberOfCharactersRead As Integer = GetPrivateProfileString(sectionName, keyName, "", resultStr, MAX_ENTRY, Fichier)

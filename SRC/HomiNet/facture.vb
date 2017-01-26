@@ -194,25 +194,40 @@ Public Class facture
 
     Private Sub rtf_Click(sender As Object, e As EventArgs) Handles rtf.Click
         Try
-
             If rtf.SelectedIndex > -1 Then
-                If rtf.SelectedItem = Space(42) Then
+                If rtf.SelectedItem.ToString().ToLower().StartsWith("' move") Or rtf.SelectedItem.ToString().ToLower().StartsWith("' swap") Then
+                    rtf.SelectedIndex = rtf.SelectedIndex - 3
+                End If
+                If rtf.SelectedItem() = Space(42) Then
                     indligne = rtf.SelectedIndex - 1
-                    GoTo fin
-                End If
-                If rtf.Items(rtf.SelectedIndex + 1) = Space(42) Then
+                ElseIf rtf.Items(rtf.SelectedIndex + 1) = Space(42) Then
                     indligne = rtf.SelectedIndex
-                    GoTo fin
-                End If
-                If rtf.Items(rtf.SelectedIndex + 2) = Space(42) Then
+                ElseIf rtf.Items(rtf.SelectedIndex + 2) = Space(42) Then
                     indligne = rtf.SelectedIndex + 1
-                    GoTo fin
                 End If
             Else
                 indligne = -1
             End If
-fin:
             rtf.SetSelected(indligne, True)
+            '            If rtf.SelectedIndex > -1 Then
+
+            '                If rtf.SelectedItem = Space(42) Then
+            '                    indligne = rtf.SelectedIndex - 1
+            '                    GoTo fin
+            '                End If
+            '                If rtf.Items(rtf.SelectedIndex + 1) = Space(42) Then
+            '                    indligne = rtf.SelectedIndex
+            '                    GoTo fin
+            '                End If
+            '                If rtf.Items(rtf.SelectedIndex + 2) = Space(42) Then
+            '                    indligne = rtf.SelectedIndex + 1
+            '                    GoTo fin
+            '                End If
+            '            Else
+            '                indligne = -1
+            '            End If
+            'fin:
+            '            rtf.SetSelected(indligne, True)
         Catch ex As Exception
             indligne = -1
         End Try

@@ -163,10 +163,12 @@ Public Class Mainform
     End Sub
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
         Dim versionN As String = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+        Dim vi As FileVersionInfo = FileVersionInfo.GetVersionInfo(Reflection.Assembly.GetExecutingAssembly.Location)
+        String.Format("HomiNet Version: {0}, file version: {1}", versionN, vi.FileVersion)
 #If Demo Then
         versionN += " Demo Edition"
 #End If
-        MessageBox.Show("HomiNet V " + versionN, "Version", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show(String.Format("HomiNet Version: {0}, file version: {1}", versionN, vi.FileVersion), "Version", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'MsgBox("HomiNet V 8.1.4.3", MsgBoxStyle.Information, "Version")
     End Sub
 
@@ -271,12 +273,13 @@ Public Class Mainform
                 facture.rtf.Items.Add("")
                 facture.total()
             Case "LECTUREDEBUT"
-                rXZ.rtf.Items.Clear()
+                rXZ.lbPeriodResults.Items.Clear()
                 ClientOfDriverIrf.SendData(Conv("LIGNEOK"))
             Case "LECTURE"
-                rXZ.rtf.Items.Add(s(1))
+                rXZ.lbPeriodResults.Items.Add(s(1))
                 ClientOfDriverIrf.SendData(Conv("LIGNEOK"))
             Case "LECTUREFIN"
+                rXZ.ResultsToTable()
                 ClientOfDriverIrf.SendData(Conv("LIGNEOK"))
             Case "ARCHIVEDEBUT"
                 Rfacture.lbSelectedFactory.Items.Clear()
@@ -402,7 +405,7 @@ Public Class Mainform
                 basehappy.addhappy(s)
                 ClientOfDriverIrf.SendData(Conv("LIGNEOK"))
             Case "ADDDLC"
-                basedlc.adddlc(s)
+                Basedlc.Adddlc(s)
                 ClientOfDriverIrf.SendData(Conv("LIGNEOK"))
             Case "REFILLDEBUT"
                 journalrefill.dj.Visible = False

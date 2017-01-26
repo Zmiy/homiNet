@@ -2,7 +2,7 @@ Imports System.ComponentModel
 Imports Microsoft.VisualBasic.CompilerServices
 
 <DesignerGenerated()> _
-Partial Class basedlc
+Partial Class Basedlc
     Inherits Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -34,7 +34,7 @@ Partial Class basedlc
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle
         Dim DataGridViewCellStyle7 As DataGridViewCellStyle = New DataGridViewCellStyle
         Dim DataGridViewCellStyle8 As DataGridViewCellStyle = New DataGridViewCellStyle
-        Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(basedlc))
+        Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(Basedlc))
         Me.dch = New DataGridView
         Me.dfrigo1 = New DataGridView
         Me.Timer1 = New Timer(Me.components)

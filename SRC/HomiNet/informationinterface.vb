@@ -299,7 +299,7 @@ Public Class Informationinterface
     End Sub
     Private Sub UpdatePerformClickAction()
 
-        Dim el2 As String = Format(Year(d1.SelectionStart), "0000") + Format(Month(d1.SelectionStart), "00") + Format(DateAndTime.Day(d1.SelectionStart), "00")
+        Dim el2 As String = Format(Year(mcalendarInformation.SelectionStart), "0000") + Format(Month(mcalendarInformation.SelectionStart), "00") + Format(DateAndTime.Day(mcalendarInformation.SelectionStart), "00")
         rtbInformationView.Clear()
         table.AddEmis(0, "FINTERFACE|" + el2)
         If rbtnFailure.Checked = True Then
@@ -391,7 +391,7 @@ Public Class Informationinterface
             rtbInformationView.SelectionLength = rtbInformationView.TextLength - 2
         End If
         Dim s As String() = rtbInformationView.SelectedText.Split(Chr(10))
-        Dim reinvoiceData As String = d1.SelectionStart.ToString("yyyyMMdd")
+        Dim reinvoiceData As String = mcalendarInformation.SelectionStart.ToString("yyyyMMdd")
         For Each l As String In s
             Try
                 l = Replace(l, Chr(9) + Chr(9), Chr(9))
