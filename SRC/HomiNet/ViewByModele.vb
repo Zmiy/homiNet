@@ -7,40 +7,49 @@ Public Class ViewByModele
     Private _labels As New List(Of Label)
     'Private _labels226 As New List(Of Label)
     Private _labels226New As New List(Of Label)
-
+    Private WithEvents tmrDoubleClick As New Timer()
+    Private isFirstClick As Boolean = True
+    Private isDoubleClick As Boolean = False
+    Private milliseconds As Integer = 0
+    Private doubleClickRectangle = New Rectangle(0, 0, 24, 30)
+    Private _filterStr
     'New Panel 226 &330/336
     '
-    Friend WithEvents PnlHomi226New As Panel = New Panel()
-    Friend WithEvents PnlHomi330New As Panel = New Panel()
+    Private WithEvents PnlHomi226New As Panel = New Panel()
+    Private WithEvents PnlHomi330New As Panel = New Panel()
 
-    Friend WithEvents TblpanelTopShelf As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelMiddleShelf As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelBottomShelf As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelBalcony As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelExtTray As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelExtTray48 As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelTopShelf As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelMiddleShelf As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelBottomShelf As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelBalcony As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelExtTray As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelExtTray48 As TableLayoutPanel = New TableLayoutPanel()
 
-    Friend WithEvents TblpanelMiddleShelf2Nd As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelBalcony2Nd As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelMiddleShelf2Nd As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelBalcony2Nd As TableLayoutPanel = New TableLayoutPanel()
 
-    Friend WithEvents TblpanelLeftSide As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelRightSide As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelExtTray330 As TableLayoutPanel = New TableLayoutPanel()
-    Friend WithEvents TblpanelExtTray33048 As TableLayoutPanel = New TableLayoutPanel()
-
-    Friend WithEvents LblTopName As Label = New Label()
-    Friend WithEvents LblMiddleName As Label = New Label()
-    Friend WithEvents LblMiddleName2Nd As Label = New Label()
-    Friend WithEvents LblBottomName As Label = New Label()
-    Friend WithEvents LblBalconyName As Label = New Label()
-    Friend WithEvents LblBalconyName2Nd As Label = New Label()
-    Friend WithEvents LblTrayName As Label = New Label()
-    Friend WithEvents LblLeftName As Label = New Label()
-    Friend WithEvents LblRightName As Label = New Label()
-    Friend WithEvents LblTray330Name As Label = New Label()
+    Private WithEvents TblpanelLeftSide As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelRightSide As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelExtTray330 As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents TblpanelExtTray33048 As TableLayoutPanel = New TableLayoutPanel()
+    Private WithEvents LblTopName As Label = New Label()
+    Private WithEvents LblMiddleName As Label = New Label()
+    Private WithEvents LblMiddleName2Nd As Label = New Label()
+    Private WithEvents LblBottomName As Label = New Label()
+    Private WithEvents LblBalconyName As Label = New Label()
+    Private WithEvents LblBalconyName2Nd As Label = New Label()
+    Private WithEvents LblTrayName As Label = New Label()
+    Private WithEvents LblLeftName As Label = New Label()
+    Private WithEvents LblRightName As Label = New Label()
+    Private WithEvents LblTray330Name As Label = New Label()
     '
     '
-
+    Private Enum Commands
+        Lock = 1
+        Unlock = 2
+        Test = 3
+        AddStock = 15
+    End Enum
     Private Sub GlassButton9_Click(sender As Object, e As EventArgs) Handles GlassButton9.Click
         MAINFORM.tabMain.TabPages(table).Select()
     End Sub
@@ -496,27 +505,39 @@ Public Class ViewByModele
 
     Public Sub SetParams(row As DataGridViewRow)
         _selectedRow = row
-        lblRoomNText.Text = _selectedRow.Cells("numchambre").Value.ToString() + "/" + _selectedRow.Cells("nummodule").Value.ToString()
-        lblDoorStatusText.Text = _selectedRow.Cells("etatporte").Value.ToString() + "/" + _selectedRow.Cells("serrure").Value.ToString()
-        lblRoomStatusTest.Text = _selectedRow.Cells("check").Value.ToString()
+        Dim statusString = String.Format("{0} - {1} ({2}:{3}), {4}: {5}", _
+                                         Trans(28), _selectedRow.Cells("numchambre").Value.ToString(), _
+                                         Trans(32), _selectedRow.Cells("nummodule").Value.ToString(), _
+                                         Trans(287), _selectedRow.Cells("modelefrigo").Value.ToString())
+        lblStatus1.Text = statusString
+        statusString = String.Format("PMS Status: {0}", _selectedRow.Cells("savserrure").Value.ToString())
+        lblStatus2.Text = statusString
+        'lblRoomNText.Text = _selectedRow.Cells("numchambre").Value.ToString() + "/" + _selectedRow.Cells("nummodule").Value.ToString()
+        'lblDoorStatusText.Text = _selectedRow.Cells("etatporte").Value.ToString() + "/" + _selectedRow.Cells("serrure").Value.ToString()
+        'lblRoomStatusTest.Text = _selectedRow.Cells("check").Value.ToString()
         lblTempText.Text = _selectedRow.Cells("etattemp").Value.ToString()
-        lblServiceSwitchText.Text = IIf(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, Trans(51), Trans(50))
+        'lblServiceSwitchText.Text = IIf(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, Trans(51), Trans(50))
+        pbSW.Image = IIf(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, SwithOn, SwithOff) 'on36, off36)
         lblItemsNbText.Text = _selectedRow.Cells("nbconso").Value.ToString()
         lblBalanceText.Text = _selectedRow.Cells("factureclient").Value.ToString()
         Dim coffre = CInt(_selectedRow.Cells("coffre").Value)
         If coffre < 3 AndAlso Convert.ToBoolean(ModelTools.Is226Model(_selectedRow.Cells("modelefrigo").Value)) Then
             coffre = 3
         End If
-
+        'pbLockUnlock.Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LOCK, UNLOCK)
+        'pbLitleLockUnlock.Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LOCK24, unlock24)
+        Dim lockImg As Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LockVert, UnlockVert)
+        Dim minibarImg As Image
         Select Case coffre
             Case 0, 1, 2
-                pbMinibar.Image = _330_closed100x123
+                minibarImg = IIf(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _330open, _330closed)
                 SetParamsByType(_selectedRow, _labels, PnlHomi330New)
             Case 3
-                pbMinibar.Image = _226_closed100x135
+                minibarImg = IIf(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _226open, _226closed)
                 SetParamsByType(_selectedRow, _labels226New, PnlHomi226New)
         End Select
-
+        pbMinibar.Image = CombineBitmap(minibarImg, lockImg)
+        pbMinibar.Tag = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), 2, 1)
     End Sub
     Private Function CreateLabel4CellOfTblPanel(labelName As String, cnt As Integer) As List(Of Label)
         Dim lbl As Label
@@ -644,47 +665,42 @@ Public Class ViewByModele
         Dim x As Integer = pnlLeft.Right + 10, y As Integer = pnlLeft.Top
         PnlHomi226New.Location = New Point(x, y)
         PnlHomi330New.Location = New Point(x, y)
+        tmrDoubleClick.Interval = 100
+        'tmrDoubleClick.Tick = New EventHandler(AddressOf tmrDoubleClick_Tick)
 
     End Sub
     Public Sub InitView()
-        lbRooms.DataSource = dv1
-        lbRooms.DisplayMember = "numchambre"
-        lbRooms.MultiColumn = True
-        lbRooms.ValueMember = "nummodule"
-    End Sub
-    Private Sub lbRooms_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbRooms.SelectedIndexChanged
-        PnlHomi226New.Visible = False
-        PnlHomi330New.Visible = False
-        If lbRooms.SelectedIndex >= 0 AndAlso Visible = True Then
-            SetParams(table.dgvMain.SelectedRows(0))
-        End If
+        'lbRooms.DataSource = dv1
+        'lbRooms.DisplayMember = "numchambre"
+        'lbRooms.MultiColumn = False
+        'lbRooms.ValueMember = "nummodule"
+        _filterStr = Dv1.RowFilter
+        
+        dgvExtView.DataSource = Dv1
+        Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and test<>'{0}'", Trans(37)) '"numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
+        'For Each foundFile As String In From foundFiles In My.Computer.FileSystem.GetFiles(Application.StartupPath + "\Z\") Where foundFiles.Contains(el2) = True
+        For Each clm As DataGridViewColumn In From columns In dgvExtView.Columns Where Not columns.Name.ToString().InSet(New String() {"numchambre", "test"})
+            clm.Visible = False
+        Next
+        dgvExtView.Columns("numchambre").HeaderText = Trans(28)
 
     End Sub
+    'Private Sub lbRooms_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    PnlHomi226New.Visible = False
+    '    PnlHomi330New.Visible = False
+    '    If lbRooms.SelectedIndex >= 0 AndAlso Visible = True Then
+    '        SetParams(Table.dgvMain.SelectedRows(0))
+    '    End If
+
+    'End Sub
 
     Private Sub ViewByModele_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
         HideSearchPanel()
-        lbRooms.DataSource = Nothing
+        'lbRooms.DataSource = Nothing
+        Dv1.RowFilter = _filterStr
     End Sub
 
-    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
-        Dim s As String = String.Empty
-        'For j As Integer = 1 To MaxCountOfProducts
-        '    s += 0.ToString + " "
-        'Next
-
-        s = s.PadLeft(MaxCountOfProducts, "0").Replace("0", "0 ")
-        Remplissagemanuel.LogString(s)
-        'dch.CurrentRow.Cells("e").Value = "*"
-        _selectedRow.Cells("e").Value = "*"
-        table.AddEmis(_selectedRow.Cells("nummodule").Value, "ADDSTOCK|" + s)
-    End Sub
-
-    Private Sub btnUnlock_Click(sender As Object, e As EventArgs) Handles btnUnlock.Click
-        _selectedRow.Cells("e").Value = "*"
-        table.AddEmis(_selectedRow.Cells("nummodule").Value, "UNLOCK")
-    End Sub
-
-
+    
 
     Private Sub pnlHomi226New_VisibleChanged(sender As Object, e As EventArgs) Handles PnlHomi226New.VisibleChanged
         If PnlHomi226New.Visible Then
@@ -693,11 +709,7 @@ Public Class ViewByModele
             TblpanelMiddleShelf2Nd.Location = New Point(TblpanelBottomShelf.Left, TblpanelBottomShelf.Bottom + 30)
         End If
     End Sub
-
-    Private Sub btnLock_Click(sender As System.Object, e As System.EventArgs) Handles btnLock.Click
-        _selectedRow.Cells("e").Value = "*"
-        Table.AddEmis(_selectedRow.Cells("nummodule").Value, "LOCK")
-    End Sub
+    
 
     Private Sub lblRooms_Click(sender As System.Object, e As System.EventArgs) Handles lblRooms.Click
         If Not gradpnlSearch.Visible Then
@@ -716,7 +728,8 @@ Public Class ViewByModele
         lblRooms.BringToFront()
     End Sub
     Private Sub gbtnFind_Click(sender As System.Object, e As System.EventArgs) Handles gbtnFind.Click
-        Dim currManager As CurrencyManager = CType(lbRooms.BindingContext(lbRooms.DataSource), CurrencyManager)
+        'Dim currManager As CurrencyManager = CType(lbRooms.BindingContext(lbRooms.DataSource), CurrencyManager)
+        Dim currManager As CurrencyManager = CType(dgvExtView.BindingContext(dgvExtView.DataSource), CurrencyManager)
         Dim dv As DataView = CType(currManager.List, DataView)
         If tbFind.Text.ToString.Length = 0 OrElse currManager.Count = 0 Then
             Exit Sub
@@ -728,10 +741,112 @@ Public Class ViewByModele
         pos = dv.Find(tbFind.Text.ToString())
         If pos > -1 Then
             currManager.Position = pos
-            lbRooms.SetSelected(pos, True)
+            dgvExtView.CurrentRow.Selected = True 'SetSelected(pos, True)
+            dgvExtView_RowEnter(Me, Nothing)
         Else
             MessageBox.Show(String.Format("{0} {1} not found", Trans(28), tbFind.Text.ToString()))
         End If
         HideSearchPanel()
     End Sub
+    Private Shared Function CombineBitmap(minibar As Image, locker As Image) As Bitmap
+        Dim finalImage As Bitmap
+        Try
+            Dim padX = Convert.ToInt32(locker.Width / 2)
+            Dim padY = Convert.ToInt32(locker.Height / 2)
+            Dim width As Integer = minibar.Width + padX
+            Dim height As Integer = minibar.Height + padY
+            finalImage = New Bitmap(width, height)
+            Using g As Graphics = Graphics.FromImage(finalImage)
+                g.Clear(Color.Transparent)
+                g.DrawImage(minibar, New Rectangle(padX, padY, minibar.Width, minibar.Height))
+                g.DrawImage(locker, Point.Empty)
+            End Using
+            Return finalImage
+        Catch ex As Exception
+            If finalImage IsNot Nothing Then
+                finalImage.Dispose()
+            End If
+        End Try
+    End Function
+
+    'Private Sub lbRooms_Format(sender As System.Object, e As System.Windows.Forms.ListControlConvertEventArgs)
+    '    Dim row As DataRow = DirectCast(e.ListItem, DataRowView).Row
+    '    e.Value = e.Value.ToString().PadLeft(10) & " |" & row("test").ToString() & " |" & row("modelefrigo")
+    'End Sub
+
+    Private Sub dgvExtView_RowEnter(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvExtView.RowEnter
+        PnlHomi226New.Visible = False
+        PnlHomi330New.Visible = False
+        If dgvExtView.SelectedRows.Count > 0 AndAlso Visible = True Then
+            SetParams(dgvExtView.SelectedRows(0))
+        End If
+
+    End Sub
+#Region "Buttons"
+    Private Sub pbMinibar_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles pbMinibar.MouseDown
+        If isFirstClick Then
+            isFirstClick = False
+            tmrDoubleClick.Start()
+        Else
+            If doubleClickRectangle.Contains(e.Location) AndAlso milliseconds < SystemInformation.DoubleClickTime Then
+                isDoubleClick = True
+            End If
+        End If
+    End Sub
+
+    'Private Sub pbMinibar_DoubleClick(sender As System.Object, e As System.EventArgs) Handles pbMinibar.DoubleClick
+
+    'End Sub
+    'Private Sub pbMinibar_MouseClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles pbMinibar.MouseClick
+
+    '    If dgvExtView.SelectedRows.Count > 0 AndAlso Visible = True Then
+    '        Table.AddEmis(CInt(dgvExtView.CurrentRow.Cells("nummodule").Value), "TEST")
+    '    End If
+    'End Sub
+
+    'Private Sub pbMinibar_MouseDoubleClick(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles pbMinibar.MouseDoubleClick
+    '    If e.X > 0 AndAlso e.X < 24 AndAlso e.Y > 0 AndAlso e.Y < 30 Then
+    '        MessageBox.Show("V")
+    '    End If
+
+    'End Sub
+
+    Private Sub tmrDoubleClick_Tick(sender As Object, e As EventArgs) Handles tmrDoubleClick.Tick
+        milliseconds += 100
+
+        If milliseconds >= SystemInformation.DoubleClickTime Then
+            tmrDoubleClick.Stop()
+            If isDoubleClick Then
+                AddCommand(_selectedRow, CType(pbMinibar.Tag, Commands).ToString.ToUpper())
+            Else
+                If dgvExtView.SelectedRows.Count > 0 AndAlso Visible = True Then
+                    AddCommand(_selectedRow, Commands.Test.ToString().ToUpper())
+                End If
+            End If
+            isFirstClick = True
+            isDoubleClick = False
+            milliseconds = 0
+        End If
+    End Sub
+
+    Private Sub AddCommand(row As DataGridViewRow, command As String)
+        row.Cells("e").Value = "*"
+        Table.AddEmis(CInt(row.Cells("nummodule").Value), command)
+    End Sub
+
+    Private Sub btnUnlock_Click(sender As Object, e As EventArgs) Handles btnUnlock.Click
+        AddCommand(_selectedRow, Commands.Unlock.ToString().ToUpper())
+    End Sub
+    
+    Private Sub btnLock_Click(sender As System.Object, e As EventArgs) Handles btnLock.Click
+        AddCommand(_selectedRow, Commands.Lock.ToString().ToUpper())
+    End Sub
+
+    Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+        Dim s As String = String.Empty
+        s = s.PadLeft(MaxCountOfProducts, "0").Replace("0", "0 ")
+        Remplissagemanuel.LogString(s)
+        AddCommand(_selectedRow, String.Format("{0}|{1}", Commands.AddStock.ToString().ToUpper(), s))
+    End Sub
+#End Region
 End Class

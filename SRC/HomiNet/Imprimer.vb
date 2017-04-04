@@ -695,20 +695,19 @@ Public Class Imprimer
             End While
             _neededqtyIndex = 0
             sPrintString = String.Empty
-            For i As Integer = 4 To 1 Step -1
-
+            'For i As Integer = 4 To 1 Step -1
+            For i As Integer = 4 To IIf(LireIniBoolSmart("imprimer", "IsCanPrintGuestProducts", True), 1, 2) Step -1
                 If DgvTableRemp.Item(columnsCountToPrint - i, _index).Value > 0 Then
                     sPrintString += DgvTableRemp.Columns(columnsCountToPrint - i).HeaderText.ToString() + " "
                     isNeedReturnCarret = False
                 End If
             Next
-            
+
             If Not tx.Equals(_xFirst) OrElse isNeedReturnCarret = True Then
-                ty += Farial10B.Height '- vOffset '+ 2
+                ty += Farial10B.Height
                 tx = _xFirst
 
                 If ty > e.MarginBounds.Bottom Then
-
                     _neededqtyIndex = columnsCountToPrint - 1
                     Exit Do
                 End If
@@ -716,7 +715,7 @@ Public Class Imprimer
             If sPrintString.Length > 0 Then
                 sPrintString += vbTab + plugBackTextForConnection
                 e.Graphics.DrawString(sPrintString.Trim(), Farial12B, Brushes.Black, New RectangleF(tx, ty, e.MarginBounds.Right, Farial12B.Height), fs)
-                ty += MeasureDisplayString(e.Graphics, sPrintString, Farial12B).Height  'Farial12B.Height - vOffset '+ 2
+                ty += MeasureDisplayString(e.Graphics, sPrintString, Farial12B).Height
                 If ty > e.MarginBounds.Bottom Then Exit Do
             End If
             _index += 1
@@ -1232,11 +1231,11 @@ Public Class Imprimer
         Dim xShift As Integer = CInt(_l / dp)
         '--------------------------------
         'ty += (3 + My.Resources.HomiLogoN_H150.Height)
-        Dim imX As Single = (e.PageBounds.Width - My.Resources.HomiLogoN_H150.Width) / 2
-        Dim newImage As Image = My.Resources.HomiLogoN_H150
+        'Dim imX As Single = (e.PageBounds.Width - My.Resources.HomiLogoN_H150.Width) / 2
+        Dim newImage As Image = My.Resources.Homi_hewLogoForPrint2 'My.Resources.HomiLogoN_H150
         Dim realWidth As Single = (newImage.Width / newImage.HorizontalResolution) * 100
-        e.Graphics.DrawImage(newImage, 1, -5)
-        e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text + Space(20) + Trans(55) + Space(50) + Trans(142) + ": " + Page.ToString, Farial8B, Brushes.Black, realWidth + 15, 6) 'dx, ty)
+        'e.Graphics.DrawImage(newImage, 1, -5)
+        'e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text + Space(20) + Trans(55) + Space(50) + Trans(142) + ": " + Page.ToString, Farial8B, Brushes.Black, realWidth + 15, 6) 'dx, ty)
         'e.Graphics.DrawString(Now + " " + nomhotel + " " + MAINFORM.Label4.Text, Farial8, Brushes.Black, My.Resources.HomiLogoN_H150.Width + 5, 3) 'dx, ty)
         ' e.Graphics.DrawString(Trans(55), Farial8, Brushes.Black, L / 2 + imX, 3) 'ty)
         'e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, L * 0.9 + imX, 3) 'ty)

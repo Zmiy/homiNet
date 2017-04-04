@@ -328,7 +328,7 @@ Public Class Remplissage
                                       ) _
                                   Select mompck _
     ).ToList()
-
+        Dim needAddGuestProdact = LireIniBoolSmart("imprimer", "IsCanPrintGuestProducts", True)
         'Group Join mp In DtMomentaryPickUp.AsEnumerable()
         _queryAlarm = (From maint In Maintable.AsEnumerable() _
             Group Join mp In _mp.AsEnumerable() On maint.Field(Of String)("nummodule") Equals mp.Field(Of Integer)("nummodule").ToString() _
@@ -346,7 +346,7 @@ Public Class Remplissage
                             OrElse (maint.Field(Of Int32)("service") = 1) _
                             ) _
                             OrElse _
-                            (ModelTools.IsGuestPresentSomething(maint.Field(Of String)("swr"), maint.Field(Of String)("modelefrigo")) AndAlso maint.Field(Of Integer)("coffre") = 3) _
+                            (needAddGuestProdact AndAlso ModelTools.IsGuestPresentSomething(maint.Field(Of String)("swr"), maint.Field(Of String)("modelefrigo")) AndAlso maint.Field(Of Integer)("coffre") = 3) _
                         ) _
                     ) _
             Select maint, mp, door = IIf(maint.Field(Of String)("etatporte") = "Open", "1", "0"), test = IIf(maint.Field(Of String)("Test") = "Connection error", "1", "0"), _

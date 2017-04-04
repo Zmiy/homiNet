@@ -72,6 +72,9 @@ Module MyExtTools
         'End Select
         Return result
     End Function
+    <Extension()> Public Function InSet(value As String, sets() As String) As Boolean
+        Return sets.Any(Function(str) str.Equals(value))
+    End Function
     <Extension()> Public Function ToTable(dic As Dictionary(Of String, Integer), firstColumnName As String, secondColumnName As String, tableName As String) As DataTable
         Dim result As DataTable = New DataTable(tableName)
         result.Columns.Add(firstColumnName, Type.GetType("System.String"))
@@ -117,4 +120,5 @@ Module MyExtTools
         Next
         Return clonedRow
     End Function
-End Module
+
+  End Module

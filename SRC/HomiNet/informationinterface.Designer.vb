@@ -47,6 +47,7 @@ Partial Class Informationinterface
         Me.rbtnSucceeded = New System.Windows.Forms.RadioButton()
         Me.imprimante = New System.Windows.Forms.ComboBox()
         Me.btnPrint = New Glass.GlassButton()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlCalendare.SuspendLayout()
         Me.pnlExtention.SuspendLayout()
         Me.gbExtention.SuspendLayout()
@@ -194,6 +195,7 @@ Partial Class Informationinterface
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.rbtnCheckOutPosting)
         Me.GroupBox1.Controls.Add(Me.btnSend)
         Me.GroupBox1.Controls.Add(Me.rbtnFailure)
@@ -295,6 +297,16 @@ Partial Class Informationinterface
         Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnPrint.UseCompatibleTextRendering = True
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Location = New System.Drawing.Point(202, 27)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(21, 28)
+        Me.Button1.TabIndex = 52
+        Me.Button1.Text = "."
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'Informationinterface
         '
         Me.AutoScroll = True
@@ -339,4 +351,5 @@ Partial Class Informationinterface
     Friend WithEvents rbtnSucceeded As RadioButton
     Friend WithEvents imprimante As ComboBox
     Friend WithEvents btnPrint As GlassButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

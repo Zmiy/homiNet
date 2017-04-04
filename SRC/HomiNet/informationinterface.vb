@@ -465,6 +465,45 @@ Public Class Informationinterface
         End If
 
     End Sub
+    'If rtbInformationView.SelectionLength = 0 Then
+    '        rtbInformationView.SelectionStart = 0
+    '        rtbInformationView.SelectionLength = rtbInformationView.TextLength - 2
+    '    End If
+    'Dim s As String() = rtbInformationView.SelectedText.Split(Chr(10))
+    'Dim reinvoiceData As String = mcalendarInformation.SelectionStart.ToString("yyyyMMdd")
+    '    For Each l As String In s
+    '        Try
+    '            l = Replace(l, Chr(9) + Chr(9), Chr(9))
+    'Dim m As String() = l.Split(Chr(9))
+    '            table.AddEmis(0, "RENVOIPMS|" + m(2).Trim() + "|" + m(3).Trim() + "|" + m(5).Trim() + "|" + m(6).Trim() + "|" + m(7).Trim() + "|" + reinvoiceData + "|")
+    '        Catch ex As Exception : End Try
+    '    Next
+    '    rbtnAll.Checked = True
+    ''GlassButton7_Click(Nothing, Nothing)
+    '    If MAINFORM.ClientOfDriverIrf.IsConnected Then
+    '        UpdatePerformClickAction()
+    '    End If
 
+    Private Sub ShowSums()
+        If rtbInformationView.SelectionLength = 0 Then
+            Exit Sub
+        End If
+        Dim selectedStrings() As String = rtbInformationView.SelectedText.Split(Chr(10))
+        Dim positiveSum As Double = 0.0, negativeSum As Double = 0.0, currentValue As Double
+        
+        For Each str As String In From str1 In selectedStrings Where str1.Contains(Trans(239))
+            currentValue = Convert.ToDouble(str.Replace(Chr(9) + Chr(9), Chr(9)).Split(Chr(9))(5)) / 100
+            Select Case currentValue
+                Case Is > 0
+                    positiveSum += currentValue
+                Case Is < 0
+                    negativeSum += currentValue
+            End Select
+        Next
+        MessageBox.Show("Positive = " & positiveSum.ToString() & " Negative = " & negativeSum & " Summ" & (positiveSum + negativeSum).ToString())
+    End Sub
 
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        ShowSums()
+    End Sub
 End Class

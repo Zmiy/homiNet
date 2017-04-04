@@ -557,7 +557,9 @@ Public Class Mainform
                     For i As Integer = 1 To Dv.Table.Columns.Count - 1
                         Dv.Table.Rows(ri1)(i) = Ts(i + 1)
                     Next
-
+                    If nummodule = CInt(ViewByModele.dgvExtView.CurrentRow.Cells("nummodule").Value) Then
+                        ViewByModele.SetParams(ViewByModele.dgvExtView.SelectedRows(0))
+                    End If
                     If (Ts(27) = "1") Or (Ts(28) = "1") Then
                         Dv.Table.Rows(ri1)("e") = "*"
                     Else

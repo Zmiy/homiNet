@@ -127,12 +127,6 @@
   <data name="temp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\temp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LOCK48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LOCK48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="homilogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\homi-logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="plus16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -367,12 +361,6 @@
   <data name="extView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\extView.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_226_closed100x135" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\226 closed100x135.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_330_closed100x123" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\330 closed100x123.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="_6134_tatice_Entravaux" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6134-tatice-Entravaux.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -382,17 +370,8 @@
   <data name="thermometer30_30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\thermometer30_30.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HomiLogo150x25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomiLogo150x25.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HomiLogoN_H150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HomiLogoN_H150.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="changelog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\changelog.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="HomiLogo150x25Crop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\~HomiLogo150x25.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Homi_hewLogoForPrint2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Homi-hewLogoForPrint2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -406,11 +385,65 @@
   <data name="rentPng2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rentPng2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="LOCK24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOCK24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="unlock24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unlock24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_226closed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\226closed.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_226open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\226open.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_330closed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\330closed.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_330open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\330open.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lockR48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lockR48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LockVert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LockVert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="unlockR48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unlockR48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnlockVert" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unlocVert.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\off.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="off36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\off36.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="on36" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\on36.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\on.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SwithOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOff.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwithOff1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOff1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwithOff3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOff3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwithOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOn.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwithOn1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOn1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SwithOn3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SwithOn3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

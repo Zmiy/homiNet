@@ -389,6 +389,11 @@
     </Compile>
     <Compile Include="CommonVariables.vb" />
     <Compile Include="ModelTools.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="MyExtTools.vb" />
     <Compile Include="configuration.Designer.vb">
       <DependentUpon>configuration.vb</DependentUpon>
@@ -482,11 +487,6 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -643,9 +643,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="baseproduit.resx">
       <SubType>Designer</SubType>
@@ -707,6 +707,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\SwithOn.png" />
+    <None Include="Resources\SwithOff.png" />
+    <None Include="Resources\SwithOn3.png" />
+    <None Include="Resources\SwithOff3.png" />
+    <None Include="Resources\SwithOn1.png" />
+    <None Include="Resources\SwithOff1.png" />
+    <None Include="Resources\unlocVert.png" />
+    <None Include="Resources\unlockR48.png" />
     <None Include="Resources\unlock24.png" />
     <None Include="Resources\CAD64.png" />
     <None Include="Resources\CARTE64.png" />
@@ -745,7 +753,6 @@
     <None Include="Resources\checkin48.png" />
     <None Include="Resources\checkout48.png" />
     <None Include="Resources\travaux48.png" />
-    <None Include="Resources\homi-logo.png" />
     <None Include="Resources\actualiser24.png" />
     <None Include="Resources\plus48.png" />
     <None Include="Resources\moins48.png" />
@@ -765,7 +772,6 @@
     <None Include="Resources\rentPng2.png" />
     <None Include="Resources\rentPng.png" />
     <None Include="Resources\rent.jpg" />
-    <None Include="Resources\~HomiLogo150x25.jpg" />
     <None Include="changelog.txt" />
     <Content Include="Locknet32.ico" />
     <None Include="Resources\thermometer30_30.png" />
@@ -785,20 +791,26 @@
     <None Include="Resources\arriver.png" />
     <None Include="Resources\cancel_48.png" />
     <None Include="Resources\cancel_24.png" />
-    <None Include="Resources\226 closed100x135.png" />
-    <None Include="Resources\330 closed100x123.png" />
+    <None Include="Resources\226closed.png" />
+    <None Include="Resources\226open.png" />
+    <None Include="Resources\330closed.png" />
+    <None Include="Resources\330open.png" />
     <Content Include="Resources\corbeil24.png" />
     <None Include="Resources\dangervert481.png" />
     <None Include="Resources\Image1.png" />
     <None Include="Resources\extView.png" />
-    <None Include="Resources\HomiLogo150x25.bmp" />
-    <None Include="Resources\HomiLogoN_H150.jpg" />
-    <None Include="Resources\homi-newlogo.png" />
-    <None Include="Resources\homiNewLogoWithoutWords.png" />
     <None Include="Resources\homi-newLogo1.png" />
     <None Include="Resources\homi-newLogo2.png" />
     <None Include="Resources\Homi-hewLogoForPrint2.png" />
     <None Include="Resources\LOCK24.png" />
+    <None Include="Resources\lockR48.png" />
+    <None Include="Resources\LockVert.png" />
+    <None Include="Resources\off.jpg" />
+    <None Include="Resources\on.jpg" />
+    <None Include="Resources\off.png" />
+    <None Include="Resources\on.png" />
+    <None Include="Resources\off36.png" />
+    <None Include="Resources\on36.png" />
     <Content Include="Resources\Project1.ico" />
     <Content Include="Resources\Project11.ico" />
     <None Include="Resources\depart.png" />

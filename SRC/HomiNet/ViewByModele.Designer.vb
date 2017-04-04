@@ -28,13 +28,13 @@ Partial Class ViewByModele
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ViewByModele))
         Me.pnlLeft = New System.Windows.Forms.Panel()
+        Me.dgvExtView = New System.Windows.Forms.DataGridView()
         Me.gradpnlSearch = New BlueActivity.Controls.AlphaGradientPanel()
         Me.ColorWithAlpha1 = New BlueActivity.Controls.ColorWithAlpha()
         Me.ColorWithAlpha2 = New BlueActivity.Controls.ColorWithAlpha()
         Me.gbtnFind = New Glass.GlassButton()
         Me.tbFind = New System.Windows.Forms.TextBox()
         Me.lblRooms = New System.Windows.Forms.Label()
-        Me.lbRooms = New System.Windows.Forms.ListBox()
         Me.gbLegend = New System.Windows.Forms.GroupBox()
         Me.tblpanelLegend = New System.Windows.Forms.TableLayoutPanel()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -57,32 +57,30 @@ Partial Class ViewByModele
         Me.lblIntemsNbDescr = New System.Windows.Forms.Label()
         Me.lbManualHistory = New System.Windows.Forms.ListBox()
         Me.btnUnlock = New System.Windows.Forms.Button()
-        Me.lblServiceSwitchText = New System.Windows.Forms.Label()
+        Me.lblStatus2 = New System.Windows.Forms.Label()
+        Me.btnSend = New System.Windows.Forms.Button()
+        Me.lblStatus1 = New System.Windows.Forms.Label()
+        Me.GlassButton9 = New Glass.GlassButton()
         Me.lblServiceSwitchDesc = New System.Windows.Forms.Label()
         Me.lblTempText = New System.Windows.Forms.Label()
         Me.lblTempDesc = New System.Windows.Forms.Label()
-        Me.lblRoomStatusTest = New System.Windows.Forms.Label()
-        Me.lblRoomStatusDesc = New System.Windows.Forms.Label()
-        Me.btnSend = New System.Windows.Forms.Button()
-        Me.lblDoorStatusText = New System.Windows.Forms.Label()
-        Me.lblDoorStatusDesc = New System.Windows.Forms.Label()
-        Me.lblRoomNText = New System.Windows.Forms.Label()
-        Me.lblRoomNTitle = New System.Windows.Forms.Label()
-        Me.GlassButton9 = New Glass.GlassButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.pnlLegend = New System.Windows.Forms.Panel()
+        Me.pbSW = New System.Windows.Forms.PictureBox()
         Me.pbMinibar = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.pnlLeft.SuspendLayout()
+        CType(Me.dgvExtView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gradpnlSearch.SuspendLayout()
         Me.gbLegend.SuspendLayout()
         Me.tblpanelLegend.SuspendLayout()
         Me.pnlTop.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.pnlLegend.SuspendLayout()
+        CType(Me.pbSW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -91,13 +89,23 @@ Partial Class ViewByModele
         Me.pnlLeft.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlLeft.Controls.Add(Me.dgvExtView)
         Me.pnlLeft.Controls.Add(Me.gradpnlSearch)
         Me.pnlLeft.Controls.Add(Me.lblRooms)
-        Me.pnlLeft.Controls.Add(Me.lbRooms)
         Me.pnlLeft.Location = New System.Drawing.Point(1, 82)
         Me.pnlLeft.Name = "pnlLeft"
-        Me.pnlLeft.Size = New System.Drawing.Size(198, 510)
+        Me.pnlLeft.Size = New System.Drawing.Size(253, 510)
         Me.pnlLeft.TabIndex = 0
+        '
+        'dgvExtView
+        '
+        Me.dgvExtView.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.dgvExtView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvExtView.Location = New System.Drawing.Point(3, 32)
+        Me.dgvExtView.Name = "dgvExtView"
+        Me.dgvExtView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvExtView.Size = New System.Drawing.Size(243, 474)
+        Me.dgvExtView.TabIndex = 3
         '
         'gradpnlSearch
         '
@@ -124,7 +132,7 @@ Partial Class ViewByModele
         Me.gradpnlSearch.ImagePadding = New System.Windows.Forms.Padding(5)
         Me.gradpnlSearch.ImagePosition = BlueActivity.Controls.ImagePosition.BottomRight
         Me.gradpnlSearch.ImageSize = New System.Drawing.Size(48, 48)
-        Me.gradpnlSearch.Location = New System.Drawing.Point(18, 1)
+        Me.gradpnlSearch.Location = New System.Drawing.Point(46, 1)
         Me.gradpnlSearch.Name = "gradpnlSearch"
         Me.gradpnlSearch.Rounded = True
         Me.gradpnlSearch.Size = New System.Drawing.Size(152, 33)
@@ -162,7 +170,7 @@ Partial Class ViewByModele
         Me.tbFind.BackColor = System.Drawing.Color.WhiteSmoke
         Me.tbFind.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.tbFind.Font = New System.Drawing.Font("Arial Black", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbFind.Location = New System.Drawing.Point(11, 6)
+        Me.tbFind.Location = New System.Drawing.Point(11, 5)
         Me.tbFind.Margin = New System.Windows.Forms.Padding(0)
         Me.tbFind.Name = "tbFind"
         Me.tbFind.ShortcutsEnabled = False
@@ -178,31 +186,17 @@ Partial Class ViewByModele
         Me.lblRooms.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRooms.Location = New System.Drawing.Point(0, 0)
         Me.lblRooms.Name = "lblRooms"
-        Me.lblRooms.Size = New System.Drawing.Size(196, 36)
+        Me.lblRooms.Size = New System.Drawing.Size(251, 36)
         Me.lblRooms.TabIndex = 1
         Me.lblRooms.Text = "Rooms"
         Me.lblRooms.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lbRooms
-        '
-        Me.lbRooms.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbRooms.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRooms.FormattingEnabled = True
-        Me.lbRooms.ItemHeight = 20
-        Me.lbRooms.Location = New System.Drawing.Point(0, 34)
-        Me.lbRooms.Name = "lbRooms"
-        Me.lbRooms.ScrollAlwaysVisible = True
-        Me.lbRooms.Size = New System.Drawing.Size(194, 464)
-        Me.lbRooms.TabIndex = 0
         '
         'gbLegend
         '
         Me.gbLegend.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.gbLegend.Controls.Add(Me.tblpanelLegend)
         Me.gbLegend.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gbLegend.Location = New System.Drawing.Point(11, 266)
+        Me.gbLegend.Location = New System.Drawing.Point(3, 262)
         Me.gbLegend.MinimumSize = New System.Drawing.Size(217, 221)
         Me.gbLegend.Name = "gbLegend"
         Me.gbLegend.Size = New System.Drawing.Size(217, 221)
@@ -383,17 +377,9 @@ Partial Class ViewByModele
         Me.pnlTop.Controls.Add(Me.lblIntemsNbDescr)
         Me.pnlTop.Controls.Add(Me.lbManualHistory)
         Me.pnlTop.Controls.Add(Me.btnUnlock)
-        Me.pnlTop.Controls.Add(Me.lblServiceSwitchText)
-        Me.pnlTop.Controls.Add(Me.lblServiceSwitchDesc)
-        Me.pnlTop.Controls.Add(Me.lblTempText)
-        Me.pnlTop.Controls.Add(Me.lblTempDesc)
-        Me.pnlTop.Controls.Add(Me.lblRoomStatusTest)
-        Me.pnlTop.Controls.Add(Me.lblRoomStatusDesc)
+        Me.pnlTop.Controls.Add(Me.lblStatus2)
         Me.pnlTop.Controls.Add(Me.btnSend)
-        Me.pnlTop.Controls.Add(Me.lblDoorStatusText)
-        Me.pnlTop.Controls.Add(Me.lblDoorStatusDesc)
-        Me.pnlTop.Controls.Add(Me.lblRoomNText)
-        Me.pnlTop.Controls.Add(Me.lblRoomNTitle)
+        Me.pnlTop.Controls.Add(Me.lblStatus1)
         Me.pnlTop.Controls.Add(Me.GlassButton9)
         Me.pnlTop.Location = New System.Drawing.Point(1, 3)
         Me.pnlTop.Name = "pnlTop"
@@ -459,9 +445,9 @@ Partial Class ViewByModele
         'lbManualHistory
         '
         Me.lbManualHistory.FormattingEnabled = True
-        Me.lbManualHistory.Location = New System.Drawing.Point(709, 3)
+        Me.lbManualHistory.Location = New System.Drawing.Point(688, 3)
         Me.lbManualHistory.Name = "lbManualHistory"
-        Me.lbManualHistory.Size = New System.Drawing.Size(203, 56)
+        Me.lbManualHistory.Size = New System.Drawing.Size(224, 56)
         Me.lbManualHistory.TabIndex = 58
         '
         'btnUnlock
@@ -482,61 +468,16 @@ Partial Class ViewByModele
         Me.btnUnlock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnUnlock.UseVisualStyleBackColor = False
         '
-        'lblServiceSwitchText
+        'lblStatus2
         '
-        Me.lblServiceSwitchText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblServiceSwitchText.Location = New System.Drawing.Point(480, 33)
-        Me.lblServiceSwitchText.Name = "lblServiceSwitchText"
-        Me.lblServiceSwitchText.Size = New System.Drawing.Size(74, 23)
-        Me.lblServiceSwitchText.TabIndex = 56
-        Me.lblServiceSwitchText.Text = "Unknown"
-        '
-        'lblServiceSwitchDesc
-        '
-        Me.lblServiceSwitchDesc.AutoSize = True
-        Me.lblServiceSwitchDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblServiceSwitchDesc.Location = New System.Drawing.Point(362, 33)
-        Me.lblServiceSwitchDesc.Name = "lblServiceSwitchDesc"
-        Me.lblServiceSwitchDesc.Size = New System.Drawing.Size(113, 17)
-        Me.lblServiceSwitchDesc.TabIndex = 55
-        Me.lblServiceSwitchDesc.Text = "Service Switch"
-        '
-        'lblTempText
-        '
-        Me.lblTempText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTempText.Location = New System.Drawing.Point(641, 4)
-        Me.lblTempText.Name = "lblTempText"
-        Me.lblTempText.Size = New System.Drawing.Size(62, 52)
-        Me.lblTempText.TabIndex = 54
-        Me.lblTempText.Text = "Unknown"
-        Me.lblTempText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblTempDesc
-        '
-        Me.lblTempDesc.Image = Global.HomiNet.My.Resources.Resources.thermometer30_30
-        Me.lblTempDesc.Location = New System.Drawing.Point(601, 4)
-        Me.lblTempDesc.Name = "lblTempDesc"
-        Me.lblTempDesc.Size = New System.Drawing.Size(37, 52)
-        Me.lblTempDesc.TabIndex = 53
-        '
-        'lblRoomStatusTest
-        '
-        Me.lblRoomStatusTest.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRoomStatusTest.Location = New System.Drawing.Point(260, 33)
-        Me.lblRoomStatusTest.Name = "lblRoomStatusTest"
-        Me.lblRoomStatusTest.Size = New System.Drawing.Size(105, 23)
-        Me.lblRoomStatusTest.TabIndex = 52
-        Me.lblRoomStatusTest.Text = "Unknown"
-        '
-        'lblRoomStatusDesc
-        '
-        Me.lblRoomStatusDesc.AutoSize = True
-        Me.lblRoomStatusDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRoomStatusDesc.Location = New System.Drawing.Point(153, 33)
-        Me.lblRoomStatusDesc.Name = "lblRoomStatusDesc"
-        Me.lblRoomStatusDesc.Size = New System.Drawing.Size(98, 17)
-        Me.lblRoomStatusDesc.TabIndex = 51
-        Me.lblRoomStatusDesc.Text = "Room status"
+        Me.lblStatus2.AutoEllipsis = True
+        Me.lblStatus2.AutoSize = True
+        Me.lblStatus2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus2.Location = New System.Drawing.Point(145, 34)
+        Me.lblStatus2.Name = "lblStatus2"
+        Me.lblStatus2.Size = New System.Drawing.Size(68, 17)
+        Me.lblStatus2.TabIndex = 51
+        Me.lblStatus2.Text = "Status 2"
         '
         'btnSend
         '
@@ -555,44 +496,16 @@ Partial Class ViewByModele
         Me.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnSend.UseVisualStyleBackColor = False
         '
-        'lblDoorStatusText
+        'lblStatus1
         '
-        Me.lblDoorStatusText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDoorStatusText.Location = New System.Drawing.Point(427, 9)
-        Me.lblDoorStatusText.Name = "lblDoorStatusText"
-        Me.lblDoorStatusText.Size = New System.Drawing.Size(157, 23)
-        Me.lblDoorStatusText.TabIndex = 49
-        Me.lblDoorStatusText.Text = "Unknown"
-        '
-        'lblDoorStatusDesc
-        '
-        Me.lblDoorStatusDesc.AutoSize = True
-        Me.lblDoorStatusDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDoorStatusDesc.Location = New System.Drawing.Point(373, 10)
-        Me.lblDoorStatusDesc.Name = "lblDoorStatusDesc"
-        Me.lblDoorStatusDesc.Size = New System.Drawing.Size(48, 17)
-        Me.lblDoorStatusDesc.TabIndex = 48
-        Me.lblDoorStatusDesc.Text = "Door:"
-        '
-        'lblRoomNText
-        '
-        Me.lblRoomNText.AutoEllipsis = True
-        Me.lblRoomNText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRoomNText.Location = New System.Drawing.Point(277, 9)
-        Me.lblRoomNText.Name = "lblRoomNText"
-        Me.lblRoomNText.Size = New System.Drawing.Size(90, 16)
-        Me.lblRoomNText.TabIndex = 47
-        Me.lblRoomNText.Text = "Unknown"
-        '
-        'lblRoomNTitle
-        '
-        Me.lblRoomNTitle.AutoSize = True
-        Me.lblRoomNTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRoomNTitle.Location = New System.Drawing.Point(153, 9)
-        Me.lblRoomNTitle.Name = "lblRoomNTitle"
-        Me.lblRoomNTitle.Size = New System.Drawing.Size(116, 17)
-        Me.lblRoomNTitle.TabIndex = 46
-        Me.lblRoomNTitle.Text = "Room N/UCF N"
+        Me.lblStatus1.AutoEllipsis = True
+        Me.lblStatus1.AutoSize = True
+        Me.lblStatus1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStatus1.Location = New System.Drawing.Point(145, 9)
+        Me.lblStatus1.Name = "lblStatus1"
+        Me.lblStatus1.Size = New System.Drawing.Size(63, 17)
+        Me.lblStatus1.TabIndex = 46
+        Me.lblStatus1.Text = "Status1"
         '
         'GlassButton9
         '
@@ -611,6 +524,33 @@ Partial Class ViewByModele
         Me.GlassButton9.Text = "Main"
         Me.GlassButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.GlassButton9.UseCompatibleTextRendering = True
+        '
+        'lblServiceSwitchDesc
+        '
+        Me.lblServiceSwitchDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblServiceSwitchDesc.Location = New System.Drawing.Point(168, 68)
+        Me.lblServiceSwitchDesc.Name = "lblServiceSwitchDesc"
+        Me.lblServiceSwitchDesc.Size = New System.Drawing.Size(63, 45)
+        Me.lblServiceSwitchDesc.TabIndex = 55
+        Me.lblServiceSwitchDesc.Text = "Service Switch"
+        '
+        'lblTempText
+        '
+        Me.lblTempText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTempText.Location = New System.Drawing.Point(209, 4)
+        Me.lblTempText.Name = "lblTempText"
+        Me.lblTempText.Size = New System.Drawing.Size(53, 52)
+        Me.lblTempText.TabIndex = 54
+        Me.lblTempText.Text = "Unknown"
+        Me.lblTempText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblTempDesc
+        '
+        Me.lblTempDesc.Image = Global.HomiNet.My.Resources.Resources.thermometer30_30
+        Me.lblTempDesc.Location = New System.Drawing.Point(166, 4)
+        Me.lblTempDesc.Name = "lblTempDesc"
+        Me.lblTempDesc.Size = New System.Drawing.Size(37, 52)
+        Me.lblTempDesc.TabIndex = 53
         '
         'TableLayoutPanel1
         '
@@ -673,20 +613,32 @@ Partial Class ViewByModele
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlLegend.AutoScroll = True
         Me.pnlLegend.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlLegend.Controls.Add(Me.pbSW)
         Me.pnlLegend.Controls.Add(Me.pbMinibar)
         Me.pnlLegend.Controls.Add(Me.gbLegend)
-        Me.pnlLegend.Location = New System.Drawing.Point(1020, 82)
+        Me.pnlLegend.Controls.Add(Me.lblTempText)
+        Me.pnlLegend.Controls.Add(Me.lblTempDesc)
+        Me.pnlLegend.Controls.Add(Me.lblServiceSwitchDesc)
+        Me.pnlLegend.Location = New System.Drawing.Point(952, 82)
         Me.pnlLegend.Name = "pnlLegend"
-        Me.pnlLegend.Size = New System.Drawing.Size(239, 507)
+        Me.pnlLegend.Size = New System.Drawing.Size(306, 507)
         Me.pnlLegend.TabIndex = 2
+        '
+        'pbSW
+        '
+        Me.pbSW.Location = New System.Drawing.Point(235, 54)
+        Me.pbSW.Name = "pbSW"
+        Me.pbSW.Size = New System.Drawing.Size(48, 73)
+        Me.pbSW.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pbSW.TabIndex = 57
+        Me.pbSW.TabStop = False
         '
         'pbMinibar
         '
-        Me.pbMinibar.Location = New System.Drawing.Point(11, 3)
-        Me.pbMinibar.MinimumSize = New System.Drawing.Size(211, 205)
+        Me.pbMinibar.Location = New System.Drawing.Point(3, 4)
         Me.pbMinibar.Name = "pbMinibar"
-        Me.pbMinibar.Size = New System.Drawing.Size(211, 205)
-        Me.pbMinibar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pbMinibar.Size = New System.Drawing.Size(159, 213)
+        Me.pbMinibar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.pbMinibar.TabIndex = 5
         Me.pbMinibar.TabStop = False
         '
@@ -718,6 +670,7 @@ Partial Class ViewByModele
         Me.Name = "ViewByModele"
         Me.Text = "ViewByModele"
         Me.pnlLeft.ResumeLayout(False)
+        CType(Me.dgvExtView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gradpnlSearch.ResumeLayout(False)
         Me.gradpnlSearch.PerformLayout()
         Me.gbLegend.ResumeLayout(False)
@@ -729,6 +682,8 @@ Partial Class ViewByModele
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.pnlLegend.ResumeLayout(False)
+        Me.pnlLegend.PerformLayout()
+        CType(Me.pbSW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -749,7 +704,6 @@ Partial Class ViewByModele
     Friend WithEvents Label9 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents lbRooms As ListBox
     Friend WithEvents lblRooms As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
@@ -759,17 +713,12 @@ Partial Class ViewByModele
     Friend WithEvents pbMinibar As PictureBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
-    Friend WithEvents lblRoomNText As Label
-    Friend WithEvents lblRoomNTitle As Label
-    Friend WithEvents lblDoorStatusText As Label
-    Friend WithEvents lblDoorStatusDesc As Label
+    Friend WithEvents lblStatus1 As Label
     Friend WithEvents btnSend As Button
-    Friend WithEvents lblRoomStatusTest As Label
-    Friend WithEvents lblRoomStatusDesc As Label
+    Friend WithEvents lblStatus2 As Label
     Friend WithEvents lblTempDesc As Label
     Friend WithEvents lblTempText As Label
     Friend WithEvents lblServiceSwitchDesc As Label
-    Friend WithEvents lblServiceSwitchText As Label
     Friend WithEvents btnUnlock As Button
     Friend WithEvents lbManualHistory As ListBox
     Friend WithEvents lblBalanceText As Label
@@ -782,4 +731,6 @@ Partial Class ViewByModele
     Friend WithEvents ColorWithAlpha2 As BlueActivity.Controls.ColorWithAlpha
     Friend WithEvents gbtnFind As Glass.GlassButton
     Friend WithEvents tbFind As System.Windows.Forms.TextBox
+    Friend WithEvents dgvExtView As System.Windows.Forms.DataGridView
+    Friend WithEvents pbSW As System.Windows.Forms.PictureBox
 End Class

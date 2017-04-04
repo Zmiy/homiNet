@@ -54,7 +54,7 @@ Public Class Remplissagemanuel
         End Try
     End Sub
 
-    Public Sub initdch()
+    Private Sub Initdch()
         If Me.Visible = False Then Exit Sub
 
         If RadioButton1.Checked = True Then
