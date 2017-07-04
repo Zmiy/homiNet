@@ -314,11 +314,12 @@ Public Class Informationinterface
     End Sub
 
     Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-        Dim imp As New Imprimer
+        Dim imp As New Imprimer(Me)
         imp.imprimante = imprimante.Text
         imp.imprime = "interface"
         imp.paysage = False
-        imp.go()
+        imp.Go()
+        imp.Show()
     End Sub
 
     Private Sub informationinterface_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
@@ -490,7 +491,7 @@ Public Class Informationinterface
         End If
         Dim selectedStrings() As String = rtbInformationView.SelectedText.Split(Chr(10))
         Dim positiveSum As Double = 0.0, negativeSum As Double = 0.0, currentValue As Double
-        
+        Dim count As Integer = (From str In selectedStrings Where str.Contains(Trans(239))).Count()
         For Each str As String In From str1 In selectedStrings Where str1.Contains(Trans(239))
             currentValue = Convert.ToDouble(str.Replace(Chr(9) + Chr(9), Chr(9)).Split(Chr(9))(5)) / 100
             Select Case currentValue
@@ -500,7 +501,9 @@ Public Class Informationinterface
                     negativeSum += currentValue
             End Select
         Next
-        MessageBox.Show("Positive = " & positiveSum.ToString() & " Negative = " & negativeSum & " Summ" & (positiveSum + negativeSum).ToString())
+        Dim messageStr = String.Format("Count = {0} {1} Summary:{1} Positive = {2} {1} Negative = {3} {1} Total = {4}", _
+                                       count, vbCrLf, positiveSum.ToString(), negativeSum.ToString(), (positiveSum + negativeSum).ToString())
+        MessageBox.Show(messageStr)
     End Sub
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click

@@ -1,4 +1,8 @@
-Version 8.1.4.100
+Version 8.1.4.911
+--------------------------------------------------------------
++ Shanging for Extendend View
+
+Version 8.1.4.910
 --------------------------------------------------------------
 + Add searching tool and 'lock' button for Extention View 
 

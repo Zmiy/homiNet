@@ -320,7 +320,8 @@ Public Class facture
         Imprimer.paysage = False
         Imprimer.userLeft = Val(gauche.Text)
         Imprimer.userTop = Val(haut.Text)
-        Imprimer.go()
+        Imprimer.Go()
+        Imprimer.Show()
     End Sub
 
     Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles imprimante.SelectedIndexChanged

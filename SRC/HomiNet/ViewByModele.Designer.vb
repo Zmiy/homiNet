@@ -26,6 +26,7 @@ Partial Class ViewByModele
     'Do not modify it using the code editor.
     <DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ViewByModele))
         Me.pnlLeft = New System.Windows.Forms.Panel()
         Me.dgvExtView = New System.Windows.Forms.DataGridView()
@@ -50,15 +51,15 @@ Partial Class ViewByModele
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.pnlTop = New System.Windows.Forms.Panel()
-        Me.btnLock = New System.Windows.Forms.Button()
+        Me.btnLock = New Glass.GlassButton()
         Me.lblBalanceText = New System.Windows.Forms.Label()
         Me.lblBalanceDescr = New System.Windows.Forms.Label()
         Me.lblItemsNbText = New System.Windows.Forms.Label()
         Me.lblIntemsNbDescr = New System.Windows.Forms.Label()
         Me.lbManualHistory = New System.Windows.Forms.ListBox()
-        Me.btnUnlock = New System.Windows.Forms.Button()
+        Me.btnUnlock = New Glass.GlassButton()
         Me.lblStatus2 = New System.Windows.Forms.Label()
-        Me.btnSend = New System.Windows.Forms.Button()
+        Me.btnSend = New Glass.GlassButton()
         Me.lblStatus1 = New System.Windows.Forms.Label()
         Me.GlassButton9 = New Glass.GlassButton()
         Me.lblServiceSwitchDesc = New System.Windows.Forms.Label()
@@ -72,6 +73,10 @@ Partial Class ViewByModele
         Me.pbSW = New System.Windows.Forms.PictureBox()
         Me.pbMinibar = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.lblCount = New System.Windows.Forms.Label()
+        Me.cmsFiltersForExtView = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tsmiAll = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiToRefill = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlLeft.SuspendLayout()
         CType(Me.dgvExtView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gradpnlSearch.SuspendLayout()
@@ -82,6 +87,7 @@ Partial Class ViewByModele
         Me.pnlLegend.SuspendLayout()
         CType(Me.pbSW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsFiltersForExtView.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlLeft
@@ -89,6 +95,7 @@ Partial Class ViewByModele
         Me.pnlLeft.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.pnlLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlLeft.Controls.Add(Me.lblCount)
         Me.pnlLeft.Controls.Add(Me.dgvExtView)
         Me.pnlLeft.Controls.Add(Me.gradpnlSearch)
         Me.pnlLeft.Controls.Add(Me.lblRooms)
@@ -99,12 +106,16 @@ Partial Class ViewByModele
         '
         'dgvExtView
         '
-        Me.dgvExtView.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.dgvExtView.AllowUserToDeleteRows = False
+        Me.dgvExtView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvExtView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvExtView.Location = New System.Drawing.Point(3, 32)
+        Me.dgvExtView.ContextMenuStrip = Me.cmsFiltersForExtView
+        Me.dgvExtView.Location = New System.Drawing.Point(0, 33)
         Me.dgvExtView.Name = "dgvExtView"
         Me.dgvExtView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvExtView.Size = New System.Drawing.Size(243, 474)
+        Me.dgvExtView.Size = New System.Drawing.Size(249, 440)
         Me.dgvExtView.TabIndex = 3
         '
         'gradpnlSearch
@@ -208,7 +219,7 @@ Partial Class ViewByModele
         '
         Me.tblpanelLegend.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.tblpanelLegend.AutoSize = True
-        Me.tblpanelLegend.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset
+        Me.tblpanelLegend.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetPartial
         Me.tblpanelLegend.ColumnCount = 2
         Me.tblpanelLegend.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.0!))
         Me.tblpanelLegend.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.0!))
@@ -234,16 +245,16 @@ Partial Class ViewByModele
         Me.tblpanelLegend.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tblpanelLegend.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.tblpanelLegend.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.tblpanelLegend.Size = New System.Drawing.Size(202, 194)
+        Me.tblpanelLegend.Size = New System.Drawing.Size(202, 201)
         Me.tblpanelLegend.TabIndex = 3
         '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label17.Location = New System.Drawing.Point(48, 130)
+        Me.Label17.Location = New System.Drawing.Point(49, 135)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(149, 30)
+        Me.Label17.Size = New System.Drawing.Size(147, 30)
         Me.Label17.TabIndex = 11
         Me.Label17.Text = "Charged and replace"
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -254,18 +265,18 @@ Partial Class ViewByModele
         Me.Label16.BackColor = System.Drawing.Color.DarkSlateGray
         Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label16.ForeColor = System.Drawing.Color.DimGray
-        Me.Label16.Location = New System.Drawing.Point(5, 130)
+        Me.Label16.Location = New System.Drawing.Point(6, 135)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(35, 30)
+        Me.Label16.Size = New System.Drawing.Size(34, 30)
         Me.Label16.TabIndex = 10
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label11.Location = New System.Drawing.Point(48, 98)
+        Me.Label11.Location = New System.Drawing.Point(49, 102)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(149, 30)
+        Me.Label11.Size = New System.Drawing.Size(147, 30)
         Me.Label11.TabIndex = 7
         Me.Label11.Text = "Not used plase"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -275,18 +286,18 @@ Partial Class ViewByModele
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Green
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label1.Location = New System.Drawing.Point(5, 2)
+        Me.Label1.Location = New System.Drawing.Point(6, 3)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 30)
+        Me.Label1.Size = New System.Drawing.Size(34, 30)
         Me.Label1.TabIndex = 0
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label2.Location = New System.Drawing.Point(48, 2)
+        Me.Label2.Location = New System.Drawing.Point(49, 3)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(149, 30)
+        Me.Label2.Size = New System.Drawing.Size(147, 30)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Product(s) in plase"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -296,18 +307,18 @@ Partial Class ViewByModele
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Gray
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label3.Location = New System.Drawing.Point(5, 34)
+        Me.Label3.Location = New System.Drawing.Point(6, 36)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(35, 30)
+        Me.Label3.Size = New System.Drawing.Size(34, 30)
         Me.Label3.TabIndex = 2
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label4.Location = New System.Drawing.Point(48, 34)
+        Me.Label4.Location = New System.Drawing.Point(49, 36)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(149, 30)
+        Me.Label4.Size = New System.Drawing.Size(147, 30)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Missing product(s)"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -317,18 +328,18 @@ Partial Class ViewByModele
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.Yellow
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label8.Location = New System.Drawing.Point(5, 66)
+        Me.Label8.Location = New System.Drawing.Point(6, 69)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(35, 30)
+        Me.Label8.Size = New System.Drawing.Size(34, 30)
         Me.Label8.TabIndex = 4
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label9.Location = New System.Drawing.Point(48, 66)
+        Me.Label9.Location = New System.Drawing.Point(49, 69)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(149, 30)
+        Me.Label9.Size = New System.Drawing.Size(147, 30)
         Me.Label9.TabIndex = 5
         Me.Label9.Text = "Momentary pick ups"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -339,9 +350,9 @@ Partial Class ViewByModele
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Image = Global.HomiNet.My.Resources.Resources.cancel_24
-        Me.Label10.Location = New System.Drawing.Point(5, 98)
+        Me.Label10.Location = New System.Drawing.Point(6, 102)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(35, 30)
+        Me.Label10.Size = New System.Drawing.Size(34, 30)
         Me.Label10.TabIndex = 6
         '
         'Label13
@@ -349,18 +360,18 @@ Partial Class ViewByModele
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Purple
         Me.Label13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label13.Location = New System.Drawing.Point(5, 162)
+        Me.Label13.Location = New System.Drawing.Point(6, 168)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(35, 30)
+        Me.Label13.Size = New System.Drawing.Size(34, 30)
         Me.Label13.TabIndex = 8
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label14.Location = New System.Drawing.Point(48, 162)
+        Me.Label14.Location = New System.Drawing.Point(49, 168)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(149, 30)
+        Me.Label14.Size = New System.Drawing.Size(147, 30)
         Me.Label14.TabIndex = 9
         Me.Label14.Text = "Item Error!!!"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -392,17 +403,15 @@ Partial Class ViewByModele
         Me.btnLock.BackColor = System.Drawing.Color.Navy
         Me.btnLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnLock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLock.ForeColor = System.Drawing.Color.White
         Me.btnLock.Image = Global.HomiNet.My.Resources.Resources.LOCK24
         Me.btnLock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLock.Location = New System.Drawing.Point(1074, 30)
         Me.btnLock.Name = "btnLock"
-        Me.btnLock.Size = New System.Drawing.Size(97, 32)
+        Me.btnLock.Size = New System.Drawing.Size(97, 30)
         Me.btnLock.TabIndex = 63
         Me.btnLock.Text = "Locked"
         Me.btnLock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnLock.UseVisualStyleBackColor = False
         '
         'lblBalanceText
         '
@@ -456,17 +465,15 @@ Partial Class ViewByModele
         Me.btnUnlock.BackColor = System.Drawing.Color.Navy
         Me.btnUnlock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnUnlock.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUnlock.ForeColor = System.Drawing.Color.White
         Me.btnUnlock.Image = CType(resources.GetObject("btnUnlock.Image"), System.Drawing.Image)
         Me.btnUnlock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnUnlock.Location = New System.Drawing.Point(1074, 1)
         Me.btnUnlock.Name = "btnUnlock"
-        Me.btnUnlock.Size = New System.Drawing.Size(97, 32)
+        Me.btnUnlock.Size = New System.Drawing.Size(97, 30)
         Me.btnUnlock.TabIndex = 57
         Me.btnUnlock.Text = "Unlocked"
         Me.btnUnlock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnUnlock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnUnlock.UseVisualStyleBackColor = False
         '
         'lblStatus2
         '
@@ -484,17 +491,15 @@ Partial Class ViewByModele
         Me.btnSend.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSend.BackColor = System.Drawing.Color.Navy
         Me.btnSend.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSend.ForeColor = System.Drawing.Color.White
         Me.btnSend.Image = Global.HomiNet.My.Resources.Resources.envoi24
         Me.btnSend.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSend.Location = New System.Drawing.Point(1169, 1)
+        Me.btnSend.Location = New System.Drawing.Point(1170, 1)
         Me.btnSend.Name = "btnSend"
-        Me.btnSend.Size = New System.Drawing.Size(87, 61)
+        Me.btnSend.Size = New System.Drawing.Size(82, 58)
         Me.btnSend.TabIndex = 50
         Me.btnSend.Text = "Send Manual Refill"
         Me.btnSend.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.btnSend.UseVisualStyleBackColor = False
         '
         'lblStatus1
         '
@@ -660,6 +665,37 @@ Partial Class ViewByModele
         Me.TableLayoutPanel2.TabIndex = 0
         Me.TableLayoutPanel2.Visible = False
         '
+        'lblCount
+        '
+        Me.lblCount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblCount.BackColor = System.Drawing.Color.SteelBlue
+        Me.lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCount.Location = New System.Drawing.Point(0, 472)
+        Me.lblCount.Name = "lblCount"
+        Me.lblCount.Size = New System.Drawing.Size(251, 36)
+        Me.lblCount.TabIndex = 42
+        Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cmsFiltersForExtView
+        '
+        Me.cmsFiltersForExtView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAll, Me.tsmiToRefill})
+        Me.cmsFiltersForExtView.Name = "cmsFiltersForExtView"
+        Me.cmsFiltersForExtView.Size = New System.Drawing.Size(117, 48)
+        '
+        'tsmiAll
+        '
+        Me.tsmiAll.Name = "tsmiAll"
+        Me.tsmiAll.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiAll.Text = "All"
+        '
+        'tsmiToRefill
+        '
+        Me.tsmiToRefill.Name = "tsmiToRefill"
+        Me.tsmiToRefill.Size = New System.Drawing.Size(152, 22)
+        Me.tsmiToRefill.Text = "To Refill"
+        '
         'ViewByModele
         '
         Me.AutoScroll = True
@@ -685,6 +721,7 @@ Partial Class ViewByModele
         Me.pnlLegend.PerformLayout()
         CType(Me.pbSW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsFiltersForExtView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -714,18 +751,15 @@ Partial Class ViewByModele
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents lblStatus1 As Label
-    Friend WithEvents btnSend As Button
     Friend WithEvents lblStatus2 As Label
     Friend WithEvents lblTempDesc As Label
     Friend WithEvents lblTempText As Label
     Friend WithEvents lblServiceSwitchDesc As Label
-    Friend WithEvents btnUnlock As Button
     Friend WithEvents lbManualHistory As ListBox
     Friend WithEvents lblBalanceText As Label
     Friend WithEvents lblBalanceDescr As Label
     Friend WithEvents lblItemsNbText As Label
     Friend WithEvents lblIntemsNbDescr As Label
-    Friend WithEvents btnLock As System.Windows.Forms.Button
     Friend WithEvents gradpnlSearch As BlueActivity.Controls.AlphaGradientPanel
     Friend WithEvents ColorWithAlpha1 As BlueActivity.Controls.ColorWithAlpha
     Friend WithEvents ColorWithAlpha2 As BlueActivity.Controls.ColorWithAlpha
@@ -733,4 +767,11 @@ Partial Class ViewByModele
     Friend WithEvents tbFind As System.Windows.Forms.TextBox
     Friend WithEvents dgvExtView As System.Windows.Forms.DataGridView
     Friend WithEvents pbSW As System.Windows.Forms.PictureBox
+    Friend WithEvents btnSend As Glass.GlassButton
+    Friend WithEvents btnUnlock As Glass.GlassButton
+    Friend WithEvents btnLock As Glass.GlassButton
+    Friend WithEvents lblCount As System.Windows.Forms.Label
+    Friend WithEvents cmsFiltersForExtView As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents tsmiAll As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsmiToRefill As System.Windows.Forms.ToolStripMenuItem
 End Class

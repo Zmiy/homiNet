@@ -30,15 +30,15 @@ Public Class Warning
 
     End Sub
 
-    Private Sub dataGridViewInitData()
+    Private Sub DataGridViewInitData()
         dgvWarning.DataSource = Nothing
         dgvWarning.Refresh()
-        dvWarning.Table = MAINFORM.TroubleDescr.View.Table.Copy()
+        dvWarning.Table = Mainform.TroubleDescr.View.Table.Copy()
         dvWarning.Sort = "numchambre"
-        lblTroubleCount.Text = Trans(48) + " " + MAINFORM.TroubleDescr.View.ToTable().Rows.Count.ToString()
+        lblTroubleCount.Text = Trans(48) + " " + Mainform.TroubleDescr.View.ToTable().Rows.Count.ToString()
         dgvWarning.DataSource = dvWarning
     End Sub
-    Private Sub dataGridViewinitView()
+    Private Sub DataGridViewinitView()
         For i As Integer = 0 To dgvWarning.Columns.Count - 1
             dgvWarning.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next
@@ -51,7 +51,7 @@ Public Class Warning
 
     End Sub
     Private Sub gbWarnigPrint_Click(sender As Object, e As EventArgs) Handles gbWarnigPrint.Click
-        Dim imp As New Imprimer()
+        Dim imp As New Imprimer(Me)
         imp.imprimante = imprimante.Text
         imp.imprime = "warning"
         imp.paysage = chkbLandscape.Checked
@@ -66,7 +66,8 @@ Public Class Warning
         'Next
         'imp.TableRemp.DataSource = dv 'MAINFORM.tTroubleDescr.ViewForPrint()
         'imp.TableRempDataSource = dv
-        imp.go()
+        imp.Go()
+        imp.Show()
         Do
             Application.DoEvents()
             Thread.Sleep(10)
@@ -91,11 +92,11 @@ Public Class Warning
     End Sub
 
     Private Sub Warning_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
-        MessageBox.Show("FormisDeactivate")
+        'MessageBox.Show("Form is Deactivate")
     End Sub
 
     Private Sub Warning_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        MessageBox.Show("form is closed")
+        'MessageBox.Show("form is closed")
     End Sub
     Private Sub Warning_UnLoad(sender As Object, e As EventArgs)
         MessageBox.Show("Lost Focus")

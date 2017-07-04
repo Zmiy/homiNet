@@ -96,6 +96,7 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330-8|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -136,6 +137,7 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -143,11 +145,13 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>MiniBarVer="226"</DefineConstants>
     <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -182,6 +186,7 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <DefineConstants>MiniBarVer="330"</DefineConstants>
     <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226|AnyCPU'">
     <DocumentationFile>HomiNet.xml</DocumentationFile>
@@ -200,7 +205,7 @@
     <CodeAnalysisLogFile>bin\x86\Debug44\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
@@ -208,6 +213,7 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <DefineConstants>MiniBarVer="226"</DefineConstants>
     <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226Demo|AnyCPU'">
     <DocumentationFile>HomiNet.xml</DocumentationFile>
@@ -232,6 +238,7 @@
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release226|AnyCPU'">
     <DefineTrace>true</DefineTrace>
@@ -262,6 +269,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release330|AnyCPU'">
     <DefineTrace>true</DefineTrace>
@@ -290,6 +298,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <DocumentationFile>HomiNet.xml</DocumentationFile>
   </PropertyGroup>
   <Import Project="configuration.target" />
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
@@ -388,6 +397,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CommonVariables.vb" />
+    <Compile Include="GridUnit.Designer.vb">
+      <DependentUpon>GridUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GridUnit.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ModelTools.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -544,6 +559,13 @@
     </Compile>
     <Compile Include="Trouble.vb" />
     <Compile Include="TypeOfBar.vb" />
+    <Compile Include="330UnitForExtView.Designer.vb">
+      <DependentUpon>330UnitForExtView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="330UnitForExtView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TypeParser.vb" />
     <Compile Include="utilisateur.Designer.vb">
       <DependentUpon>utilisateur.vb</DependentUpon>
     </Compile>
@@ -565,6 +587,9 @@
     <Compile Include="WinManager.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="330UnitForExtView.resx">
+      <DependentUpon>330UnitForExtView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ajouterarticle.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ajouterarticle.vb</DependentUpon>
@@ -588,6 +613,9 @@
     <EmbeddedResource Include="configuration.resx">
       <SubType>Designer</SubType>
       <DependentUpon>configuration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridUnit.resx">
+      <DependentUpon>GridUnit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="informationinterface.resx">
       <DependentUpon>informationinterface.vb</DependentUpon>

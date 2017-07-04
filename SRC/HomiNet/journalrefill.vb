@@ -300,11 +300,11 @@ Public Class journalrefill
     End Sub
 
     Private Sub gbtnPrint_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click
-        Dim imp As New Imprimer
+        Dim imp As New Imprimer(Me)
         imp.imprimante = imprimante.Text
         imp.imprime = "journalremplissage"
         imp.paysage = CheckBox3.Checked
         imp.go()
-
+        imp.Show()
     End Sub
 End Class

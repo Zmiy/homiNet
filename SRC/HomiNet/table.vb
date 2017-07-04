@@ -47,17 +47,17 @@ Public Class Table
                 End Select
             End With
         Next
-        With dgvMain
-            .Columns("nummodule").DisplayIndex = 2
-            .Columns("service").DisplayIndex = 3
-            .Columns("etatporte").DisplayIndex = 4
-            .Columns("serrure").DisplayIndex = 5
-            .Columns("etattemp").DisplayIndex = 6
-            .Columns("check").DisplayIndex = 7
-            .Columns("savserrure").DisplayIndex = 8
-            .Columns("test").DisplayIndex = 9
-            .Columns("modelefrigo").DisplayIndex = 10
-        End With
+        'With dgvMain
+        '    .Columns("nummodule").DisplayIndex = 2
+        '    .Columns("service").DisplayIndex = 3
+        '    .Columns("etatporte").DisplayIndex = 4
+        '    .Columns("serrure").DisplayIndex = 5
+        '    .Columns("etattemp").DisplayIndex = 6
+        '    .Columns("check").DisplayIndex = 7
+        '    .Columns("savserrure").DisplayIndex = 8
+        '    .Columns("test").DisplayIndex = 9
+        '    .Columns("modelefrigo").DisplayIndex = 10
+        'End With
         'MAINFORM.WarningOfTroubleUpdate()
     End Sub
     Private Sub InitLabelView()
@@ -420,7 +420,7 @@ Public Class Table
             Label2.Text = Trans(48)
             TextBox1.Text = Str(Dv1.Count)
             ' facture.TextBox1.Text = Str(dv1.Count)
-
+            
         Catch ex As Exception
 
         End Try

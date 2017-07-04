@@ -336,6 +336,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy svm.dll ..\..\..\..\common</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

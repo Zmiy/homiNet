@@ -136,6 +136,7 @@ Public Class ModelTools
         Return result
         'Return (From dr1 As DataRow In table.Rows Let sceleton = modelsHex(dr1("modelefrigo").ToString()) Let realSwr = Convert.ToInt64(dr1("swr").ToString(), 16) Where dr1("coffre").ToString() = "3" And ((realSwr And &HF00003F000) = 0 And (realSwr - 1 Or sceleton) <> sceleton) Select dr1).ToList()
     End Function
+
     Public Shared Function IsGuestPresentSomething(swr As String, modelname As String, coffre As String) As Boolean
         Select Case coffre
             Case "0", "1", "2"

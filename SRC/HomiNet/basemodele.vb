@@ -222,7 +222,9 @@ Public Class basemodele
             lstbListOfModels.SelectedIndex = -1
             svmUnit.iCurrModeleIndex = lstbListOfModels.SelectedIndex
         End If
-        table.AddEmis("0", "MAJMODELE|" + txtbCurrModeleName.Text + "|" + svmUnit.Modele + "|" + chkbIs226.Checked.ToString())
+        Dim footerStr As String = String.Format("MAJMODELE|{0}|{1}|{2}", txtbCurrModeleName.Text, svmUnit.Modele, chkbIs226.Checked.ToString())
+        'Table.AddEmis("0", "MAJMODELE|" + txtbCurrModeleName.Text + "|" + svmUnit.Modele + "|" + chkbIs226.Checked.ToString())
+        Table.AddEmis("0", footerStr)
         'table.addemis("0", "MAJMODELE|" + TextBox1.Text + "|" + dsvm.Item(1, 0).Value + "|" + dsvm.Item(1, 1).Value + "|" + dsvm.Item(1, 2).Value + "|" + dsvm.Item(1, 3).Value + "|" + dsvm.Item(1, 4).Value + "|" + dsvm.Item(1, 5).Value + "|" + dsvm.Item(1, 6).Value + "|" + dsvm.Item(1, 7).Value + "|" + dsvm.Item(1, 8).Value + "|" + dsvm.Item(1, 9).Value + "|" + dsvm.Item(1, 10).Value + "|" + dsvm.Item(1, 11).Value + "|" + dsvm.Item(2, 0).Value + "|" + dsvm.Item(2, 1).Value + "|" + dsvm.Item(2, 2).Value + "|" + dsvm.Item(2, 3).Value + "|" + dsvm.Item(2, 4).Value + "|" + dsvm.Item(2, 5).Value + "|" + dsvm.Item(2, 6).Value + "|" + dsvm.Item(2, 7).Value + "|" + dsvm.Item(2, 8).Value + "|" + dsvm.Item(2, 9).Value + "|" + dsvm.Item(2, 10).Value + "|" + dsvm.Item(2, 11).Value)
         table.AddEmis("0", "ACTUALISERMODELE|")
     End Sub

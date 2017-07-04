@@ -155,11 +155,12 @@ Public Class Informationsystem
     End Sub
 
     Private Sub GlassButton5_Click(sender As Object, e As EventArgs) Handles GlassButton5.Click
-        Dim imp As New Imprimer
+        Dim imp As New Imprimer(Me)
         imp.imprimante = imprimante.Text
         imp.imprime = "system"
         imp.paysage = False
-        imp.go()
+        imp.Go()
+        imp.Show()
     End Sub
 
     Private Sub informationsystem_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged

@@ -92,11 +92,15 @@ Public Class rXZ
     Private Sub GlassButton1_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click   'Print
         EcrireINI("imprimante", "xygauche", gauche.Text)
         EcrireINI("imprimante", "xyhaut", haut.Text)
-        Imprimer.imprimante = imprimante.Text
-        Imprimer.imprime = "xy"
-        Imprimer.paysage = False
-        Imprimer.userLeft = Val(gauche.Text)
-        Imprimer.userTop = Val(haut.Text)
-        Imprimer.go()
+        Using imp As New Imprimer(Me)
+            imp.Imprimante = imprimante.Text
+            imp.Imprime = "xy"
+            imp.Paysage = False
+            imp.UserLeft = Val(gauche.Text)
+            imp.UserTop = Val(haut.Text)
+            imp.Go()
+            imp.Show()
+        End Using
+
     End Sub
 End Class

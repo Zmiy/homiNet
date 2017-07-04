@@ -445,7 +445,7 @@ Public Class Mainform
                 Informationsystem.ShowSystemIssues()
             Case "MESSAGETELECOMMANDE"
                 'acces login telecommande
-                If Val(s(1)) = Accesucf Then
+                If TypeParser.Int32TryParse(s(1)) = Accesucf Then
                     'cherche utilisateur
                     Dim k As Integer = Val(LireINI("utilisateur", "nb")), m As String
                     For i As Integer = 0 To k - 1
@@ -557,7 +557,7 @@ Public Class Mainform
                     For i As Integer = 1 To Dv.Table.Columns.Count - 1
                         Dv.Table.Rows(ri1)(i) = Ts(i + 1)
                     Next
-                    If nummodule = CInt(ViewByModele.dgvExtView.CurrentRow.Cells("nummodule").Value) Then
+                    If Not (ViewByModele.dgvExtView.CurrentRow Is Nothing) AndAlso (nummodule = CInt(ViewByModele.dgvExtView.CurrentRow.Cells("nummodule").Value)) Then
                         ViewByModele.SetParams(ViewByModele.dgvExtView.SelectedRows(0))
                     End If
                     If (Ts(27) = "1") Or (Ts(28) = "1") Then
@@ -774,14 +774,8 @@ Public Class Mainform
         If Maintable.Rows.Count = 0 Then
             Return
         End If
+        CloseFormByCaption(Trans(144))
 
-        
-        For i As Integer = Application.OpenForms.Count - 1 To 0 Step -1
-            Dim frm As Form = Application.OpenForms.Item(i)
-            If frm.Text = Trans(144) Then
-                frm.Close()
-            End If
-        Next
         _bgworkerErr = New BackgroundWorker()
         WinManager.CloseMessageBox(TroubleMessageCaption, _bgworkerErr)
 
@@ -789,6 +783,23 @@ Public Class Mainform
         _bgworkerErr.RunWorkerAsync(message) ' + "|"  + countOfPostingFromChkOut.ToString())
         'End If
     End Sub
+
+    Public Shared Sub CloseFormByCaption(captionText As String)
+        Try
+            For Each frm As Form In Application.OpenForms
+            Next
+
+            For i As Integer = Application.OpenForms.Count - 1 To 0 Step -1
+                Dim frm As Form = Application.OpenForms.Item(i)
+                If frm.Text = captionText Then
+                    frm.Close()
+                End If
+            Next
+        Catch
+
+        End Try
+    End Sub
+
     Private Sub TestWorker_DoWork(sender As Object, e As DoWorkEventArgs) Handles _bgworkerErr.DoWork
         e.Result = e.Argument
     End Sub

@@ -142,13 +142,14 @@ Public Class Rfacture
     Private Sub GlassButton5_Click(sender As Object, e As EventArgs) Handles GlassButton5.Click
         EcrireINI("imprimante", "facturegauche", gauche.Text)
         EcrireINI("imprimante", "facturehaut", haut.Text)
-        Imprimer.imprimante = imprimante.Text
-        Imprimer.imprime = "facture"
-        Imprimer.paysage = False
-        Imprimer.userLeft = Val(gauche.Text)
-        Imprimer.userTop = Val(haut.Text)
-        Imprimer.go()
-
+        Dim imp As New Imprimer(Me)
+        imp.Imprimante = imprimante.Text
+        imp.Imprime = "facture"
+        imp.Paysage = False
+        imp.UserLeft = Val(gauche.Text)
+        imp.UserTop = Val(haut.Text)
+        imp.Go()
+        imp.Show()
     End Sub
 
     Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles imprimante.SelectedIndexChanged

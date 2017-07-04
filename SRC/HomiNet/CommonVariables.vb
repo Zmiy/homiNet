@@ -11,7 +11,7 @@
     '    '--------------------------------------------------------------------
 #If MiniBarVer = "226" Then
     Public Const MaxCountOfProducts As Integer = 44
-    Public Const CountOfProductsHomi330 As Integer = 12
+    Public Const CountOfProductsHomi330 As Integer = 16
 #ElseIf MiniBarVer = "330" Then
     Public Const MaxCountOfProducts As Integer = 12
     Public Const CountOfProductsHomi330 As Integer = 12

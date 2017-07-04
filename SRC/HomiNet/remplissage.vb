@@ -860,12 +860,12 @@ Public Class Remplissage
     Private Sub gbtnPrint_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click
         Try
             If rbtnOutOfday.Checked = True Then
-                Dim imp As New Imprimer
-                imp.imprimante = cmbRefill.Text
-                imp.imprime = "perime"
-                imp.paysage = CheckBox1.Checked
-                imp.go()
-                'imp.Show()
+                Dim imp As New Imprimer(Me)
+                imp.Imprimante = cmbRefill.Text
+                imp.Imprime = "perime"
+                imp.Paysage = CheckBox1.Checked
+                imp.Go()
+                imp.Show()
                 Exit Sub
             End If
             Savsave()
@@ -890,16 +890,16 @@ Public Class Remplissage
                 End If
                 cmbTo.SelectedIndex = f - 1
 
-                Dim imp As New Imprimer
+                Dim imp As New Imprimer(Me)
 
                 imp.Top = pnlRight.Top
                 imp.Left = pnlRight.Left
                 imp.Width = pnlRight.Width
                 imp.Height = pnlRight.Height
 
-                imp.imprimante = cmbRefill.Text
-                imp.imprime = "remplissage"
-                imp.paysage = CheckBox1.Checked
+                imp.Imprimante = cmbRefill.Text
+                imp.Imprime = "remplissage"
+                imp.Paysage = CheckBox1.Checked
                 Dim dgvSaved As DataGridView = DGRemp.Clone()
                 If DGRemp.Columns(0).HeaderCell.SortGlyphDirection = SortOrder.None Then
                     dgvSaved.Columns(0).HeaderCell.SortGlyphDirection = SortOrder.Ascending
@@ -910,14 +910,16 @@ Public Class Remplissage
                     imp.DgvTableRemp = dgvSaved 'AddTroublesToReport(dgvSaved)
                 Else
                     imp.DgvTableRemp = dgvSaved
-                    imp.imprime = "Total"
+                    imp.Imprime = "Total"
                 End If
-                imp.go()
-                'imp.Show()
+                Mainform.CloseFormByCaption(Trans(144))
+                imp.Go()
+                imp.Show()
                 Do
                     Application.DoEvents()
                     Thread.Sleep(100)
-                Loop Until imp.pret = True
+                Loop Until imp.Pret = True
+                'WinManager.MoveWIndow2TopofZOrder(Trans(144))
                 If i <> n1.Value Then cmbFrom.SelectedIndex += ec
             Next
             Savrestore()

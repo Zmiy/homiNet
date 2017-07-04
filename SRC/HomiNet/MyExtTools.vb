@@ -2,6 +2,7 @@
 Imports System.Data
 
 Module MyExtTools
+    
     <Extension()> Public Function LAnd(pred1 As Integer, pred2 As Integer) As Byte
         LAnd = 0
         If (pred1 And pred2) = pred2 Then
@@ -13,6 +14,30 @@ Module MyExtTools
         LAnd = 0
         If (pred1 And pred2) = pred2 Then
             LAnd = 1
+        End If
+    End Function
+    <Extension()> Public Function GetBit(targetValue As Byte, fieldValue As Byte) As Boolean
+        Return (targetValue And fieldValue) > 0
+    End Function
+    <Extension()> Public Function GetBitN(targetValue As Byte, index As Byte) As Boolean
+        If index < 0 Or index > 7 Then
+            Return False
+        End If
+        Return (targetValue And (1 << (7 - index))) > 0
+    End Function
+    ''' <summary>
+    ''' Set or clear suitable bit
+    ''' </summary>
+    ''' <param name="targetValue">this value</param>
+    ''' <param name="fieldValue">field to set</param>
+    ''' <param name="isSet">set (true) or clear (false) suitable bit</param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    <Extension()> Public Function SetBit(targetValue As Byte, fieldValue As Byte, isSet As Boolean) As Byte
+        If isSet Then ' set value
+            Return (targetValue Or fieldValue)
+        Else 'clear value
+            Return targetValue And (Not fieldValue)
         End If
     End Function
 
@@ -121,4 +146,4 @@ Module MyExtTools
         Return clonedRow
     End Function
 
-  End Module
+End Module

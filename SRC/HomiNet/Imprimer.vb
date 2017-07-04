@@ -18,6 +18,10 @@ Public Class Imprimer
     Private _neededqtyIndex As Integer = 0
     Private _xFirst As Single
 
+    Public Sub New(ByVal ownr As Form)
+        InitializeComponent()
+        Me.Owner = ownr
+    End Sub
     'DEZ 20.05.10
     Private _dgvTableRemp As New DataGridView()
     'Private _dvTableRemp As DataView = Nothing
@@ -90,6 +94,8 @@ Public Class Imprimer
             Return _dvForPrint.Table
         End Get
     End Property
+
+    
     'Public WriteOnly Property TableRempDataSource() As DataGridView
     '    Set(value)
     '        dgvTableRemp.DataSource = value
@@ -169,12 +175,12 @@ Public Class Imprimer
             _psd.PrinterSettings.PrinterName = ops.PrinterName 'PrinterSettings.InstalledPrinters.Item(0)
         End Try
 
-        Dim ps As PaperSize
-        For ix As Integer = 0 To _psd.PrinterSettings.PaperSizes.Count - 1
-            If _psd.PrinterSettings.PaperSizes(ix).Kind = PaperKind.A4 Then
-                ps = _psd.PrinterSettings.PaperSizes(ix)
-            End If
-        Next
+        'Dim ps As PaperSize
+        'For ix As Integer = 0 To _psd.PrinterSettings.PaperSizes.Count - 1
+        '    If _psd.PrinterSettings.PaperSizes(ix).Kind = PaperKind.A4 Then
+        '        ps = _psd.PrinterSettings.PaperSizes(ix)
+        '    End If
+        'Next
 
         _psd.Margins = New Margins(25, 30, 30, 25)
 
@@ -188,16 +194,20 @@ Public Class Imprimer
         'PaperSize sizeA4 = paperSizes.First<PaperSize>(size => size.Kind == PaperKind.A4);
         'settings.DefaultPageSettings.PaperSize = sizeA5; 
 
-        'Dim paperSizes As IEnumerable(Of PaperSize) = _psd.PrinterSettings.PaperSizes.Cast(Of PaperSize)()
-        'Dim sizeA4 As PaperSize = paperSizes.First(Function(sizeP) sizeP.Kind = PaperKind.A4)
-
+        Dim paperSizes As IEnumerable(Of PaperSize) = _psd.PrinterSettings.PaperSizes.Cast(Of PaperSize)()
+        Dim ps As PaperSize = paperSizes.First(Function(sizeP) sizeP.Kind = PaperKind.A4)
+        If Doc Is Nothing Then
+            Doc = New PrintDocument()
+        End If
         Doc.PrinterSettings = _psd.PrinterSettings
         Doc.DefaultPageSettings.PaperSize = ps
         Doc.DefaultPageSettings = _psd
         PP1.Document = Doc
         WindowState = CInt(LireIniSmart("imprimer", "WindowState", CInt(FormWindowState.Normal)))
-        Show()
+        'Show()
+
     End Sub
+
     Dim _action As PrintAction = PrintAction.PrintToPreview
     Private Sub Doc_BeginPrint(sender As Object, e As PrintEventArgs) Handles Doc.BeginPrint
         Doc.OriginAtMargins = False
@@ -289,7 +299,13 @@ Public Class Imprimer
             Case "remplissage"
                 'printpageremplissage(e)
                 'bestPArea = GetBestPrintableArea(e)
-                Printpageremplissage4(e)
+                Select Case LireIniBoolSmart("imprimer", "UsingOldStyleOfRefillList", False)
+                    Case True
+                        Printpageremplissage2(e)
+                    Case False
+                        Printpageremplissage4(e)
+                End Select
+
             Case "note"
                 Printpagenote(e)
             Case "facture"
@@ -578,6 +594,176 @@ Public Class Imprimer
         rect = regions(0).GetBounds(graphics)
         Return New SizeF(rect.Right, rect.Bottom)
     End Function
+
+    Private Sub printpageremplissageOld(ByVal e As System.Drawing.Printing.PrintPageEventArgs) 'old stile
+        'haut de page
+        Dim dp As Integer = 7
+        If Paysage = True Then dp = 11
+        Dim ty As Single = _dy
+        Dim tx As Single = _dx
+        Dim xShift As Integer = CInt(_l / dp)
+        '--------------------------------
+        'ty += (3 + My.Resources.HomiLogoN_H150.Height)
+        'Dim imX As Single = (e.PageBounds.Width - My.Resources.HomiLogoN_H150.Width) / 2
+        'e.Graphics.DrawImage(My.Resources.HomiLogoN_H150, imX, 1)
+        'e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text, f0, Brushes.Black, dx, ty)
+        'e.Graphics.DrawString(Trans(55), f0, Brushes.Black, L / 2, ty)
+        'e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, f0, Brushes.Black, L * 0.9, ty)
+        'e.Graphics.DrawRectangle(Pens.Black, dx, ty, L, 16)
+        'ty += 16
+
+        Dim newImage As Image = My.Resources.Homi_hewLogoForPrint2
+        e.Graphics.DrawImage(newImage, e.MarginBounds.Left, e.MarginBounds.Top, newImage.Width, newImage.Height)
+        Dim y As Single = (newImage.Height - Farial10B.Height) / 2 + e.MarginBounds.Top
+        e.Graphics.DrawString(DateTime.Now + " " + Nomhotel + " " + Mainform.Label4.Text + vbTab + Trans(55) + vbTab + Trans(142) + ": " + Page.ToString, Farial10B, Brushes.Black, e.MarginBounds.Left + newImage.Width + 10, y)
+        e.Graphics.DrawRectangle(Pens.Black, e.MarginBounds.Left + newImage.Width + 5, y, e.MarginBounds.Width - newImage.Width, Farial10B.Height + 2) 'realWidth + 5, 6, _dx + _l - realWidth, 20)
+
+        ty = e.MarginBounds.Top + newImage.Height + 10
+
+        Dim rowsCountToPrint As Integer = _dgvTableRemp.Rows.Count
+        Dim columnsCountToPrint As Integer = _dgvTableRemp.Columns.Count
+
+        Dim sPrintString As String = String.Empty '_dgvTableRemp.Item(0, 0).Value.ToString().PadLeft(3, "0")
+        Dim sVacant As String = String.Empty
+
+        Dim vOffset As Integer = (Farial12.Height - Farial8.Height) / 2
+        Dim meassure As SizeF = New SizeF(0, 0) 'Single = Single.MinValue
+        Dim isNeedReturnCarret As Boolean
+
+        Do Until _index = rowsCountToPrint
+            'print chambre
+            tx = _dx
+            isNeedReturnCarret = False
+            'start printing floor N before next floor
+            If ty + Farial12Ib.Height * 2 + 4 > _dy + _h Then Exit Do
+            sPrintString = _dgvTableRemp.Item(0, _index).Value.ToString().PadLeft(3, "0")
+            _nextFloor = sPrintString.ToString().Substring(0, IIf(Len(_dgvTableRemp.Item(0, _index).Value.ToString().DigitsOnly()) > 3, 2, 1))
+            If _currFloor <> _nextFloor Then
+                e.Graphics.DrawString("  Floor: " + _nextFloor, Farial12Ib, Brushes.Black, tx, ty)
+                _currFloor = _nextFloor
+                ty += Farial12Ib.Height + 2 '16
+                If ty > _dy + _h Then Exit Do
+                e.Graphics.DrawLine(Pens.Black, _dx, ty, _dx + _l, ty)
+                ty += 2
+            End If
+            ' end printing floor N
+            sPrintString = String.Empty
+            If ty + Farial12.Height + 2 > _dy + _h Then Exit Do 'If more than page height
+            If String.Compare(DgvTableRemp.Item(1, _index).Value.ToString.ToUpper(), "CHECK OUT", StringComparison.Ordinal) = 0 Then
+                sVacant = "Vac"
+            Else
+                sVacant = String.Empty
+            End If
+            sPrintString = String.Format("{0} {1}", _dgvTableRemp.Item(0, _index).Value, sVacant)
+            e.Graphics.DrawString(sPrintString, Farial12, Brushes.Black, tx, ty)
+            meassure = e.Graphics.MeasureString(sPrintString, Farial12)
+            tx += Convert.ToSingle(meassure.Width)
+            sPrintString = String.Format("{0}  '{1}'{2}{3}", Trans(150), "In", Space(6), DgvTableRemp.Item(2, _index).Value.ToString)
+            e.Graphics.DrawString(sPrintString, Flitle, Brushes.Black, tx + 1, ty - 1)
+            sPrintString = String.Format("{0}  '{1}'{2}{3}", Trans(150), "Out", Space(2), DgvTableRemp.Item(3, _index).Value.ToString)
+            e.Graphics.DrawString(sPrintString, Flitle, Brushes.Black, tx + 1, ty + Flitle.Height - 1)
+
+            Dim meassureL As SizeF = e.Graphics.MeasureString(sPrintString + vbTab, Flitle)
+            tx = Convert.ToSingle(meassure.Width + meassureL.Width) + _dx  'L / dp
+
+            sPrintString = String.Empty
+            For i As Integer = 5 To columnsCountToPrint - 5
+                If _dgvTableRemp.Item(i, _index).Value <> 0 Then
+                    isNeedReturnCarret = True
+                    If _dgvTableRemp.Item(i, _index).Value >= 0 And _dgvTableRemp.Columns(i).HeaderText.ToString().Contains("MP_") Then
+                        sPrintString = _dgvTableRemp.Columns(i).HeaderText.ToString().Replace("MP_", "MP ")
+                    Else
+                        sPrintString = _dgvTableRemp.Item(i, _index).Value.ToString + " " + _dgvTableRemp.Columns(i).HeaderText
+                    End If
+                    If tx + 20 >= _l - 30 Then
+                        tx = _dx 'Convert.ToSingle(meassure.Width + meassureL.Width)   'xShift
+                        ty += Farial12.Height + 2 '16
+                        isNeedReturnCarret = False
+                    End If
+
+                    e.Graphics.DrawString(sPrintString, Farial8, Brushes.Black, tx, ty + vOffset)
+                    tx += e.Graphics.MeasureString(sPrintString, Farial8).Width + 20
+                End If
+            Next
+
+            sPrintString = String.Empty
+            For i As Integer = 4 To 2 Step -1
+
+                If _dgvTableRemp.Item(columnsCountToPrint - i, _index).Value > 0 Then
+                    sPrintString += _dgvTableRemp.Columns(columnsCountToPrint - i).HeaderText.ToString() + " "
+                    isNeedReturnCarret = False
+                End If
+            Next
+            If tx <> Convert.ToSingle(meassure.Width + meassureL.Width + _dx) Or isNeedReturnCarret = True Then
+                ty += Farial12.Height + 2
+                tx = _dx 'Convert.ToSingle(meassure.Width + meassureL.Width)
+                isNeedReturnCarret = False
+                If ty > _dy + _h Then Exit Do
+            End If
+            If sPrintString.Length > 0 Then
+                e.Graphics.DrawString(sPrintString.Trim(), Farial12B, Brushes.Black, tx, ty - vOffset)
+                ty += Farial12.Height + 2
+                tx = _dx 'Convert.ToSingle(meassure.Width + meassureL.Width)
+                isNeedReturnCarret = False
+                If ty > _dy + _h Then Exit Do
+            End If
+            _index += 1
+            If tx = Convert.ToSingle(meassure.Width + meassureL.Width + _dx) Then
+                ty += Farial12.Height + 2
+                tx = _dx 'Convert.ToSingle(meassure.Width + meassureL.Width)
+                isNeedReturnCarret = False
+                If ty > _dy + _h Then Exit Do
+            End If
+            e.Graphics.DrawLine(Pens.Black, _dx, ty, _dx + _l, ty)
+            ty += 2
+            If ty + Farial12.Height + 2 > _dy + _h Then Exit Do
+        Loop
+        ' DEZ 19/05/10
+        If _index < rowsCountToPrint Then
+            Page += 1
+            listpage.Items.Add(Page.ToString)
+            e.HasMorePages = True
+        Else
+            Dim c As Integer = Farial12.Height * 3 + ((columnsCountToPrint / (dp - 1)) * Farial12.Height)
+            If ty + c > _dy + _h Then
+                Page += 1
+                listpage.Items.Add(Page.ToString)
+                e.HasMorePages = True
+            Else
+                ty += Farial12.Height + 2 '16
+                'e.Graphics.DrawString(trans(386) + ": " + remplissage.DGRemp.Rows.Count.ToString, f1, Brushes.Black, dx, ty) DEZ 19/05/10
+                e.Graphics.DrawString(Trans(386) + ": " + rowsCountToPrint.ToString, Farial10, Brushes.Black, _dx, ty)
+                ty += Farial10.Height + 2 '16
+                e.Graphics.DrawLine(Pens.Black, _dx, ty, _dx + _l, ty)
+                tx = xShift 'L / dp
+                vOffset = (Farial10.Height - Farial8.Height) / 2
+                e.Graphics.DrawString(Trans(387), Farial10, Brushes.Black, _dx, ty)
+                For i As Integer = 5 To columnsCountToPrint - 5 '1  without 3 last columns Connection Error, Open Door, Service Switch Error
+                    sPrintString = String.Empty
+                    Dim t As Integer = 0
+                    'For j As Integer = 0 To remplissage.DGRemp.Rows.Count - 1 DEZ 19/05/10
+                    For j As Integer = 0 To rowsCountToPrint - 1
+                        t += _dgvTableRemp.Item(i, j).Value
+                    Next
+                    If Not _dgvTableRemp.Columns(i).HeaderText.ToString().Contains("MP_") Then
+                        sPrintString = t.ToString + " " + _dgvTableRemp.Columns(i).HeaderText
+                        e.Graphics.DrawString(sPrintString, Farial8, Brushes.Black, tx, ty + vOffset)
+                        'tx = tx + (L / dp)
+                        tx += Convert.ToSingle(e.Graphics.MeasureString(sPrintString, Farial8).Width) + 2
+                    End If
+                    If tx >= _l - 30 Then
+                        tx = xShift 'L / dp
+                        ty += Farial8.Height + 2 '16
+                    End If
+                Next
+                e.HasMorePages = False
+                Pret = True
+            End If
+        End If
+
+    End Sub
+    'DEZ end
+
     Private Sub Printpageremplissage4(e As PrintPageEventArgs)
         'haut de page
         Dim dp As Integer = 7
@@ -613,7 +799,7 @@ Public Class Imprimer
                 'start printing floor N before next floor
                 If ty + Farial12Ib.Height * 2 + 4 > e.MarginBounds.Bottom Then Exit Do
                 ty = PrintFloorN(e, tx, ty)
-                
+
                 If ty + Farial12B.Height > e.MarginBounds.Bottom Then Exit Do
 
                 sPrintString = DgvTableRemp.Item(0, _index).Value.ToString().PadLeft(4, " ")
@@ -688,7 +874,7 @@ Public Class Imprimer
                     rec = New RectangleF(tx + Math.Min(meassure.Width - retMeassure.Width - 10, e.Graphics.MeasureString(sPrintString, Farial10B, New SizeF(meassure.Width - retMeassure.Width - 10, Farial10B.Height), fs).Width + 5), ty, retMeassure.Width + 20, Farial10B.Height)
                     fs.Trimming = StringTrimming.None
                     e.Graphics.DrawString(returnText, Farial8, Brushes.Black, rec, fs)
-                    
+
                     tx += meassure.Width
                 End If
                 _neededqtyIndex += 1

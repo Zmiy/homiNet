@@ -116,10 +116,11 @@ Public Class information
     End Sub
 
     Private Sub GlassButton5_Click(sender As Object, e As EventArgs) Handles GlassButton5.Click
-        Dim imp As New Imprimer
+        Dim imp As New Imprimer(Me)
         imp.imprimante = imprimante.Text
         imp.imprime = "information"
         imp.paysage = CheckBox3.Checked
-        imp.go()
+        imp.Go()
+        imp.Show()
     End Sub
 End Class
