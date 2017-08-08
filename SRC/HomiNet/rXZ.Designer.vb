@@ -45,7 +45,7 @@ Partial Class rXZ
         Me.gbtnCloseDay = New Glass.GlassButton()
         Me.gbtnDaily = New Glass.GlassButton()
         Me.gauche = New System.Windows.Forms.TextBox()
-        Me.imprimante = New System.Windows.Forms.ComboBox()
+        Me.cmbImprimante = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.haut = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -266,14 +266,14 @@ Partial Class rXZ
         Me.gauche.TabIndex = 77
         Me.gauche.Text = "0"
         '
-        'imprimante
+        'cmbImprimante
         '
-        Me.imprimante.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.imprimante.FormattingEnabled = True
-        Me.imprimante.Location = New System.Drawing.Point(466, 258)
-        Me.imprimante.Name = "imprimante"
-        Me.imprimante.Size = New System.Drawing.Size(119, 21)
-        Me.imprimante.TabIndex = 79
+        Me.cmbImprimante.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmbImprimante.FormattingEnabled = True
+        Me.cmbImprimante.Location = New System.Drawing.Point(466, 258)
+        Me.cmbImprimante.Name = "cmbImprimante"
+        Me.cmbImprimante.Size = New System.Drawing.Size(119, 21)
+        Me.cmbImprimante.TabIndex = 79
         '
         'Label11
         '
@@ -328,7 +328,7 @@ Partial Class rXZ
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(253, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(856, 421)
         Me.Controls.Add(Me.gauche)
-        Me.Controls.Add(Me.imprimante)
+        Me.Controls.Add(Me.cmbImprimante)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.haut)
         Me.Controls.Add(Me.Label12)
@@ -364,7 +364,7 @@ Partial Class rXZ
     Friend WithEvents gbtnCloseDay As GlassButton
     Friend WithEvents gbtnDaily As GlassButton
     Friend WithEvents gauche As TextBox
-    Friend WithEvents imprimante As ComboBox
+    Friend WithEvents cmbImprimante As ComboBox
     Friend WithEvents Label11 As Label
     Friend WithEvents haut As TextBox
     Friend WithEvents Label12 As Label

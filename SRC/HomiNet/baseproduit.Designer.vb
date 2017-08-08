@@ -26,99 +26,42 @@ Partial Class baseproduit
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As ComponentResourceManager = New ComponentResourceManager(GetType(baseproduit))
-        Me.dproduit = New DataGridView
-        Me.GlassButton2 = New GlassButton
-        Me.GlassButton1 = New GlassButton
-        Me.GlassButton0 = New GlassButton
-        Me.e = New DataGridViewTextBoxColumn
-        Me.Column1 = New DataGridViewTextBoxColumn
-        Me.Column2 = New DataGridViewTextBoxColumn
-        Me.Column3 = New DataGridViewTextBoxColumn
-        Me.Column4 = New DataGridViewComboBoxColumn
-        Me.Column5 = New DataGridViewComboBoxColumn
-        Me.Column6 = New DataGridViewTextBoxColumn
-        Me.Column7 = New DataGridViewTextBoxColumn
-        Me.Column8 = New DataGridViewTextBoxColumn
-        Me.Column9 = New DataGridViewTextBoxColumn
-        Me.Column10 = New DataGridViewTextBoxColumn
-        Me.Column11 = New DataGridViewTextBoxColumn
-        Me.Column12 = New DataGridViewTextBoxColumn
-        Me.Column13 = New DataGridViewTextBoxColumn
-        Me.Column14 = New DataGridViewCheckBoxColumn
-        CType(Me.dproduit, ISupportInitialize).BeginInit()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(baseproduit))
+        Me.dproduit = New System.Windows.Forms.DataGridView()
+        Me.e = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.GlassButton2 = New Glass.GlassButton()
+        Me.GlassButton1 = New Glass.GlassButton()
+        Me.GlassButton0 = New Glass.GlassButton()
+        CType(Me.dproduit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dproduit
         '
         Me.dproduit.AllowUserToAddRows = False
         Me.dproduit.AllowUserToDeleteRows = False
-        Me.dproduit.Anchor = CType((((AnchorStyles.Top Or AnchorStyles.Bottom) _
-                    Or AnchorStyles.Left) _
-                    Or AnchorStyles.Right), AnchorStyles)
-        Me.dproduit.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dproduit.Columns.AddRange(New DataGridViewColumn() {Me.e, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14})
-        Me.dproduit.Location = New Point(1, 0)
+        Me.dproduit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dproduit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dproduit.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.e, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14})
+        Me.dproduit.Location = New System.Drawing.Point(1, 0)
         Me.dproduit.Name = "dproduit"
-        Me.dproduit.Size = New Size(752, 293)
+        Me.dproduit.Size = New System.Drawing.Size(752, 293)
         Me.dproduit.TabIndex = 0
-        '
-        'GlassButton2
-        '
-        Me.GlassButton2.Anchor = CType((AnchorStyles.Bottom Or AnchorStyles.Right), AnchorStyles)
-        Me.GlassButton2.AutoEllipsis = True
-        Me.GlassButton2.BackColor = Color.Navy
-        Me.GlassButton2.Font = New Font("Tahoma", 8.25!, FontStyle.Bold, GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton2.GlowColor = Color.Blue
-        Me.GlassButton2.Image = My.Resources.Resources.envoi24
-        Me.GlassButton2.ImageAlign = ContentAlignment.TopCenter
-        Me.GlassButton2.Location = New Point(616, 299)
-        Me.GlassButton2.Name = "GlassButton2"
-        Me.GlassButton2.OuterBorderColor = Color.Transparent
-        Me.GlassButton2.ShineColor = Color.Transparent
-        Me.GlassButton2.Size = New Size(124, 33)
-        Me.GlassButton2.TabIndex = 31
-        Me.GlassButton2.Tag = "1"
-        Me.GlassButton2.Text = "envoi"
-        Me.GlassButton2.TextImageRelation = TextImageRelation.ImageBeforeText
-        '
-        'GlassButton1
-        '
-        Me.GlassButton1.Anchor = CType((AnchorStyles.Bottom Or AnchorStyles.Left), AnchorStyles)
-        Me.GlassButton1.AutoEllipsis = True
-        Me.GlassButton1.BackColor = Color.Navy
-        Me.GlassButton1.Font = New Font("Tahoma", 8.25!, FontStyle.Bold, GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton1.GlowColor = Color.Red
-        Me.GlassButton1.Image = My.Resources.Resources.moins24
-        Me.GlassButton1.ImageAlign = ContentAlignment.TopCenter
-        Me.GlassButton1.Location = New Point(131, 299)
-        Me.GlassButton1.Name = "GlassButton1"
-        Me.GlassButton1.OuterBorderColor = Color.Transparent
-        Me.GlassButton1.ShineColor = Color.Transparent
-        Me.GlassButton1.Size = New Size(124, 33)
-        Me.GlassButton1.TabIndex = 30
-        Me.GlassButton1.Tag = "1"
-        Me.GlassButton1.Text = "supprimer"
-        Me.GlassButton1.TextImageRelation = TextImageRelation.ImageBeforeText
-        '
-        'GlassButton0
-        '
-        Me.GlassButton0.Anchor = CType((AnchorStyles.Bottom Or AnchorStyles.Left), AnchorStyles)
-        Me.GlassButton0.AutoEllipsis = True
-        Me.GlassButton0.BackColor = Color.Navy
-        Me.GlassButton0.Font = New Font("Tahoma", 8.25!, FontStyle.Bold, GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton0.GlowColor = Color.Lime
-        Me.GlassButton0.Image = My.Resources.Resources.plus24
-        Me.GlassButton0.ImageAlign = ContentAlignment.TopCenter
-        Me.GlassButton0.Location = New Point(1, 299)
-        Me.GlassButton0.Name = "GlassButton0"
-        Me.GlassButton0.OuterBorderColor = Color.Transparent
-        Me.GlassButton0.ShineColor = Color.Transparent
-        Me.GlassButton0.Size = New Size(124, 33)
-        Me.GlassButton0.TabIndex = 29
-        Me.GlassButton0.Tag = "1"
-        Me.GlassButton0.Text = "ajouter"
-        Me.GlassButton0.TextImageRelation = TextImageRelation.ImageBeforeText
         '
         'e
         '
@@ -155,29 +98,29 @@ Partial Class baseproduit
         '
         Me.Column6.HeaderText = "prix1"
         Me.Column6.Name = "Column6"
-        Me.Column6.Resizable = DataGridViewTriState.[True]
-        Me.Column6.SortMode = DataGridViewColumnSortMode.NotSortable
+        Me.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Column7
         '
         Me.Column7.HeaderText = "prix2"
         Me.Column7.Name = "Column7"
-        Me.Column7.Resizable = DataGridViewTriState.[True]
-        Me.Column7.SortMode = DataGridViewColumnSortMode.NotSortable
+        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Column8
         '
         Me.Column8.HeaderText = "prix3"
         Me.Column8.Name = "Column8"
-        Me.Column8.Resizable = DataGridViewTriState.[True]
-        Me.Column8.SortMode = DataGridViewColumnSortMode.NotSortable
+        Me.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Column9
         '
         Me.Column9.HeaderText = "prix4"
         Me.Column9.Name = "Column9"
-        Me.Column9.Resizable = DataGridViewTriState.[True]
-        Me.Column9.SortMode = DataGridViewColumnSortMode.NotSortable
+        Me.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Column10
         '
@@ -204,21 +147,76 @@ Partial Class baseproduit
         Me.Column14.HeaderText = "safe"
         Me.Column14.Name = "Column14"
         '
+        'GlassButton2
+        '
+        Me.GlassButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GlassButton2.AutoEllipsis = True
+        Me.GlassButton2.BackColor = System.Drawing.Color.Navy
+        Me.GlassButton2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GlassButton2.GlowColor = System.Drawing.Color.Blue
+        Me.GlassButton2.Image = Global.HomiNet.My.Resources.Resources.envoi24
+        Me.GlassButton2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.GlassButton2.Location = New System.Drawing.Point(616, 299)
+        Me.GlassButton2.Name = "GlassButton2"
+        Me.GlassButton2.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.GlassButton2.ShineColor = System.Drawing.Color.Transparent
+        Me.GlassButton2.Size = New System.Drawing.Size(124, 33)
+        Me.GlassButton2.TabIndex = 31
+        Me.GlassButton2.Tag = "1"
+        Me.GlassButton2.Text = "envoi"
+        Me.GlassButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
+        'GlassButton1
+        '
+        Me.GlassButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GlassButton1.AutoEllipsis = True
+        Me.GlassButton1.BackColor = System.Drawing.Color.Navy
+        Me.GlassButton1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GlassButton1.GlowColor = System.Drawing.Color.Red
+        Me.GlassButton1.Image = Global.HomiNet.My.Resources.Resources.moins24
+        Me.GlassButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.GlassButton1.Location = New System.Drawing.Point(131, 299)
+        Me.GlassButton1.Name = "GlassButton1"
+        Me.GlassButton1.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.GlassButton1.ShineColor = System.Drawing.Color.Transparent
+        Me.GlassButton1.Size = New System.Drawing.Size(124, 33)
+        Me.GlassButton1.TabIndex = 30
+        Me.GlassButton1.Tag = "1"
+        Me.GlassButton1.Text = "supprimer"
+        Me.GlassButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
+        'GlassButton0
+        '
+        Me.GlassButton0.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GlassButton0.AutoEllipsis = True
+        Me.GlassButton0.BackColor = System.Drawing.Color.Navy
+        Me.GlassButton0.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GlassButton0.GlowColor = System.Drawing.Color.Lime
+        Me.GlassButton0.Image = Global.HomiNet.My.Resources.Resources.plus24
+        Me.GlassButton0.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.GlassButton0.Location = New System.Drawing.Point(1, 299)
+        Me.GlassButton0.Name = "GlassButton0"
+        Me.GlassButton0.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.GlassButton0.ShineColor = System.Drawing.Color.Transparent
+        Me.GlassButton0.Size = New System.Drawing.Size(124, 33)
+        Me.GlassButton0.TabIndex = 29
+        Me.GlassButton0.Tag = "1"
+        Me.GlassButton0.Text = "ajouter"
+        Me.GlassButton0.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        '
         'baseproduit
         '
-        Me.AutoScaleDimensions = New SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = AutoScaleMode.Font
-        Me.BackColor = Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.ClientSize = New Size(752, 333)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(253, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(752, 333)
         Me.Controls.Add(Me.GlassButton2)
         Me.Controls.Add(Me.GlassButton1)
         Me.Controls.Add(Me.GlassButton0)
         Me.Controls.Add(Me.dproduit)
-        Me.ForeColor = Color.Black
-        Me.Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Me.ForeColor = System.Drawing.Color.Black
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "baseproduit"
         Me.Text = "produit"
-        CType(Me.dproduit, ISupportInitialize).EndInit()
+        CType(Me.dproduit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

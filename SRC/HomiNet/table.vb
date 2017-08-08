@@ -785,16 +785,19 @@ Public Class Table
     End Sub
 
     Private Sub GlassButton11_Click(sender As Object, e As EventArgs) Handles gbtnExtendetView.Click
-        ViewByModele.InitView()
+        Dim row As DataGridViewRow = New DataGridViewRow
+
         If dgvMain.SelectedRows.Count > 0 Then
-            ViewByModele.SetParams(dgvMain.SelectedRows(0))
+            row = dgvMain.SelectedRows(0)
         Else
             If dgvMain.Rows.Count > 0 Then
-                ViewByModele.SetParams(dgvMain.Rows(0))
+                row = dgvMain.Rows(0)
             End If
         End If
-
-        MAINFORM.tabMain.TabPages(ViewByModele).Select()
+        Dim room = row.Cells("numchambre").Value
+        ViewByModele.InitView()
+        ViewByModele.SetParams(room)
+        Mainform.tabMain.TabPages(ViewByModele).Select()
     End Sub
 
     Public Sub New()

@@ -30,6 +30,17 @@ Public Class Rfacture
         Initlangue()
         ComboBox1.DataSource = maintable
         ComboBox1.DisplayMember = "numchambre"
+        PrinterSet.SetPrinter(cmbImprimante, "imprimante", "facture")
+        'cmbImprimante.Items.Clear()
+        'cmbImprimante.Items.AddRange(PrinterSet.GetListOfPrinters.ToArray())
+        'Try
+        haut.Text = LireIniSmart("imprimante", "facturehaut", 0)
+        gauche.Text = LireIniSmart("imprimante", "facturegauche", 0)
+        '    cmbImprimante.Text = PrinterSet.GetPrintername("imprimante", "facture") 'LireINI("imprimante", "xy")
+        '    EcrireINI("imprimante", "facture", cmbImprimante.Text)
+        'Catch ex As Exception
+
+        'End Try
     End Sub
     Public Sub Initlangue()
         Text = Trans(376)
@@ -52,18 +63,18 @@ Public Class Rfacture
         'entete facture
         TextBox2.Text = Mid(Trans(353) + "    ", 1, 4) + "|" + Mid(Trans(354) + "              ", 1, 13) + "|" + Microsoft.VisualBasic.Right("      " + Trans(355), 6) + "|" + Microsoft.VisualBasic.Right("      " + Trans(356), 6) + "|" + Microsoft.VisualBasic.Right("         " + Trans(357), 9)
 
-        imprimante.Items.Clear()
-        For i As Integer = 0 To PrinterSettings.InstalledPrinters.Count - 1
-            imprimante.Items.Add(PrinterSettings.InstalledPrinters.Item(i))
-        Next
-        Try
-            haut.Text = LireINI("imprimante", "facturehaut")
-            gauche.Text = LireINI("imprimante", "facturegauche")
-            imprimante.Text = LireINI("imprimante", "facture")
+        'cmbImprimante.Items.Clear()
+        'For i As Integer = 0 To PrinterSettings.InstalledPrinters.Count - 1
+        '    cmbImprimante.Items.Add(PrinterSettings.InstalledPrinters.Item(i))
+        'Next
+        'Try
+        '    haut.Text = LireINI("imprimante", "facturehaut")
+        '    gauche.Text = LireINI("imprimante", "facturegauche")
+        '    cmbImprimante.Text = LireINI("imprimante", "facture")
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-        End Try
+        'End Try
     End Sub
 
     Private Shared Sub ClearControl(control As Control)
@@ -143,7 +154,7 @@ Public Class Rfacture
         EcrireINI("imprimante", "facturegauche", gauche.Text)
         EcrireINI("imprimante", "facturehaut", haut.Text)
         Dim imp As New Imprimer(Me)
-        imp.Imprimante = imprimante.Text
+        imp.Imprimante = cmbImprimante.Text
         imp.Imprime = "facture"
         imp.Paysage = False
         imp.UserLeft = Val(gauche.Text)
@@ -152,8 +163,17 @@ Public Class Rfacture
         imp.Show()
     End Sub
 
-    Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles imprimante.SelectedIndexChanged
-        EcrireINI("imprimante", "facture", imprimante.Text)
+    Private Sub imprimante_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbImprimante.SelectedIndexChanged
+        EcrireINI("imprimante", "facture", cmbImprimante.Text)
+    End Sub
 
+    Private Sub cmbImprimante_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles cmbImprimante.KeyDown
+        If e.KeyCode = Keys.F5 Then
+            PrinterSet.SetPrinter(cmbImprimante, "imprimante", "facture")
+            'cmbImprimante.Items.Clear()
+            'cmbImprimante.Items.AddRange(PrinterSet.GetListOfPrinters.ToArray())
+            'cmbImprimante.Text = PrinterSet.GetPrintername("imprimante", "facture") 'LireINI("imprimante", "xy")
+            'EcrireINI("imprimante", "facture", cmbImprimante.Text)
+        End If
     End Sub
 End Class

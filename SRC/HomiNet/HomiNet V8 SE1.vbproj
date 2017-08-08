@@ -520,6 +520,7 @@
     <Compile Include="nomutil.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PrinterSet.vb" />
     <Compile Include="remplissage.Designer.vb">
       <DependentUpon>remplissage.vb</DependentUpon>
     </Compile>

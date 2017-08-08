@@ -627,7 +627,32 @@ Public Class ViewByModele
         pnl.Visible = True
         pnl.BringToFront()
     End Sub
+    Private Function findRowByRoom(room As String) As Integer
+        Dim currManager As CurrencyManager = CType(dgvExtView.BindingContext(dgvExtView.DataSource), CurrencyManager)
+        Dim dv As DataView = CType(currManager.List, DataView)
+        If room.Length = 0 OrElse currManager.Count = 0 Then
+            Exit Function
+        End If
 
+        dv.Sort = "numchambre"
+
+        Dim pos As Integer
+        Return dv.Find(room)
+
+    End Function
+
+
+
+    Public Sub SetParams(room As String)
+        Dim pos As Integer = findRowByRoom(room)
+        Dim row As DataGridViewRow = dgvExtView.Rows(pos)
+        Dim arg As New DataGridViewCellEventArgs(0, pos)
+        dgvExtView.ClearSelection()
+        dgvExtView.FirstDisplayedCell = row.Cells("numchambre")
+        dgvExtView_RowEnter(Me, arg)
+        
+        SetParams(row)
+    End Sub
 
     Public Sub SetParams(row As DataGridViewRow)
         _selectedRow = row
@@ -665,6 +690,8 @@ Public Class ViewByModele
                 minibarImg = IIf(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _226open, _226closed)
                 SetParamsByType(_selectedRow, _labels226New, PnlHomi226New)
         End Select
+        'dgvExtView.CurrentCell = dgvExtView.Item(1, _selectedRow.Index)
+        '_selectedRow.Selected = True
         pbMinibar.Image = CombineBitmap(minibarImg, lockImg)
         pbMinibar.Tag = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), 2, 1)
     End Sub
@@ -957,7 +984,7 @@ Public Class ViewByModele
             clm.Visible = False
         Next
         dgvExtView.Columns("numchambre").HeaderText = Trans(28)
-
+        dgvExtView_DataSourceChanged(dgvExtView, Nothing)
     End Sub
     'Private Sub lbRooms_SelectedIndexChanged(sender As Object, e As EventArgs)
     '    PnlHomi226New.Visible = False
@@ -970,7 +997,7 @@ Public Class ViewByModele
 
     Private Sub ViewByModele_Leave(sender As Object, e As EventArgs) Handles MyBase.Leave
         HideSearchPanel()
-        isFiltered = False
+        _isFiltered = False
         'lbRooms.DataSource = Nothing
         Dv1.RowFilter = _filterStr
     End Sub
@@ -1060,8 +1087,10 @@ Public Class ViewByModele
         pos = dv.Find(tbFind.Text.ToString())
         If pos > -1 Then
             currManager.Position = pos
-            dgvExtView.CurrentRow.Selected = True 'SetSelected(pos, True)
-            dgvExtView_RowEnter(Me, Nothing)
+            'dgvExtView.CurrentRow.Selected = True 'SetSelected(pos, True)
+
+            Dim arg As New DataGridViewCellEventArgs(0, dgvExtView.CurrentRow.Index)
+            dgvExtView_RowEnter(Me, arg)
         Else
             MessageBox.Show(String.Format("{0} {1} not found", Trans(28), tbFind.Text.ToString()))
         End If
@@ -1094,6 +1123,9 @@ Public Class ViewByModele
     'End Sub
 
     Private Sub dgvExtView_RowEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dgvExtView.RowEnter
+        If Not dgvExtView.Rows(e.RowIndex).Selected Then
+            dgvExtView.Rows(e.RowIndex).Selected = True
+        End If
         PnlHomi226New.Visible = False
         PnlHomi330New.Visible = False
         If dgvExtView.SelectedRows.Count > 0 AndAlso Visible = True Then
@@ -1163,7 +1195,7 @@ Public Class ViewByModele
 
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
         Dim s As String = String.Empty
-        Select CInt(_selectedRow.Cells("coffre").Value)
+        Select Case CInt(_selectedRow.Cells("coffre").Value)
             Case 0, 1, 2
                 _ucList.ForEach(Sub(uc) s += uc.ForManualRefillValue + " ")
             Case 3
@@ -1175,7 +1207,7 @@ Public Class ViewByModele
 #End Region
 
     Private Sub tsmiAll_Click(sender As System.Object, e As System.EventArgs) Handles tsmiAll.Click
-        isFiltered = False
+        _isFiltered = False
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
         Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and test<>'{0}'", Trans(37))
@@ -1188,7 +1220,7 @@ Public Class ViewByModele
     End Sub
 
     Private Sub tsmiToRefill_Click(sender As System.Object, e As System.EventArgs) Handles tsmiToRefill.Click
-        isFiltered = True
+        _isFiltered = True
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
         dgvExtView.DataSource = Remplissage.Dvr
@@ -1199,14 +1231,11 @@ Public Class ViewByModele
         If dgvExtView.Rows.Count > 0 Then
             dgvExtView.Rows(0).Selected = True
         End If
-        'dgvExtView.Select()
-        'If Remplissage.Dvr.Count > 0 Then
-        '    dgvExtView.Rows(0).Selected = True
-        'End If
-        'Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and test<>'{0}' and aremplir > 0", Trans(37))
+        
     End Sub
-    Dim isFiltered As Boolean = False
+    Dim _isFiltered As Boolean = False
     Private Sub dgvExtView_DataSourceChanged(sender As System.Object, e As System.EventArgs) Handles dgvExtView.DataSourceChanged
-        lblCount.Text = Trans(48) + " " + dgvExtView.Rows.Count().ToString() + " " + IIf(isFiltered, Trans(343), "")
+        lblCount.Text = Trans(48) + " " + dgvExtView.Rows.Count().ToString() + " " + IIf(_isFiltered, Trans(343), "")
     End Sub
+
 End Class

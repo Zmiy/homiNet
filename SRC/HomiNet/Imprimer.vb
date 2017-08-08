@@ -801,6 +801,15 @@ Public Class Imprimer
                 ty = PrintFloorN(e, tx, ty)
 
                 If ty + Farial12B.Height > e.MarginBounds.Bottom Then Exit Do
+                Dim sum As Integer = 0
+                For i As Integer = 5 To columnsCountToPrint - 5
+                    sum += DgvTableRemp.Item(i, _index).Value
+                Next
+                sum += (DgvTableRemp.Item(columnsCountToPrint - 4, _index).Value + DgvTableRemp.Item(columnsCountToPrint - 3, _index).Value + DgvTableRemp.Item(columnsCountToPrint - 2, _index).Value) * -1
+                If sum = 0 And Not LireIniBoolSmart("imprimer", "IsCanPrintGuestProducts", True) Then
+                    _index += 1
+                    Continue Do
+                End If
 
                 sPrintString = DgvTableRemp.Item(0, _index).Value.ToString().PadLeft(4, " ")
                 e.Graphics.DrawString(sPrintString, Farial12, Brushes.Black, tx, ty) 'Room number

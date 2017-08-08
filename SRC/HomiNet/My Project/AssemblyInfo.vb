@@ -35,7 +35,7 @@ Imports System.Runtime.InteropServices
 #End If
 
 <Assembly: AssemblyCompany("By Nicolas TILLET, Evgeny Drapkin")> 
-<Assembly: AssemblyCopyright("Copyright ©  2008-2016")> 
+<Assembly: AssemblyCopyright("Copyright ©  2008-2017")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
@@ -56,7 +56,7 @@ Imports System.Runtime.InteropServices
 
 
 <Assembly: AssemblyVersion("8.1.4.9")> 
-<Assembly: AssemblyFileVersion("8.1.4.912")> 
+<Assembly: AssemblyFileVersion("8.1.4.914")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 
 

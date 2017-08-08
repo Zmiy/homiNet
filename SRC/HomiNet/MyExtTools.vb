@@ -41,6 +41,11 @@ Module MyExtTools
         End If
     End Function
 
+    <Extension()>
+    Public Function IsDigit(value As String) As Boolean
+        Return value.Length = value.DigitsOnly.Length
+    End Function
+
     <Extension()> _
     Public Function DigitsOnly(value As String) As String
         Dim result As String = String.Empty
@@ -146,4 +151,12 @@ Module MyExtTools
         Return clonedRow
     End Function
 
+    <Extension()>
+    Public Function CloneByValue(row As DataGridViewRow) As DataGridViewRow
+        Return CloneWithValues(row)
+    End Function
+    <Extension()>
+    Public Function IsEmpty(str As String) As Boolean
+        Return ((str Is Nothing) OrElse String.IsNullOrEmpty(str))
+    End Function
 End Module

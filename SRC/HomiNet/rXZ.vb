@@ -40,19 +40,18 @@ Public Class rXZ
         Label3.Text = ""
         Label11.Text = Trans(391)
         Label12.Text = Trans(390)
+        PrinterSet.SetPrinter(cmbImprimante, "imprimante", "xy")
+        'cmbImprimante.Items.Clear()
+        'cmbImprimante.Items.AddRange(PrinterSet.GetListOfPrinters.ToArray())
 
-        imprimante.Items.Clear()
-        For i As Integer = 0 To PrinterSettings.InstalledPrinters.Count - 1
-            imprimante.Items.Add(PrinterSettings.InstalledPrinters.Item(i))
-        Next
-        Try
-            haut.Text = LireINI("imprimante", "xyhaut")
-            gauche.Text = LireINI("imprimante", "xygauche")
-            imprimante.Text = LireINI("imprimante", "xy")
+        'Try
+        haut.Text = LireIniSmart("imprimante", "xyhaut", 0)
+        gauche.Text = LireIniSmart("imprimante", "xygauche", 0)
+        '    cmbImprimante.Text = PrinterSet.GetPrintername("imprimante", "xy") 'LireINI("imprimante", "xy")
+        '    EcrireINI("imprimante", "xy", cmbImprimante.Text)
+        'Catch ex As Exception
 
-        Catch ex As Exception
-
-        End Try
+        'End Try
     End Sub
     'Daily
     Private Sub GlassButton4_Click(sender As Object, e As EventArgs) Handles gbtnDaily.Click 'Daily
@@ -92,15 +91,25 @@ Public Class rXZ
     Private Sub GlassButton1_Click(sender As Object, e As EventArgs) Handles gbtnPrint.Click   'Print
         EcrireINI("imprimante", "xygauche", gauche.Text)
         EcrireINI("imprimante", "xyhaut", haut.Text)
-        Using imp As New Imprimer(Me)
-            imp.Imprimante = imprimante.Text
-            imp.Imprime = "xy"
-            imp.Paysage = False
-            imp.UserLeft = Val(gauche.Text)
-            imp.UserTop = Val(haut.Text)
-            imp.Go()
-            imp.Show()
-        End Using
+        Dim imp As New Imprimer(Me)
+        imp.Imprimante = cmbImprimante.Text
+        imp.Imprime = "xy"
+        imp.Paysage = False
+        imp.UserLeft = Val(gauche.Text)
+        imp.UserTop = Val(haut.Text)
+        imp.Go()
+        imp.Show()
+        'End Using
 
+    End Sub
+
+    Private Sub cmbImprimante_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmbImprimante.SelectedIndexChanged
+        EcrireINI("imprimante", "xy", cmbImprimante.Text)
+    End Sub
+
+    Private Sub cmbImprimante_KeyDown(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles cmbImprimante.KeyDown
+        If e.KeyCode = Keys.F5 Then
+            PrinterSet.SetPrinter(cmbImprimante, "imprimante", "xy")
+        End If
     End Sub
 End Class

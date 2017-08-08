@@ -48,7 +48,8 @@ Public Class baseproduit
     End Sub
     Private Sub GlassButton0_Click(sender As Object, e As EventArgs) Handles GlassButton0.Click
         UpdateComboBoxColumns()
-        dproduit.Rows.Add("*", "", "", "", "", "", "0", "0", "0", "0", "180", "0", "2", "3", False)
+        'dproduit.Rows.Add("*", "", "", "", "", "", "0", "0", "0", "0", "180", "0", "2", "3", False)
+        dproduit.Rows.Add("*", "", "", "", "", "", "0", "0", "0", "0", "180", "1", "0", "0", False)
     End Sub
 
     Public Sub clearproduit()
@@ -94,20 +95,43 @@ Public Class baseproduit
         Exit Sub
     End Sub
 
-    Private Sub dproduit_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dproduit.CellValueChanged
-        If e.ColumnIndex = 1 And dproduit.Rows.Count > 0 Then
-            Try
-                Dim i As Integer = dproduit.CurrentRow.Index
-                If dproduit.Item(2, i).Value = "" Then dproduit.Item(2, i).Value = dproduit.Item(1, i).Value
-                If dproduit.Item(3, i).Value = "" Then dproduit.Item(3, i).Value = dproduit.Item(1, i).Value
+    Private Sub dproduit_CellValueChanged(sender As Object, ea As DataGridViewCellEventArgs) Handles dproduit.CellValueChanged
+        If dproduit.Rows.Count > 0 Then
+            Dim i As Integer = dproduit.CurrentRow.Index
+            Select Case ea.ColumnIndex
+                Case 1
+                    Try
 
-            Catch ex As Exception
+                        If dproduit.Item(2, i).Value = "" Then dproduit.Item(2, i).Value = dproduit.Item(1, i).Value
+                        If dproduit.Item(3, i).Value = "" Then dproduit.Item(3, i).Value = dproduit.Item(1, i).Value
 
-            End Try
+                    Catch ex As Exception
+
+                    End Try
+                Case 11
+                    If dproduit(11, i).Value.ToString().IsEmpty OrElse Not dproduit(11, i).Value.ToString().IsDigit OrElse CInt(dproduit(11, i).Value) < 0 Then
+                        dproduit(11, i).Value = 0
+                    End If
+                    Select Case dproduit(11, i).Value
+                        Case 0, 1
+                            dproduit(12, i).Value = 0
+                            dproduit(13, i).Value = 0
+                        Case Else
+                            dproduit(12, i).Value = CInt(dproduit(11, i).Value) - 2
+                            dproduit(13, i).Value = CInt(dproduit(11, i).Value) - 1
+                    End Select
+
+            End Select
+
+        End If
+
+        If ea.ColumnIndex = 1 And dproduit.Rows.Count > 0 Then
+
         End If
     End Sub
 
     Private Sub baseproduit_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
         UpdateComboBoxColumns()
     End Sub
+
 End Class

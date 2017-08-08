@@ -29,7 +29,11 @@ Partial Class ViewByModele
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ViewByModele))
         Me.pnlLeft = New System.Windows.Forms.Panel()
+        Me.lblCount = New System.Windows.Forms.Label()
         Me.dgvExtView = New System.Windows.Forms.DataGridView()
+        Me.cmsFiltersForExtView = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tsmiAll = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiToRefill = New System.Windows.Forms.ToolStripMenuItem()
         Me.gradpnlSearch = New BlueActivity.Controls.AlphaGradientPanel()
         Me.ColorWithAlpha1 = New BlueActivity.Controls.ColorWithAlpha()
         Me.ColorWithAlpha2 = New BlueActivity.Controls.ColorWithAlpha()
@@ -73,12 +77,9 @@ Partial Class ViewByModele
         Me.pbSW = New System.Windows.Forms.PictureBox()
         Me.pbMinibar = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.lblCount = New System.Windows.Forms.Label()
-        Me.cmsFiltersForExtView = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.tsmiAll = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsmiToRefill = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlLeft.SuspendLayout()
         CType(Me.dgvExtView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsFiltersForExtView.SuspendLayout()
         Me.gradpnlSearch.SuspendLayout()
         Me.gbLegend.SuspendLayout()
         Me.tblpanelLegend.SuspendLayout()
@@ -87,7 +88,6 @@ Partial Class ViewByModele
         Me.pnlLegend.SuspendLayout()
         CType(Me.pbSW, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.cmsFiltersForExtView.SuspendLayout()
         Me.SuspendLayout()
         '
         'pnlLeft
@@ -99,14 +99,30 @@ Partial Class ViewByModele
         Me.pnlLeft.Controls.Add(Me.dgvExtView)
         Me.pnlLeft.Controls.Add(Me.gradpnlSearch)
         Me.pnlLeft.Controls.Add(Me.lblRooms)
-        Me.pnlLeft.Location = New System.Drawing.Point(1, 82)
+        Me.pnlLeft.Location = New System.Drawing.Point(1, 73)
         Me.pnlLeft.Name = "pnlLeft"
-        Me.pnlLeft.Size = New System.Drawing.Size(253, 510)
+        Me.pnlLeft.Size = New System.Drawing.Size(253, 519)
         Me.pnlLeft.TabIndex = 0
+        '
+        'lblCount
+        '
+        Me.lblCount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblCount.BackColor = System.Drawing.Color.SteelBlue
+        Me.lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCount.Location = New System.Drawing.Point(0, 481)
+        Me.lblCount.Name = "lblCount"
+        Me.lblCount.Size = New System.Drawing.Size(251, 36)
+        Me.lblCount.TabIndex = 42
+        Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'dgvExtView
         '
+        Me.dgvExtView.AllowUserToAddRows = False
         Me.dgvExtView.AllowUserToDeleteRows = False
+        Me.dgvExtView.AllowUserToOrderColumns = True
+        Me.dgvExtView.AllowUserToResizeRows = False
         Me.dgvExtView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -114,9 +130,26 @@ Partial Class ViewByModele
         Me.dgvExtView.ContextMenuStrip = Me.cmsFiltersForExtView
         Me.dgvExtView.Location = New System.Drawing.Point(0, 33)
         Me.dgvExtView.Name = "dgvExtView"
-        Me.dgvExtView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvExtView.Size = New System.Drawing.Size(249, 440)
+        Me.dgvExtView.Size = New System.Drawing.Size(249, 449)
         Me.dgvExtView.TabIndex = 3
+        '
+        'cmsFiltersForExtView
+        '
+        Me.cmsFiltersForExtView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAll, Me.tsmiToRefill})
+        Me.cmsFiltersForExtView.Name = "cmsFiltersForExtView"
+        Me.cmsFiltersForExtView.Size = New System.Drawing.Size(117, 48)
+        '
+        'tsmiAll
+        '
+        Me.tsmiAll.Name = "tsmiAll"
+        Me.tsmiAll.Size = New System.Drawing.Size(116, 22)
+        Me.tsmiAll.Text = "All"
+        '
+        'tsmiToRefill
+        '
+        Me.tsmiToRefill.Name = "tsmiToRefill"
+        Me.tsmiToRefill.Size = New System.Drawing.Size(116, 22)
+        Me.tsmiToRefill.Text = "To Refill"
         '
         'gradpnlSearch
         '
@@ -665,37 +698,6 @@ Partial Class ViewByModele
         Me.TableLayoutPanel2.TabIndex = 0
         Me.TableLayoutPanel2.Visible = False
         '
-        'lblCount
-        '
-        Me.lblCount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblCount.BackColor = System.Drawing.Color.SteelBlue
-        Me.lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblCount.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCount.Location = New System.Drawing.Point(0, 472)
-        Me.lblCount.Name = "lblCount"
-        Me.lblCount.Size = New System.Drawing.Size(251, 36)
-        Me.lblCount.TabIndex = 42
-        Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'cmsFiltersForExtView
-        '
-        Me.cmsFiltersForExtView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAll, Me.tsmiToRefill})
-        Me.cmsFiltersForExtView.Name = "cmsFiltersForExtView"
-        Me.cmsFiltersForExtView.Size = New System.Drawing.Size(117, 48)
-        '
-        'tsmiAll
-        '
-        Me.tsmiAll.Name = "tsmiAll"
-        Me.tsmiAll.Size = New System.Drawing.Size(152, 22)
-        Me.tsmiAll.Text = "All"
-        '
-        'tsmiToRefill
-        '
-        Me.tsmiToRefill.Name = "tsmiToRefill"
-        Me.tsmiToRefill.Size = New System.Drawing.Size(152, 22)
-        Me.tsmiToRefill.Text = "To Refill"
-        '
         'ViewByModele
         '
         Me.AutoScroll = True
@@ -707,6 +709,7 @@ Partial Class ViewByModele
         Me.Text = "ViewByModele"
         Me.pnlLeft.ResumeLayout(False)
         CType(Me.dgvExtView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsFiltersForExtView.ResumeLayout(False)
         Me.gradpnlSearch.ResumeLayout(False)
         Me.gradpnlSearch.PerformLayout()
         Me.gbLegend.ResumeLayout(False)
@@ -721,7 +724,6 @@ Partial Class ViewByModele
         Me.pnlLegend.PerformLayout()
         CType(Me.pbSW, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMinibar, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.cmsFiltersForExtView.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
