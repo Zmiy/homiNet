@@ -27,6 +27,13 @@
     <SourceArchivePath>$(BaseOutputDirectory)\build\$(VN)\Source</SourceArchivePath> 
     <SourceArchive>"$(SourceArchivePath)\HomiNet"</SourceArchive>
     <ArchiveExcl>"$(MSBuildProjectDirectory)\SRC\*.*"</ArchiveExcl>
+    <BuildInfoFile>$(MSBuildProjectDirectory)\SRC\HomiNet\My Project\VersionInfo.vb</BuildInfoFile>
+    <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
+    <Month>$([System.DateTime]::Now.ToString("MM"))</Month>
+    <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
+    <Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
+    <ArchiveCreationDate>$(Year)$(Month)$(Date)_$(Time)</ArchiveCreationDate>
+    <AssemblyFileVersionAttribute>Assembly:System.Reflection.AssemblyFileVersion("$(Year).$(Month).$(Date).$(Time)")</AssemblyFileVersionAttribute>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -88,10 +95,13 @@
                                    
   <Target Name="Build">
 
+    <WriteLinesToFile File="$(BuildInfoFile)" Lines="&lt;$(AssemblyFileVersionAttribute)&gt;" Overwrite="true">
+    </WriteLinesToFile>
+
     <MakeDir Directories="$(BaseOutputDirectory)\build" />
     <MSBuild Projects="SRC\HomiNet\$(MSBuildProjectName)%(TargetFramework.ProjectFileSuffix).vbproj" 
              Targets="Build" 
-             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)\build\$(VN)\" 
+             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)\build\$(VN)\;BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />

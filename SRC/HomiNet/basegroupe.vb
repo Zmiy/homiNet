@@ -62,7 +62,11 @@ Public Class basegroupe
         dtaxe.Rows.Clear()
     End Sub
     Public Sub addgroupe(message As String())
-        dgroupe.Rows.Add("", message(1), message(4))
+        If message.Count > 4 Then
+            dgroupe.Rows.Add("", message(1), message(4))
+        Else
+            dgroupe.Rows.Add("", message(1))
+        End If
     End Sub
     Public Sub addtaxe(message As String())
         dtaxe.Rows.Add("", message(1), message(2))

@@ -97,6 +97,41 @@ Public Class ModelTools
         End Select
         Return -1
     End Function
+    Private Shared Function Row2Hex226(dr As DataRow) As Long
+        Dim swrByRow As Long = 0L
+        For casier As Integer = 1 To MaxCountOfProducts
+            If Convert.ToInt16(dr("c" + casier.ToString())) = 1 Then
+                Select Case casier
+                    Case Is <= 12 'top shelf
+                        swrByRow = &H10000000000L << (casier - 1) Xor swrByRow
+                    Case Is <= 24  'bottom shelf
+                        swrByRow = &H10000000L << (casier - 13) Xor swrByRow
+                    Case Is <= 30  'balcony1
+                        swrByRow = &H100000L << (casier - 25) Xor swrByRow
+                    Case Is <= 36  'balcony2
+                        swrByRow = &H1000L << (casier - 31) Xor swrByRow
+                    Case Is > 36  'tray
+                        swrByRow = &H10L << (casier - 37) Xor swrByRow
+                End Select
+            End If
+        Next
+        Return swrByRow
+    End Function
+
+    Public Shared Function IsNeedManual(dr As DataRow) As Boolean
+        If CInt(dr("coffre") <> 3) Then
+            Return False
+        End If
+        Dim realSwrByDataRow As Long = Row2Hex226(dr)
+        Dim swr As Long = Convert.ToInt64(dr("swr"), 16)
+        Dim modelFrigo As String = dr("modelefrigo").ToString().Trim()
+        If modelFrigo.IsEmpty() OrElse swr = 0 Then
+            Return False
+        End If
+        Dim model As Long = ModelByName(modelFrigo, 3)
+        Return ((realSwrByDataRow And model) Xor ((swr - 1) And model)) > 0
+    End Function
+
     Private Shared Function Model2Hex226(indx As Integer) As Long
         Dim swrModel As Long = 0L
         For casier As Integer = 1 To MaxCountOfProducts
@@ -135,6 +170,22 @@ Public Class ModelTools
         Next
         Return result
         'Return (From dr1 As DataRow In table.Rows Let sceleton = modelsHex(dr1("modelefrigo").ToString()) Let realSwr = Convert.ToInt64(dr1("swr").ToString(), 16) Where dr1("coffre").ToString() = "3" And ((realSwr And &HF00003F000) = 0 And (realSwr - 1 Or sceleton) <> sceleton) Select dr1).ToList()
+    End Function
+
+    Public Shared Function RealShelfStatus(status As Long, casier As Integer) As Boolean
+        Select Case casier
+            Case Is <= 12 'top shelf
+                Return status.LAnd(&H10000000000L << (casier - 1))
+            Case Is <= 24  'bottom shelf
+                Return status.LAnd(&H10000000L << (casier - 13))
+            Case Is <= 30  'balcony1
+                Return status.LAnd(&H100000L << (casier - 25))
+            Case Is <= 36  'balcony2
+                Return status.LAnd(&H1000L << (casier - 31))
+            Case Is > 36  'tray
+                Return status.LAnd(&H10L << (casier - 37))
+        End Select
+        Return False
     End Function
 
     Public Shared Function IsGuestPresentSomething(swr As String, modelname As String, coffre As String) As Boolean

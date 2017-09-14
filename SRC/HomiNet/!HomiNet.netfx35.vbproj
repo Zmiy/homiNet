@@ -413,6 +413,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WinManager.vb" />
+    <Compile Include="PrinterSet.vb" />
     <Compile Include="330UnitForExtView.Designer.vb">
       <DependentUpon>330UnitForExtView.vb</DependentUpon>
     </Compile>
@@ -798,6 +799,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Target Name="BeforeBuild">
+    <ItemGroup Condition="Exists('$(BuildInfoFile)')">
+      <Compile Include="$(BuildInfoFile)" />
+    </ItemGroup>
+  </Target>
+
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

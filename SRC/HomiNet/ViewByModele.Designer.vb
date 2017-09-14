@@ -34,6 +34,7 @@ Partial Class ViewByModele
         Me.cmsFiltersForExtView = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.tsmiAll = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmiToRefill = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiNeedManualRefill = New System.Windows.Forms.ToolStripMenuItem()
         Me.gradpnlSearch = New BlueActivity.Controls.AlphaGradientPanel()
         Me.ColorWithAlpha1 = New BlueActivity.Controls.ColorWithAlpha()
         Me.ColorWithAlpha2 = New BlueActivity.Controls.ColorWithAlpha()
@@ -129,27 +130,35 @@ Partial Class ViewByModele
         Me.dgvExtView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvExtView.ContextMenuStrip = Me.cmsFiltersForExtView
         Me.dgvExtView.Location = New System.Drawing.Point(0, 33)
+        Me.dgvExtView.MultiSelect = False
         Me.dgvExtView.Name = "dgvExtView"
         Me.dgvExtView.Size = New System.Drawing.Size(249, 449)
         Me.dgvExtView.TabIndex = 3
         '
         'cmsFiltersForExtView
         '
-        Me.cmsFiltersForExtView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAll, Me.tsmiToRefill})
+        Me.cmsFiltersForExtView.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiAll, Me.tsmiToRefill, Me.tsmiNeedManualRefill})
         Me.cmsFiltersForExtView.Name = "cmsFiltersForExtView"
-        Me.cmsFiltersForExtView.Size = New System.Drawing.Size(117, 48)
+        Me.cmsFiltersForExtView.Size = New System.Drawing.Size(175, 70)
         '
         'tsmiAll
         '
         Me.tsmiAll.Name = "tsmiAll"
-        Me.tsmiAll.Size = New System.Drawing.Size(116, 22)
+        Me.tsmiAll.Size = New System.Drawing.Size(174, 22)
         Me.tsmiAll.Text = "All"
         '
         'tsmiToRefill
         '
         Me.tsmiToRefill.Name = "tsmiToRefill"
-        Me.tsmiToRefill.Size = New System.Drawing.Size(116, 22)
+        Me.tsmiToRefill.Size = New System.Drawing.Size(174, 22)
         Me.tsmiToRefill.Text = "To Refill"
+        '
+        'tsmiNeedManualRefill
+        '
+        Me.tsmiNeedManualRefill.Name = "tsmiNeedManualRefill"
+        Me.tsmiNeedManualRefill.Size = New System.Drawing.Size(174, 22)
+        Me.tsmiNeedManualRefill.Text = "Need Manual Refill"
+        Me.tsmiNeedManualRefill.Visible = False
         '
         'gradpnlSearch
         '
@@ -776,4 +785,5 @@ Partial Class ViewByModele
     Friend WithEvents cmsFiltersForExtView As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents tsmiAll As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsmiToRefill As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsmiNeedManualRefill As System.Windows.Forms.ToolStripMenuItem
 End Class

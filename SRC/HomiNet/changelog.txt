@@ -1,6 +1,12 @@
+Version 8.2.5.10
+--------------------------------------------------------------
++ New View for Extendend View
++ New Definition for group's code
+
+
 Version 8.1.4.911
 --------------------------------------------------------------
-+ Shanging for Extendend View
++ Changing for Extendend View
 
 Version 8.1.4.910
 --------------------------------------------------------------

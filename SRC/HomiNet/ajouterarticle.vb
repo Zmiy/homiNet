@@ -26,13 +26,14 @@ Public Class Ajouterarticle
         RadioButton4.Text = Trans(352)
     End Sub
 
-    Public Function formater(s As Object) As String
+    Private Shared Function Formater(s As Object) As String
         Return Format(CDbl(s), "0.00")
     End Function
 
     Private Sub GlassButton4_Click(sender As Object, e As EventArgs) Handles GlassButton4.Click
         If ListBox1.SelectedIndex = -1 Then Exit Sub
-        table.AddEmis(facture.dg1.CurrentRow.Cells("nummodule").Value, "FACTUREAJOUTER|" + ListBox1.SelectedItem + "|" + tarif.ToString + "|" + nud.Value.ToString)
+        Table.AddEmis(facture.dg1.CurrentRow.Cells("nummodule").Value, "FACTUREAJOUTER|" + ListBox1.SelectedItem + "|" + tarif.ToString + "|" + nud.Value.ToString)
+        nud.Value = 1
         Me.Close()
     End Sub
 
@@ -49,8 +50,8 @@ Public Class Ajouterarticle
             Case 4
                 p = Val(baseproduit.dproduit.Rows(ListBox1.SelectedIndex).Cells("Column9").Value)
         End Select
-        Label6.Text = formater(p / 100)
-        Label7.Text = formater(p / 100 * nud.Value)
+        Label6.Text = Formater(p / 100)
+        Label7.Text = Formater(p / 100 * nud.Value)
     End Sub
 
     Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged, RadioButton3.CheckedChanged, RadioButton2.CheckedChanged, RadioButton1.CheckedChanged

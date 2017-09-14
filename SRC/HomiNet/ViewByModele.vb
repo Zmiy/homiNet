@@ -300,21 +300,21 @@ Public Class ViewByModele
 
 
 
-    Private Shared Function RealShelfStatus(status As Long, casier As Integer) As Boolean
-        Select Case casier
-            Case Is <= 12 'top shelf
-                Return status.LAnd(&H10000000000L << (casier - 1))
-            Case Is <= 24  'bottom shelf
-                Return status.LAnd(&H10000000L << (casier - 13))
-            Case Is <= 30  'balcony1
-                Return status.LAnd(&H100000L << (casier - 25))
-            Case Is <= 36  'balcony2
-                Return status.LAnd(&H1000L << (casier - 31))
-            Case Is > 36  'tray
-                Return status.LAnd(&H10L << (casier - 37))
-        End Select
-        Return False
-    End Function
+    'Private Shared Function RealShelfStatus(status As Long, casier As Integer) As Boolean
+    '    Select Case casier
+    '        Case Is <= 12 'top shelf
+    '            Return status.LAnd(&H10000000000L << (casier - 1))
+    '        Case Is <= 24  'bottom shelf
+    '            Return status.LAnd(&H10000000L << (casier - 13))
+    '        Case Is <= 30  'balcony1
+    '            Return status.LAnd(&H100000L << (casier - 25))
+    '        Case Is <= 36  'balcony2
+    '            Return status.LAnd(&H1000L << (casier - 31))
+    '        Case Is > 36  'tray
+    '            Return status.LAnd(&H10L << (casier - 37))
+    '    End Select
+    '    Return False
+    'End Function
     'Private Sub Model2Hex(ByVal indx As Integer)
     '    Dim swrModel As Long = &HFFFFFF3F3FFF1
     '    For casier As Integer = 1 To MaxCountOfProducts
@@ -381,7 +381,7 @@ Public Class ViewByModele
         TblpanelRightSide.Visible = ((hexSvm And &HF) <> 0)
         _tblpanelExtTray330.Visible = IIf(CountOfProductsHomi330 < 16, ((hexSvm And &HF000) <> 0), ((hexSvm And &HF0000) <> 0))
         _tblpanelExtTray33048.Visible = Not CountOfProductsHomi330 < 16 AndAlso ((hexSvm And &HF000) <> 0)
-        
+
         If (hexSvm And &HFF) = 0 Then
             _tblpanelExtTray330.Left = TblpanelLeftSide.Left
         Else
@@ -403,6 +403,9 @@ Public Class ViewByModele
         If iIndx = -1 Then Exit Sub
 
         Dim coffre As Byte = Convert.ToByte(_selectedRow.Cells("coffre").Value)
+        If coffre < 3 AndAlso Convert.ToBoolean(ModelTools.Is226Model(_selectedRow.Cells("modelefrigo").Value)) Then
+            coffre = 3
+        End If
         Dim realTrayOrShelfsStatus As Long
         Dim swr As String = String.Empty
         Dim hexSvm As Long = ModelTools.ModelByIndex(iIndx, coffre)
@@ -488,7 +491,7 @@ Public Class ViewByModele
             If String.IsNullOrEmpty(sProdactName) And iMaxQ = 0 Then
                 lbl(casier - 1).BackColor = Color.White
                 lbl(casier - 1).Image = cancel_48
-                If RealShelfStatus(realTrayOrShelfsStatus, casier) Then
+                If ModelTools.RealShelfStatus(realTrayOrShelfsStatus, casier) Then
                     lbl(casier - 1).BackColor = Color.Aqua
                 End If
                 Continue For
@@ -525,7 +528,7 @@ Public Class ViewByModele
                                 lbl(casier - 1).BackColor = Color.Gray
                             End Try
                         Case 3
-                            If (RealShelfStatus(realTrayOrShelfsStatus, casier)) Then
+                            If (ModelTools.RealShelfStatus(realTrayOrShelfsStatus, casier)) Then
                                 lbl(casier - 1).BackColor = Color.DarkSlateGray
                             Else
                                 lbl(casier - 1).BackColor = Color.Gray
@@ -566,7 +569,7 @@ Public Class ViewByModele
                 If String.IsNullOrEmpty(sProdactName) And iMaxQ = 0 Then
                     _ucList(casier - 1).AddColor(Color.White)
                     _ucList(casier - 1).NotUseImage = cancel_48
-                    If RealShelfStatus(realTrayOrShelfsStatus, casier) Then
+                    If ModelTools.RealShelfStatus(realTrayOrShelfsStatus, casier) Then
                         _ucList(casier - 1).AddColor(Color.Aqua)
                     End If
                     Continue For
@@ -606,7 +609,7 @@ Public Class ViewByModele
                                     _ucList(casier - 1).AddColor(Color.Gray)
                                 End Try
                             Case 3
-                                If (RealShelfStatus(realTrayOrShelfsStatus, casier)) Then
+                                If (ModelTools.RealShelfStatus(realTrayOrShelfsStatus, casier)) Then
                                     lbl(casier - 1).BackColor = Color.DarkSlateGray
                                 Else
                                     lbl(casier - 1).BackColor = Color.Gray
@@ -948,6 +951,8 @@ Public Class ViewByModele
         End If
     End Sub
 
+    
+
 
     Private Sub ViewByModele_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initialize()
@@ -978,7 +983,7 @@ Public Class ViewByModele
         _filterStr = Dv1.RowFilter
 
         dgvExtView.DataSource = Dv1
-        Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and test<>'{0}'", Trans(37)) '"numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
+        Dv1.RowFilter = String.Format("(test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43)) '"numchambre Not Like 'R*' and " + "test<>'" + Trans(37) + "'"
         'For Each foundFile As String In From foundFiles In My.Computer.FileSystem.GetFiles(Application.StartupPath + "\Z\") Where foundFiles.Contains(el2) = True
         For Each clm As DataGridViewColumn In From columns In dgvExtView.Columns Where Not columns.Name.ToString().InSet(New String() {"numchambre", "test"})
             clm.Visible = False
@@ -1051,6 +1056,7 @@ Public Class ViewByModele
                 'flag = True
             End If
             TblpanelExtTray.Location = New Point(IIf(TblpanelBalcony2Nd.Visible, TblpanelBalcony2Nd.Right + 10, TblpanelBalcony.Right + 10), TblpanelTopShelf.Top)
+            TblpanelExtTray48.Location = New Point(TblpanelExtTray.Left, TblpanelExtTray.Bottom)
             TblpanelBottomShelf.Location = New Point(TblpanelTopShelf.Left, IIf(TblpanelMiddleShelf.Visible, TblpanelMiddleShelf.Bottom + 30, TblpanelMiddleShelf.Top))
             TblpanelMiddleShelf2Nd.Location = New Point(TblpanelBottomShelf.Left, TblpanelBottomShelf.Bottom + 30)
         End If
@@ -1210,7 +1216,7 @@ Public Class ViewByModele
         _isFiltered = False
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
-        Dv1.RowFilter = String.Format("numchambre Not Like 'R*' and test<>'{0}'", Trans(37))
+        Dv1.RowFilter = String.Format("(test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43))
         dgvExtView.DataSource = Dv1
         dgvExtView.FirstDisplayedCell = Nothing
         dgvExtView.ClearSelection()
@@ -1238,4 +1244,34 @@ Public Class ViewByModele
         lblCount.Text = Trans(48) + " " + dgvExtView.Rows.Count().ToString() + " " + IIf(_isFiltered, Trans(343), "")
     End Sub
 
+    Private Sub tsmiNeedManualRefill_Click(sender As System.Object, e As System.EventArgs) Handles tsmiNeedManualRefill.Click
+        _isFiltered = True
+        dgvExtView.Visible = False
+        'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
+        'Dv1.RowFilter = String.Format("aremplir<>'0' and (test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43))
+        dgvExtView.FirstDisplayedCell = Nothing
+        dgvExtView.ClearSelection()
+        'AddHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
+        'Dim fltList As List(Of DataRow) = New List(Of DataRow)
+        Dim dt As DataTable = New DataTable()
+        dt = Maintable.Clone()
+        'fltList.AddRange(From row226 As DataRow In Dv1.Table.Rows Where CInt(row226("coffre")) = 3 And ModelTools.IsNeedManual(row226))
+
+        For Each dr As DataRow In (From row226 As DataRow In Dv1.Table.Rows Where CInt(row226("coffre")) = 3 And ModelTools.IsNeedManual(row226))
+            dt.ImportRow(dr)
+        Next
+
+        Dim dv As DataView = New DataView(dt)
+        dv.RowFilter = String.Format("aremplir<>'0' and (test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43))
+        dgvExtView.DataSource = dv
+        dv.Sort = "numchambre"
+        dgvExtView.Visible = True
+    End Sub
+
+    
+    Private Sub dgvExtView_VisibleChanged(sender As System.Object, e As System.EventArgs) Handles dgvExtView.VisibleChanged
+        If dgvExtView.Visible Then
+            tsmiNeedManualRefill.Visible = (From dr As DataRow In Dv1.Table.Rows Where CInt(dr("coffre")) = 3 Select dr).Any()
+        End If
+    End Sub
 End Class
