@@ -23,8 +23,8 @@ Public Class ViewByModele
     Private _isFirstClick As Boolean = True
     Private _isDoubleClick As Boolean = False
     Private _milliseconds As Integer = 0
-    Private ReadOnly _doubleClickRectangle = New Rectangle(0, 0, 24, 30)
-    Private _filterStr
+    Private ReadOnly _doubleClickRectangle As Rectangle = New Rectangle(0, 0, 24, 30)
+    Private _filterStr As String = String.Empty
     'New Panel 226 &330/336
     '
     Private WithEvents PnlHomi226New As ExtPanel
@@ -92,7 +92,9 @@ Public Class ViewByModele
         AddStock = 15
     End Enum
     Private Sub GlassButton9_Click(sender As Object, e As EventArgs) Handles GlassButton9.Click
+        Me.Tag = ""
         Mainform.tabMain.TabPages(Table).Select()
+        Table.dgvMain_RowEnterPerfomeAction()
     End Sub
     Private Sub InitLanguage()
         btnUnlock.Text = Trans(25)
@@ -379,7 +381,7 @@ Public Class ViewByModele
 
         TblpanelLeftSide.Visible = ((hexSvm And &HF0) <> 0)
         TblpanelRightSide.Visible = ((hexSvm And &HF) <> 0)
-        _tblpanelExtTray330.Visible = IIf(CountOfProductsHomi330 < 16, ((hexSvm And &HF000) <> 0), ((hexSvm And &HF0000) <> 0))
+        _tblpanelExtTray330.Visible = CBool(If(CountOfProductsHomi330 < 16, ((hexSvm And &HF000) <> 0), ((hexSvm And &HF0000) <> 0)))
         _tblpanelExtTray33048.Visible = Not CountOfProductsHomi330 < 16 AndAlso ((hexSvm And &HF000) <> 0)
 
         If (hexSvm And &HFF) = 0 Then
@@ -395,7 +397,7 @@ Public Class ViewByModele
         If pnl.Visible Then
             pnl.Visible = False
         End If
-        Dim svmModele As String = _selectedRow.Cells("modelefrigo").Value
+        Dim svmModele As String = _selectedRow.Cells("modelefrigo").Value.ToString()
 
         Dim dtModeleForView As DataTable = basemodele.modele.Copy()
         Dim iIndx As Integer = basemodele.lstbListOfModels.FindStringExact([svmModele])
@@ -630,16 +632,16 @@ Public Class ViewByModele
         pnl.Visible = True
         pnl.BringToFront()
     End Sub
-    Private Function findRowByRoom(room As String) As Integer
+    Private Function FindRowByRoom(room As String) As Integer
         Dim currManager As CurrencyManager = CType(dgvExtView.BindingContext(dgvExtView.DataSource), CurrencyManager)
         Dim dv As DataView = CType(currManager.List, DataView)
         If room.Length = 0 OrElse currManager.Count = 0 Then
-            Exit Function
+            Return -1
         End If
 
         dv.Sort = "numchambre"
 
-        Dim pos As Integer
+        'Dim pos As Integer
         Return dv.Find(room)
 
     End Function
@@ -653,7 +655,7 @@ Public Class ViewByModele
         dgvExtView.ClearSelection()
         dgvExtView.FirstDisplayedCell = row.Cells("numchambre")
         dgvExtView_RowEnter(Me, arg)
-        
+
         SetParams(row)
     End Sub
 
@@ -662,7 +664,7 @@ Public Class ViewByModele
         If _selectedRow Is Nothing Then
             Exit Sub
         End If
-        Dim statusString = String.Format("{0} - {1} ({2}:{3}), {4}: {5}", _
+        Dim statusString As String = String.Format("{0} - {1} ({2}:{3}), {4}: {5}", _
                                          Trans(28), _selectedRow.Cells("numchambre").Value.ToString(), _
                                          Trans(32), _selectedRow.Cells("nummodule").Value.ToString(), _
                                          Trans(287), _selectedRow.Cells("modelefrigo").Value.ToString())
@@ -674,23 +676,23 @@ Public Class ViewByModele
         'lblRoomStatusTest.Text = _selectedRow.Cells("check").Value.ToString()
         lblTempText.Text = _selectedRow.Cells("etattemp").Value.ToString()
         'lblServiceSwitchText.Text = IIf(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, Trans(51), Trans(50))
-        pbSW.Image = IIf(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, SwithOn, SwithOff) 'on36, off36)
+        pbSW.Image = If(CInt(_selectedRow.Cells("Service").Value.ToString()) = 1, SwithOn, SwithOff) 'on36, off36)
         lblItemsNbText.Text = _selectedRow.Cells("nbconso").Value.ToString()
         lblBalanceText.Text = _selectedRow.Cells("factureclient").Value.ToString()
-        Dim coffre = CInt(_selectedRow.Cells("coffre").Value)
+        Dim coffre As Integer = CInt(_selectedRow.Cells("coffre").Value)
         If coffre < 3 AndAlso Convert.ToBoolean(ModelTools.Is226Model(_selectedRow.Cells("modelefrigo").Value)) Then
             coffre = 3
         End If
         'pbLockUnlock.Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LOCK, UNLOCK)
         'pbLitleLockUnlock.Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LOCK24, unlock24)
-        Dim lockImg As Image = IIf(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LockVert, UnlockVert)
+        Dim lockImg As Image = If(_selectedRow.Cells("serrure").Value.ToString().Equals(Trans(35)), LockVert, UnlockVert)
         Dim minibarImg As Image
         Select Case coffre
             Case 0, 1, 2
-                minibarImg = IIf(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _330open, _330closed)
+                minibarImg = If(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _330open, _330closed)
                 SetParamsByType(_selectedRow, _labels, PnlHomi330New)
             Case 3
-                minibarImg = IIf(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _226open, _226closed)
+                minibarImg = If(_selectedRow.Cells("etatporte").Value.ToString().Equals(Trans(51)), _226open, _226closed)
                 SetParamsByType(_selectedRow, _labels226New, PnlHomi226New)
         End Select
         'dgvExtView.CurrentCell = dgvExtView.Item(1, _selectedRow.Index)
@@ -757,7 +759,7 @@ Public Class ViewByModele
         Return result
     End Function
 
-    
+
 
     Private Sub buttons_Click(sender As Object, e As EventArgs)
         Dim btn = TryCast(sender, GlassButton)
@@ -777,7 +779,7 @@ Public Class ViewByModele
                     Exit Sub
                 Case 4
                     '_ucList.ForEach(Sub(uc) sendStr += uc.ForManualRefillValue + " ")
-                    
+
             End Select
             _ucList.ForEach(Sub(uc) sendStr += uc.ForManualRefillValue + " ")
             Remplissagemanuel.LogString(sendStr)
@@ -801,7 +803,7 @@ Public Class ViewByModele
     Private Sub SetLabelHomi330NewWithuserControl()
         _ucList.Clear()
 #If MiniBarVer = "226" Then
-        _ucList = MakeUCFor330(16)
+        _ucList = MakeUcFor330(16)
 #ElseIf MiniBarVer = "330" OrElse MinibarVer = "330tray8" Then
         _ucList = MakeUCFor330(IIf(CountOfProductsHomi330 + 4 < MaxCountOfProducts, CountOfProductsHomi330 + 4, CountOfProductsHomi330))
 #End If
@@ -865,30 +867,30 @@ Public Class ViewByModele
 #End If
         '_labels = CreateLabel4CellOfTblPanel("lbl330C", IIf(CountOfProductsHomi330 + 4 < MaxCountOfProducts, CountOfProductsHomi330 + 4, CountOfProductsHomi330))
         Return
-        Dim casier As Integer
-        casier = 0
-        For i As Integer = 1 To 4
-            TblpanelLeftSide.Controls.Add(_labels(casier), 0, i)
-            casier += 1
-        Next
-        For i As Integer = 1 To 4
-            TblpanelRightSide.Controls.Add(_labels(casier), 0, i)
-            casier += 1
-        Next
+        'Dim casier As Integer
+        'casier = 0
+        'For i As Integer = 1 To 4
+        '    TblpanelLeftSide.Controls.Add(_labels(casier), 0, i)
+        '    casier += 1
+        'Next
+        'For i As Integer = 1 To 4
+        '    TblpanelRightSide.Controls.Add(_labels(casier), 0, i)
+        '    casier += 1
+        'Next
 
-        If casier < _labels.Count Then 'CountOfProductsHomi330 Then
-            For i As Integer = 1 To 4
-                _tblpanelExtTray330.Controls.Add(_labels(casier), i - 1, 1)
-                casier += 1
-            Next
-        End If
+        'If casier < _labels.Count Then 'CountOfProductsHomi330 Then
+        '    For i As Integer = 1 To 4
+        '        _tblpanelExtTray330.Controls.Add(_labels(casier), i - 1, 1)
+        '        casier += 1
+        '    Next
+        'End If
 
-        If casier < _labels.Count Then 'CountOfProductsHomi330 Then
-            For i As Integer = 1 To 4
-                _tblpanelExtTray33048.Controls.Add(_labels(casier), i - 1, 0)
-                casier += 1
-            Next
-        End If
+        'If casier < _labels.Count Then 'CountOfProductsHomi330 Then
+        '    For i As Integer = 1 To 4
+        '        _tblpanelExtTray33048.Controls.Add(_labels(casier), i - 1, 0)
+        '        casier += 1
+        '    Next
+        'End If
     End Sub
 
     Private Sub SetLabelHomi226New()
@@ -951,11 +953,11 @@ Public Class ViewByModele
         End If
     End Sub
 
-    
+
 
 
     Private Sub ViewByModele_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        initialize()
+        Initialize()
         InitLanguage()
         CreatePanels()
 
@@ -1105,8 +1107,8 @@ Public Class ViewByModele
     Private Shared Function CombineBitmap(minibar As Image, locker As Image) As Bitmap
         Dim finalImage As Bitmap
         Try
-            Dim padX = Convert.ToInt32(locker.Width / 2)
-            Dim padY = Convert.ToInt32(locker.Height / 2)
+            Dim padX As Integer = Convert.ToInt32(locker.Width / 2)
+            Dim padY As Integer = Convert.ToInt32(locker.Height / 2)
             Dim width As Integer = minibar.Width + padX
             Dim height As Integer = minibar.Height + padY
             finalImage = New Bitmap(width, height)
@@ -1115,12 +1117,15 @@ Public Class ViewByModele
                 g.DrawImage(minibar, New Rectangle(padX, padY, minibar.Width, minibar.Height))
                 g.DrawImage(locker, Point.Empty)
             End Using
-            Return finalImage
+            'Return finalImage
         Catch ex As Exception
+            finalImage = New Bitmap(1, 1)
             If finalImage IsNot Nothing Then
                 finalImage.Dispose()
             End If
+
         End Try
+        Return finalImage
     End Function
 
     'Private Sub lbRooms_Format(sender As System.Object, e As System.Windows.Forms.ListControlConvertEventArgs)
@@ -1213,6 +1218,8 @@ Public Class ViewByModele
 #End Region
 
     Private Sub tsmiAll_Click(sender As System.Object, e As System.EventArgs) Handles tsmiAll.Click
+        Me.Tag = ""
+        RemoveHandler Dv1.ListChanged, AddressOf Dv1_ListChanged
         _isFiltered = False
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
@@ -1226,6 +1233,8 @@ Public Class ViewByModele
     End Sub
 
     Private Sub tsmiToRefill_Click(sender As System.Object, e As System.EventArgs) Handles tsmiToRefill.Click
+        Me.Tag = ""
+        RemoveHandler Dv1.ListChanged, AddressOf Dv1_ListChanged
         _isFiltered = True
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
@@ -1237,15 +1246,25 @@ Public Class ViewByModele
         If dgvExtView.Rows.Count > 0 Then
             dgvExtView.Rows(0).Selected = True
         End If
-        
+
     End Sub
     Dim _isFiltered As Boolean = False
     Private Sub dgvExtView_DataSourceChanged(sender As System.Object, e As System.EventArgs) Handles dgvExtView.DataSourceChanged
         lblCount.Text = Trans(48) + " " + dgvExtView.Rows.Count().ToString() + " " + IIf(_isFiltered, Trans(343), "")
     End Sub
-
+    Private Sub Dv1_ListChanged(sender As Object, e As System.ComponentModel.ListChangedEventArgs)
+        If Me.Visible And Me.Tag.Contains("manual") Then
+            RefreshNeedManual226()
+        End If
+    End Sub
     Private Sub tsmiNeedManualRefill_Click(sender As System.Object, e As System.EventArgs) Handles tsmiNeedManualRefill.Click
+        Me.Tag = "manual"
         _isFiltered = True
+        AddHandler Dv1.ListChanged, AddressOf Dv1_ListChanged
+        RefreshNeedManual226()
+    End Sub
+
+    Private Sub RefreshNeedManual226()
         dgvExtView.Visible = False
         'RemoveHandler dgvExtView.RowEnter, AddressOf dgvExtView_RowEnter
         'Dv1.RowFilter = String.Format("aremplir<>'0' and (test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43))
@@ -1256,11 +1275,9 @@ Public Class ViewByModele
         Dim dt As DataTable = New DataTable()
         dt = Maintable.Clone()
         'fltList.AddRange(From row226 As DataRow In Dv1.Table.Rows Where CInt(row226("coffre")) = 3 And ModelTools.IsNeedManual(row226))
-
         For Each dr As DataRow In (From row226 As DataRow In Dv1.Table.Rows Where CInt(row226("coffre")) = 3 And ModelTools.IsNeedManual(row226))
             dt.ImportRow(dr)
         Next
-
         Dim dv As DataView = New DataView(dt)
         dv.RowFilter = String.Format("aremplir<>'0' and (test<>'{0}' and test<>'{1}') and numchambre Not Like 'R*'", Trans(37), Trans(43))
         dgvExtView.DataSource = dv
@@ -1268,10 +1285,13 @@ Public Class ViewByModele
         dgvExtView.Visible = True
     End Sub
 
-    
+
     Private Sub dgvExtView_VisibleChanged(sender As System.Object, e As System.EventArgs) Handles dgvExtView.VisibleChanged
         If dgvExtView.Visible Then
             tsmiNeedManualRefill.Visible = (From dr As DataRow In Dv1.Table.Rows Where CInt(dr("coffre")) = 3 Select dr).Any()
         End If
     End Sub
+
+    
+
 End Class

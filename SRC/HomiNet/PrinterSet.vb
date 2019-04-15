@@ -22,7 +22,7 @@ Public Class PrinterSet
             End If
 
         Catch ex As Exception
-
+            GetPrintername = GetDefaultPrinterName()
         End Try
     End Function
     Public Shared Sub SetPrinter(ByRef cmb As ComboBox, propertySection As String, propertyName As String)

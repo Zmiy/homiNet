@@ -6,10 +6,10 @@ Public Class Imprimer
     Public Imprime As String = ""
     Public Imprimante As String = ""
     Private ReadOnly _psd As New PageSettings
-    Private _dx As Single = 0
-    Private _dy As Single = 0
-    Private _l As Single = 0
-    Private _h As Single = 0
+    Private _dx As Integer = 0 'Single = 0
+    Private _dy As Integer = 0 'Single = 0
+    Private _l As Integer = 0 'Single = 0
+    Private _h As Integer = 0 'Single = 0
     Public Paysage As Boolean = False
     Private _index As Integer = 0
     Public UserTop As Integer = 0 'top
@@ -20,7 +20,7 @@ Public Class Imprimer
 
     Public Sub New(ByVal ownr As Form)
         InitializeComponent()
-        Me.Owner = ownr
+        Owner = ownr
     End Sub
     'DEZ 20.05.10
     Private _dgvTableRemp As New DataGridView()
@@ -76,13 +76,13 @@ Public Class Imprimer
     '    return clonedRow;
     '}
 
-    Private Function CloneWithValues(row As DataGridViewRow) As DataGridViewRow
-        Dim clonedRow As DataGridViewRow = row.Clone()
-        For i As Integer = 0 To row.Cells.Count - 1
-            clonedRow.Cells(i).Value = row.Cells(i).Value
-        Next
-        Return clonedRow
-    End Function
+    'Private Function CloneWithValues(row As DataGridViewRow) As DataGridViewRow
+    '    Dim clonedRow As DataGridViewRow = row.Clone()
+    '    For i As Integer = 0 To row.Cells.Count - 1
+    '        clonedRow.Cells(i).Value = row.Cells(i).Value
+    '    Next
+    '    Return clonedRow
+    'End Function
 
     Public Property DvForPrint() As DataTable
         Set(value As DataTable)
@@ -111,9 +111,9 @@ Public Class Imprimer
             'Me.Width = LireINI("imprimer", "width")
             textBox1.Text = LireINI("imprimer", "zoom")
             If Not String.IsNullOrEmpty(textBox1.Text) Then
-                trackBar1.Value = Val(textBox1.Text)
+                trackBar1.Value = CInt(Val(textBox1.Text))
             Else
-                trackBar1.Value = 80.0
+                trackBar1.Value = 80 '.0
             End If
             trackBar1_Scroll(trackBar1, Nothing)
         Catch ex As Exception
@@ -783,11 +783,11 @@ Public Class Imprimer
         Dim columnsCountToPrint As Integer = DgvTableRemp.Columns.Count
 
         Dim sPrintString As String
-        Dim sVacant As String
+        'Dim sVacant As String
 
         Dim meassure As SizeF
         Dim isNeedReturnCarret As Boolean
-        Dim plugBackTextForConnection As String
+        Dim plugBackTextForConnection As String = String.Empty
         Dim tyForEmptyString As Single
         _dx = e.MarginBounds.Left
         Do Until _index = rowsCountToPrint
@@ -1012,7 +1012,7 @@ Public Class Imprimer
         Dim columnsCountToPrint As Integer = DgvTableRemp.Columns.Count
 
         Dim sPrintString As String '= String.Empty   '_dgvTableRemp.Item(0, 0).Value.ToString().PadLeft(3, "0")
-        Dim sVacant As String
+        'Dim sVacant As String
 
         ' Dim vOffset As Integer = (Farial12.Height - Farial8.Height) / 2
         Dim meassure As SizeF '= New SizeF(0, 0) 'Single = Single.MinValue
@@ -1260,7 +1260,7 @@ Public Class Imprimer
         Dim columnsCountToPrint As Integer = DgvTableRemp.Columns.Count
 
         Dim sPrintString As String = String.Empty   '_dgvTableRemp.Item(0, 0).Value.ToString().PadLeft(3, "0")
-        Dim sVacant As String
+        'Dim sVacant As String
 
         Dim vOffset As Integer = (Farial12.Height - Farial8.Height) / 2
         Dim meassure As SizeF '= New SizeF(0, 0) 'Single = Single.MinValue
@@ -1582,7 +1582,7 @@ Public Class Imprimer
             'If tx = Convert.ToSingle(meassure.Width + dx) Then
             If tx.Equals(_xFirst) Then
                 ty += 2 'Farial12.Height - vOffset ' + 2
-                tx = _xFirst 'dx 'Convert.ToSingle(meassure.Width + meassureL.Width)
+                'tx = _xFirst 'dx 'Convert.ToSingle(meassure.Width + meassureL.Width)
                 isNeedReturnCarret = False
                 If ty > _dy + _h Then Exit Do
             End If
@@ -1596,7 +1596,7 @@ Public Class Imprimer
             listpage.Items.Add(Page.ToString)
             e.HasMorePages = True
         Else
-            Dim c As Integer = Farial12.Height * 3 + ((columnsCountToPrint / (dp - 1)) * Farial12.Height)
+            Dim c As Integer = Farial12.Height * 3 + (CInt((columnsCountToPrint / (dp - 1))) * Farial12.Height)
             If ty + c > _dy + _h Then
                 Page += 1
                 listpage.Items.Add(Page.ToString)
@@ -1608,14 +1608,14 @@ Public Class Imprimer
                 ty += Farial10.Height + 2 '16
                 e.Graphics.DrawLine(Pens.Black, _dx, ty, _dx + _l, ty)
                 tx = xShift 'L / dp
-                vOffset = (Farial10.Height - Farial8.Height) / 2
+                vOffset = CInt((Farial10.Height - Farial8.Height) / 2)
                 e.Graphics.DrawString(Trans(387), Farial10, Brushes.Black, _dx, ty)
                 For i As Integer = 5 To columnsCountToPrint - 4 '1  without 3 last columns Connection Error, Open Door, Service Switch Error
                     sPrintString = String.Empty
                     Dim t As Integer = 0
                     'For j As Integer = 0 To remplissage.DGRemp.Rows.Count - 1 DEZ 19/05/10
                     For j As Integer = 0 To rowsCountToPrint - 1
-                        t += DgvTableRemp.Item(i, j).Value
+                        t += CInt(DgvTableRemp.Item(i, j).Value.ToString())
                     Next
                     If Not DgvTableRemp.Columns(i).HeaderText.ToString().Contains("MP_") Then
                         sPrintString = t.ToString + " " + DgvTableRemp.Columns(i).HeaderText
@@ -1718,10 +1718,10 @@ Public Class Imprimer
         Dim dp As Integer = 7
         If Paysage = True Then dp = 11
         Dim ty As Integer = _dy
-        Dim tx As Integer = _dx
+        Dim tx As Integer '= _dx
         e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text, Farial8, Brushes.Black, _dx, ty)
-        e.Graphics.DrawString(Trans(396), Farial8, Brushes.Black, _l / 2, ty)
-        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, _l * 0.9, ty)
+        e.Graphics.DrawString(Trans(396), Farial8, Brushes.Black, CInt(_l / 2), ty)
+        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, CInt(_l * 0.9), ty)
         e.Graphics.DrawRectangle(Pens.Black, _dx, ty, _l, 16)
         ty += 16
 
@@ -1763,17 +1763,17 @@ Public Class Imprimer
                 e.Graphics.DrawString(Trans(386) + ": " + Remplissage.DGRemp.Rows.Count.ToString, Farial10, Brushes.Black, _dx, ty)
                 ty += 16
                 e.Graphics.DrawLine(Pens.Black, _dx, ty, _dx + _l, ty)
-                tx = _l / dp
+                tx = CInt(_l / dp)
                 e.Graphics.DrawString(Trans(384), Farial10, Brushes.Black, _dx, ty)
                 For i As Integer = 1 To Remplissage.DGRemp.Columns.Count - 1
                     Dim t As Integer = 0
                     For j As Integer = 0 To Remplissage.DGRemp.Rows.Count - 1
-                        t += Remplissage.DGRemp.Item(i, j).Value
+                        t += CInt(Remplissage.DGRemp.Item(i, j).Value)
                     Next
                     e.Graphics.DrawString(t.ToString + " " + Remplissage.DGRemp.Columns(i).HeaderText, Farial8, Brushes.Black, tx, ty)
-                    tx = tx + (_l / dp)
+                    tx = tx + CInt(_l / dp)
                     If tx >= _l Then
-                        tx = _l / dp
+                        tx = CInt(_l / dp)
                         ty += 16
                     End If
                 Next
@@ -1785,10 +1785,10 @@ Public Class Imprimer
     End Sub
     Private Sub Printpagenote(e As PrintPageEventArgs)
         'haut de page
-        Dim dp As Integer = 7
-        If Paysage = True Then dp = 11
-        Dim ty As Integer = _dy + (UserTop / 0.254)
-        Dim tx As Integer = _dx + (UserLeft / 0.254)
+        'Dim dp As Integer = 7
+        'If Paysage = True Then dp = 11
+        Dim ty As Integer = _dy + CInt(UserTop / 0.254)
+        Dim tx As Integer = _dx + CInt(UserLeft / 0.254)
         e.Graphics.DrawString(facture.Label1.Text, Lf2, Brushes.Black, tx, ty)
         ty += 22
         e.Graphics.DrawString(Now + " " + Trans(388), Lf0, Brushes.Black, tx, ty)
@@ -1804,7 +1804,7 @@ Public Class Imprimer
 
         Do Until _index = facture.rtf.Items.Count
             'print chambre
-            e.Graphics.DrawString(facture.rtf.Items(_index), Lf0, Brushes.Black, tx, ty)
+            e.Graphics.DrawString(facture.rtf.Items(_index).ToString(), Lf0, Brushes.Black, tx, ty)
             _index += 1
             ty += 16
             If ty > _dy + _h Then Exit Do
@@ -1833,10 +1833,10 @@ Public Class Imprimer
     End Sub
     Private Sub Printpagefacture(e As PrintPageEventArgs)
         'haut de page
-        Dim dp As Integer = 7
-        If Paysage = True Then dp = 11
-        Dim ty As Integer = _dy + (UserTop / 0.254)
-        Dim tx As Integer = _dx + (UserLeft / 0.254)
+        'Dim dp As Integer = 7
+        'If Paysage = True Then dp = 11
+        Dim ty As Integer = _dy + CInt(UserTop / 0.254)
+        Dim tx As Integer = _dx + CInt(UserLeft / 0.254)
         e.Graphics.DrawString(Rfacture.Label9.Text, Lf2, Brushes.Black, tx, ty)
         ty += 22
         e.Graphics.DrawString(Rfacture.Label3.Text + " " + Trans(348) + " " + Rfacture.Label10.Text, Lf0, Brushes.Black, tx, ty)
@@ -1850,7 +1850,7 @@ Public Class Imprimer
 
         Do Until _index = Rfacture.lbSelectedFactory.Items.Count
             'print chambre
-            e.Graphics.DrawString(Rfacture.lbSelectedFactory.Items(_index), Lf0, Brushes.Black, tx, ty)
+            e.Graphics.DrawString(Rfacture.lbSelectedFactory.Items(_index).ToString(), Lf0, Brushes.Black, tx, ty)
             _index += 1
             ty += 16
             If ty > _dy + _h Then Exit Do
@@ -1879,10 +1879,10 @@ Public Class Imprimer
     End Sub
     Private Sub Printpagexy(e As PrintPageEventArgs)
         'haut de page
-        Dim dp As Integer = 7
-        If Paysage = True Then dp = 11
-        Dim ty As Integer = _dy + (UserTop / 0.254)
-        Dim tx As Integer = _dx + (UserLeft / 0.254)
+        'Dim dp As Integer = 7
+        'If Paysage = True Then dp = 11
+        Dim ty As Integer = _dy + CInt((UserTop / 0.254))
+        Dim tx As Integer = _dx + CInt((UserLeft / 0.254))
         e.Graphics.DrawString(rXZ.Label1.Text, Lf2, Brushes.Black, tx, ty)
         ty += 22
         e.Graphics.DrawString(rXZ.Label3.Text + " ", Lf0, Brushes.Black, tx, ty)
@@ -1892,7 +1892,7 @@ Public Class Imprimer
 
         Do Until _index = rXZ.lbPeriodResults.Items.Count
             'print chambre
-            e.Graphics.DrawString(rXZ.lbPeriodResults.Items(_index), Lf0, Brushes.Black, tx, ty)
+            e.Graphics.DrawString(rXZ.lbPeriodResults.Items(_index).ToString(), Lf0, Brushes.Black, tx, ty)
             _index += 1
             ty += 16
             If ty > _dy + _h Then Exit Do
@@ -1910,10 +1910,10 @@ Public Class Imprimer
     Private Sub Printpagesystem(e As PrintPageEventArgs)
         'haut de page
         Dim ty As Integer = _dy
-        Dim tx As Integer = _dx
+        Dim tx As Integer ' = _dx
         e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text, Farial8, Brushes.Black, _dx, ty)
-        e.Graphics.DrawString(Trans(431), Farial8, Brushes.Black, _l / 2, ty)
-        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, _l * 0.9, ty)
+        e.Graphics.DrawString(Trans(431), Farial8, Brushes.Black, CInt(_l / 2), ty)
+        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, CInt(_l * 0.9), ty)
         e.Graphics.DrawRectangle(Pens.Black, _dx, ty, _l, 16)
         ty += 24
 
@@ -1940,10 +1940,10 @@ Public Class Imprimer
     Private Sub Printpageinterface(e As PrintPageEventArgs)
         'haut de page
         Dim ty As Integer = _dy
-        Dim tx As Integer = _dx
+        Dim tx As Integer '= _dx
         e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text, Farial8, Brushes.Black, _dx, ty)
-        e.Graphics.DrawString(Trans(292), Farial8, Brushes.Black, _l / 2, ty)
-        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, _l * 0.9, ty)
+        e.Graphics.DrawString(Trans(292), Farial8, Brushes.Black, CInt(_l / 2), ty)
+        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, CInt(_l * 0.9), ty)
         e.Graphics.DrawRectangle(Pens.Black, _dx, ty, _l, 16)
         ty += 24
 
@@ -1969,12 +1969,12 @@ Public Class Imprimer
     End Sub
     Private Sub Printpageinformation(e As PrintPageEventArgs)
         'haut de page
-        Dim p As Integer = _l / 100
+        Dim p As Integer = CInt(_l / 100)
         Dim ty As Integer = _dy
         Dim tx As Integer = _dx
         e.Graphics.DrawString(Now + " " + Nomhotel + " " + Mainform.Label4.Text, Farial8, Brushes.Black, _dx, ty)
-        e.Graphics.DrawString(Trans(432), Farial8, Brushes.Black, _l / 2, ty)
-        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, _l * 0.9, ty)
+        e.Graphics.DrawString(Trans(432), Farial8, Brushes.Black, CInt(_l / 2), ty)
+        e.Graphics.DrawString(Trans(142) + ": " + Page.ToString, Farial8, Brushes.Black, CInt(_l * 0.9), ty)
         e.Graphics.DrawRectangle(Pens.Black, _dx, ty, _l, 16)
         ty += 24
 
@@ -2056,7 +2056,7 @@ Public Class Imprimer
             Doc.PrinterSettings.PrinterName = printerName
 
         End If
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub listpage_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listpage.SelectedIndexChanged
@@ -2076,12 +2076,12 @@ Public Class Imprimer
         MyBase.Finalize()
     End Sub
 
-    Private Sub Imprimer_FormClosing(sender As System.Object, e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        EcrireINI("imprimer", "top", Me.Top)
-        EcrireINI("imprimer", "left", Me.Left)
-        EcrireINI("imprimer", "height", Me.Height)
-        EcrireINI("imprimer", "width", Me.Width)
+    Private Sub Imprimer_FormClosing(sender As System.Object, e As Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        EcrireINI("imprimer", "top", Top.ToString())
+        EcrireINI("imprimer", "left", Left.ToString())
+        EcrireINI("imprimer", "height", Height.ToString())
+        EcrireINI("imprimer", "width", Width.ToString())
         EcrireINI("imprimer", "zoom", textBox1.Text)
-        EcrireINI("imprimer", "WindowState", CInt(WindowState))
+        EcrireINI("imprimer", "WindowState", CInt(WindowState).ToString())
     End Sub
 End Class

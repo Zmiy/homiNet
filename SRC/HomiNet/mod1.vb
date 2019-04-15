@@ -72,7 +72,7 @@ Module CommonMod1
     Public ReadOnly Maintable As New DataTable("maintable")
     Public ReadOnly DtMomentaryPickUp As New DataTable("MomentaryPickUp")
     Public ReadOnly Dlc As New DataTable("dlc")
-    Public ReadOnly Dv As New DataView
+    Public WithEvents Dv As New DataView
     Public ReadOnly Dvch As New DataView
     Public WithEvents Dv1 As New DataView
     Public Ouvremin As Integer
@@ -96,4 +96,6 @@ Module CommonMod1
 
 #End Region
 
+    
+    
 End Module

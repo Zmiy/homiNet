@@ -1,0 +1,552 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <ItemGroup>
+    <Reference Include="GlassButton, Version=1.2.0.686, Culture=neutral, PublicKeyToken=2e983e6e44d23a4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\GlassButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Ligne, Version=1.0.1476.24552, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Ligne.dll</HintPath>
+    </Reference>
+    <Reference Include="MdiTabControl, Version=1.0.3299.25253, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\MdiTabControl.dll</HintPath>
+    </Reference>
+    <Reference Include="ntb1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\ntb1.dll</HintPath>
+    </Reference>
+    <Reference Include="svm, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\svm.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TcpLibrary, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\TcpLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unit, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dll\Unit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ajouterarticle.Designer.vb">
+      <DependentUpon>ajouterarticle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ajouterarticle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="basedlc.Designer.vb">
+      <DependentUpon>basedlc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="basedlc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basegroupe.Designer.vb">
+      <DependentUpon>basegroupe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="basegroupe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="basehappy.Designer.vb">
+      <DependentUpon>basehappy.vb</DependentUpon>
+    </Compile>
+    <Compile Include="basehappy.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bases.Designer.vb">
+      <DependentUpon>bases.vb</DependentUpon>
+    </Compile>
+    <Compile Include="bases.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommonVariables.vb" />
+    <Compile Include="GridUnit.Designer.vb">
+      <DependentUpon>GridUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GridUnit.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelTools.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyExtTools.vb" />
+    <Compile Include="configuration.Designer.vb">
+      <DependentUpon>configuration.vb</DependentUpon>
+    </Compile>
+    <Compile Include="configuration.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="informationinterface.Designer.vb">
+      <DependentUpon>informationinterface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="informationinterface.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="informationsystem.Designer.vb">
+      <DependentUpon>informationsystem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="informationsystem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuinformation.Designer.vb">
+      <DependentUpon>menuinformation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="menuinformation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="journalrefill.Designer.vb">
+      <DependentUpon>journalrefill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="journalrefill.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="log.Designer.vb">
+      <DependentUpon>log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="log.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuremplissage.Designer.vb">
+      <DependentUpon>menuremplissage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="menuremplissage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="edition.Designer.vb">
+      <DependentUpon>edition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="edition.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="facture.Designer.vb">
+      <DependentUpon>facture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="facture.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imprimer.Designer.vb">
+      <DependentUpon>Imprimer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Imprimer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="information.Designer.vb">
+      <DependentUpon>information.vb</DependentUpon>
+    </Compile>
+    <Compile Include="information.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ini1.vb" />
+    <Compile Include="ini2.vb" />
+    <Compile Include="login.Designer.vb">
+      <DependentUpon>login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAINFORM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAINFORM.Designer.vb">
+      <DependentUpon>MAINFORM.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mod1.vb" />
+    <Compile Include="basemodele.Designer.vb">
+      <DependentUpon>basemodele.vb</DependentUpon>
+    </Compile>
+    <Compile Include="basemodele.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="baseproduit.Designer.vb">
+      <DependentUpon>baseproduit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="baseproduit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="nomutil.Designer.vb">
+      <DependentUpon>nomutil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="nomutil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrinterSet.vb" />
+    <Compile Include="remplissage.Designer.vb">
+      <DependentUpon>remplissage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="remplissage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="remplissagemanuel.Designer.vb">
+      <DependentUpon>remplissagemanuel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="remplissagemanuel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="resultat.Designer.vb">
+      <DependentUpon>resultat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="resultat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rfacture.Designer.vb">
+      <DependentUpon>rfacture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rfacture.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RowComparer.vb" />
+    <Compile Include="rXZ.Designer.vb">
+      <DependentUpon>rXZ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rXZ.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="table.Designer.vb">
+      <DependentUpon>table.vb</DependentUpon>
+    </Compile>
+    <Compile Include="table.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trouble.vb" />
+    <Compile Include="TypeOfBar.vb" />
+    <Compile Include="330UnitForExtView.Designer.vb">
+      <DependentUpon>330UnitForExtView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="330UnitForExtView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TypeParser.vb" />
+    <Compile Include="utilisateur.Designer.vb">
+      <DependentUpon>utilisateur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="utilisateur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewByModele.Designer.vb">
+      <DependentUpon>ViewByModele.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewByModele.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warning.Designer.vb">
+      <DependentUpon>Warning.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Warning.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinManager.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="330UnitForExtView.resx">
+      <DependentUpon>330UnitForExtView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ajouterarticle.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ajouterarticle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basedlc.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>basedlc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basegroupe.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>basegroupe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basehappy.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>basehappy.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bases.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>bases.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="configuration.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>configuration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridUnit.resx">
+      <DependentUpon>GridUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="informationinterface.resx">
+      <DependentUpon>informationinterface.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="informationsystem.resx">
+      <DependentUpon>informationsystem.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuinformation.resx">
+      <DependentUpon>menuinformation.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="journalrefill.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>journalrefill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="log.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>log.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuremplissage.resx">
+      <DependentUpon>menuremplissage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="edition.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>edition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="facture.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>facture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imprimer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Imprimer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="information.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>information.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAINFORM.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MAINFORM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="basemodele.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>basemodele.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="baseproduit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>baseproduit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="nomutil.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>nomutil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="remplissage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>remplissage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="remplissagemanuel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>remplissagemanuel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resultat.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>resultat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rfacture.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rfacture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rXZ.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>rXZ.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="table.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>table.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="utilisateur.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>utilisateur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewByModele.resx">
+      <DependentUpon>ViewByModele.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warning.resx">
+      <DependentUpon>Warning.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Language.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Condition =" '$(TargetFrameworkName)' == 'Net V3.5' " Include="Config\app.config" />
+    <None Condition =" '$(TargetFrameworkName)' == 'Net V4.0' " Include="Config\40\app.config" />
+    <None Condition =" '$(TargetFrameworkName)' == 'Net V4.5' " Include="Config\45\app.config" />
+
+    <None Include="Resources\SwithOn.png" />
+    <None Include="Resources\SwithOff.png" />
+    <None Include="Resources\SwithOn3.png" />
+    <None Include="Resources\SwithOff3.png" />
+    <None Include="Resources\SwithOn1.png" />
+    <None Include="Resources\SwithOff1.png" />
+    <None Include="Resources\unlocVert.png" />
+    <None Include="Resources\unlockR48.png" />
+    <None Include="Resources\unlock24.png" />
+    <None Include="Resources\CAD64.png" />
+    <None Include="Resources\CARTE64.png" />
+    <None Include="Resources\con32x22.png" />
+    <None Include="Resources\con48x28.png" />
+    <None Include="Resources\con48x28A.png" />
+    <None Include="Resources\CONF64.png" />
+    <None Include="Resources\DANGER64.png" />
+    <None Include="Resources\dock.png" />
+    <None Include="Resources\GRAPH64.png" />
+    <None Include="Resources\GRAPH.png" />
+    <None Include="Resources\icon24.png" />
+    <None Include="Resources\IMP64.png" />
+    <None Include="Resources\irf48.png" />
+    <None Include="Resources\irf48x28.png" />
+    <None Include="Resources\irf48x28A.png" />
+    <None Include="Resources\LOCK.png" />
+    <None Include="Resources\TEL64.png" />
+    <None Include="Resources\temp.png" />
+    <None Include="Resources\top.png" />
+    <None Include="Resources\tray.png" />
+    <None Include="Resources\UNLOCK.png" />
+    <None Include="Resources\USER64.png" />
+    <None Include="Resources\LOCK48.png" />
+    <None Include="Resources\BASE48.png" />
+    <None Include="Resources\CAD48.png" />
+    <None Include="Resources\CARTE48.png" />
+    <None Include="Resources\CONF48.png" />
+    <None Include="Resources\GRAPH48.png" />
+    <None Include="Resources\IMP48.png" />
+    <None Include="Resources\dangerorange48.png" />
+    <None Include="Resources\dangervert48.png" />
+    <None Include="Resources\LOCK481.png" />
+    <None Include="Resources\unlock48.png" />
+    <None Include="Resources\test48.png" />
+    <None Include="Resources\checkin48.png" />
+    <None Include="Resources\checkout48.png" />
+    <None Include="Resources\travaux48.png" />
+    <None Include="Resources\actualiser24.png" />
+    <None Include="Resources\plus48.png" />
+    <None Include="Resources\moins48.png" />
+    <None Include="Resources\envoi.png" />
+    <None Include="Resources\envoi32.png" />
+    <None Include="Resources\moins32.png" />
+    <None Include="Resources\plus32.png" />
+    <None Include="Resources\moins24.png" />
+    <None Include="Resources\plus24.png" />
+    <None Include="Resources\envoi24.png" />
+    <None Include="Resources\plus16.png" />
+    <None Include="packages.config" />
+    <None Include="Resources\BASE64.png" />
+    <None Include="Resources\moin16.png" />
+    <None Include="Resources\moin16.png" />
+    <None Include="Resources\fleche48.png" />
+    <None Include="Resources\rentPng2.png" />
+    <None Include="Resources\rentPng.png" />
+    <None Include="Resources\rent.jpg" />
+    <None Include="changelog.txt" />
+    <Content Include="Locknet32.ico" />
+    <None Include="Resources\thermometer30_30.png" />
+    <None Include="Resources\thermometer.png" />
+    <None Include="Resources\thermometer.ico" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\annuler24.png" />
+    <None Include="Resources\6134-tatice-Entravaux.png" />
+    <None Include="Resources\apercu1.bmp" />
+    <None Include="Resources\apercu1.png" />
+    <None Include="Resources\apercu2.png" />
+    <None Include="Resources\apercu3.png" />
+    <None Include="Resources\apercu4.png" />
+    <None Include="Resources\con48x28_v.png" />
+    <None Include="Resources\con48x28a_r.png" />
+    <None Include="Resources\autua16.png" />
+    <None Include="Resources\arriver.png" />
+    <None Include="Resources\cancel_48.png" />
+    <None Include="Resources\cancel_24.png" />
+    <None Include="Resources\226closed.png" />
+    <None Include="Resources\226open.png" />
+    <None Include="Resources\330closed.png" />
+    <None Include="Resources\330open.png" />
+    <Content Include="Resources\corbeil24.png" />
+    <None Include="Resources\dangervert481.png" />
+    <None Include="Resources\Image1.png" />
+    <None Include="Resources\extView.png" />
+    <None Include="Resources\homi-newLogo1.png" />
+    <None Include="Resources\homi-newLogo2.png" />
+    <None Include="Resources\Homi-hewLogoForPrint2.png" />
+    <None Include="Resources\LOCK24.png" />
+    <None Include="Resources\lockR48.png" />
+    <None Include="Resources\LockVert.png" />
+    <None Include="Resources\off.jpg" />
+    <None Include="Resources\on.jpg" />
+    <None Include="Resources\off.png" />
+    <None Include="Resources\on.png" />
+    <None Include="Resources\off36.png" />
+    <None Include="Resources\on36.png" />
+    <Content Include="Resources\Project1.ico" />
+    <Content Include="Resources\Project11.ico" />
+    <None Include="Resources\depart.png" />
+    <None Include="Resources\irf48x28_v.png" />
+    <None Include="Resources\irf48x28A_r.png" />
+    <None Include="Resources\login48.png" />
+    <None Include="Resources\excavatrice_overlord_divers.png" />
+    <None Include="Resources\facture24.png" />
+    <None Include="Resources\record24.png" />
+    <None Include="Resources\lecture24.png" />
+    <None Include="Resources\xdd24.png" />
+    <None Include="Resources\valider24.png" />
+    <None Include="Resources\toffert24.png" />
+    <None Include="Resources\offert24.png" />
+    <None Include="Resources\annul24.png" />
+    <None Include="Resources\imp24.png" />
+    <None Include="Resources\facture48.png" />
+    <None Include="Resources\LOUPE24.png" />
+  </ItemGroup>
+</Project>

@@ -226,12 +226,12 @@ Public Class journalrefill
         RefillJournalPerformClickAction()
     End Sub
 
-    Public Function nomproduit(nummodule As Integer, casier As Integer) As stockcasier
+    Public Function Nomproduit(nummodule As Integer, casier As Integer) As stockcasier
         nomproduit.nom = ""
         nomproduit.max = 0
 
         Dim m As String = ""
-        m = MAINFORM.FieldAccess(nummodule, "modelefrigo")
+        m = Mainform.FieldAccess(nummodule, "modelefrigo")
 
         For i As Integer = 0 To basemodele.modele.Rows.Count - 1
             If basemodele.modele.Rows(i)("nom") = m Then

@@ -24,8 +24,6 @@
     <ConfigurationSuffix Condition="'$(Configuration)' == 'Debug'">-debug</ConfigurationSuffix>
     <VN Condition="'VersionNumber' == ''">undefine</VN>
     <VN Condition="'VersionNumber' != ''">$(VersionNumber)</VN>    
-    <SourceArchivePath>$(BaseOutputDirectory)\build\$(VN)\Source</SourceArchivePath> 
-    <SourceArchive>"$(SourceArchivePath)\HomiNet"</SourceArchive>
     <ArchiveExcl>"$(MSBuildProjectDirectory)\SRC\*.*"</ArchiveExcl>
     <BuildInfoFile>$(MSBuildProjectDirectory)\SRC\HomiNet\My Project\VersionInfo.vb</BuildInfoFile>
     <Year>$([System.DateTime]::Now.ToString("yy"))</Year>
@@ -33,7 +31,9 @@
     <Date>$([System.DateTime]::Now.ToString("dd"))</Date>
     <Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
     <ArchiveCreationDate>$(Year)$(Month)$(Date)_$(Time)</ArchiveCreationDate>
-    <AssemblyFileVersionAttribute>Assembly:System.Reflection.AssemblyFileVersion("$(Year).$(Month).$(Date).$(Time)")</AssemblyFileVersionAttribute>
+    <SourceArchivePath>$(BaseOutputDirectory)\build\$(VN)_$(ArchiveCreationDate)\Source</SourceArchivePath> 
+    <SourceArchive>"$(SourceArchivePath)\HomiNet"</SourceArchive>
+    <AssemblyFileVersionAttribute>Assembly:System.Reflection.AssemblyFileVersion("$(Date).$(Month).$(Year).$(Time)")</AssemblyFileVersionAttribute>
   </PropertyGroup>
 
   <!-- detect location of various SDKs and tools-->
@@ -90,7 +90,7 @@
      <CallTarget Targets="SourceArchive" />
   </Target>
 
-  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+  <Target Name="Rebuild" DependsOnTargets="SourceArchive;Clean;Build">
   </Target>
                                    
   <Target Name="Build">
@@ -101,7 +101,7 @@
     <MakeDir Directories="$(BaseOutputDirectory)\build" />
     <MSBuild Projects="SRC\HomiNet\$(MSBuildProjectName)%(TargetFramework.ProjectFileSuffix).vbproj" 
              Targets="Build" 
-             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)\build\$(VN)\;BuildInfoFile=$(BuildInfoFile)" 
+             Properties="%(TargetFramework.Properties);BaseOutputDirectory=$(BaseOutputDirectory)\build\$(VN)_$(ArchiveCreationDate)\;BuildInfoFile=$(BuildInfoFile)" 
              ToolsVersion="%(TargetFramework.ToolsVersion)" 
              ContinueOnError="$(IgnoreBuildFailures)" 
              StopOnFirstFailure="false" />
@@ -127,7 +127,7 @@
   </Target>
 
   <Target Name="SourceArchive" DependsOnTargets="BeforeArchive">
-   <Exec Command="$(Zip7) a $(SourceArchive)$(VN)_$(DateOfComp).7z -t7z -mx=9 -ir!$(ArchiveExcl) -xr!bin\ -xr!obj\"/>
+   <Exec Command="$(Zip7) a $(SourceArchive)$(VN)_$(ArchiveCreationDate).7z -t7z -mx=9 -ir!$(ArchiveExcl) -xr!bin\ -xr!obj\"/>
   </Target>
 
 

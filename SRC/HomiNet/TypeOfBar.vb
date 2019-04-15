@@ -1,4 +1,4 @@
-﻿Public Class typeOfBar
+﻿Public Class TypeOfBar
 
     Private _type As Byte
     Private _descr As String

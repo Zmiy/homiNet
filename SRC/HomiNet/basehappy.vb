@@ -23,9 +23,9 @@ Public Class basehappy
         Label3.Text = Trans(367)
         Label4.Text = Trans(368)
 
-        GlassButton0.Text = Trans(316)
-        GlassButton1.Text = Trans(77)
-        GlassButton2.Text = Trans(317)
+        gbtnAdd.Text = Trans(316)
+        gbtnRemove.Text = Trans(77)
+        gbtnSend.Text = Trans(317)
 
         GroupBox7.Text = Trans(184)
         GroupBox8.Text = Trans(346)
@@ -52,18 +52,18 @@ Public Class basehappy
 
         dh.Rows.Add(message(1), message(2), Convert.ToDateTime(message(3)), Convert.ToDateTime(message(4)), message(5), message(6), message(7), message(8), message(9), message(10), message(11), message(12))
     End Sub
-    Private Sub GlassButton2_Click(sender As Object, e As EventArgs) Handles GlassButton2.Click
-        Dim db As String = String.Empty, df As String = String.Empty
+    Private Sub gbtnSend_Click(sender As Object, e As EventArgs) Handles gbtnSend.Click
+        Dim dateBegin As String = String.Empty, dateFinish As String = String.Empty
         For i As Integer = 0 To dh.Rows.Count - 1
-            db = Convert.ToDateTime(dh.Item(2, i).Value).ToUniversalTime.ToString("u")
-            df = Convert.ToDateTime(dh.Item(3, i).Value).ToUniversalTime.ToString("u")
-            Dim s1 As String = ("MAJHAPPY|" + dh.Item(0, i).Value.ToString + "|" + dh.Item(1, i).Value.ToString + "|" + db + "|" + df + "|" + dh.Item(4, i).Value.ToString + "|" + dh.Item(5, i).Value.ToString + "|" + dh.Item(6, i).Value.ToString + "|" + dh.Item(7, i).Value.ToString + "|" + dh.Item(8, i).Value.ToString + "|" + dh.Item(9, i).Value.ToString + "|" + dh.Item(10, i).Value.ToString + "|" + dh.Item(11, i).Value.ToString)
+            dateBegin = Convert.ToDateTime(dh.Item(2, i).Value).ToUniversalTime.ToString("u")
+            dateFinish = Convert.ToDateTime(dh.Item(3, i).Value).ToUniversalTime.ToString("u")
+            Dim s1 As String = ("MAJHAPPY|" + dh.Item(0, i).Value.ToString + "|" + dh.Item(1, i).Value.ToString + "|" + dateBegin + "|" + dateFinish + "|" + dh.Item(4, i).Value.ToString + "|" + dh.Item(5, i).Value.ToString + "|" + dh.Item(6, i).Value.ToString + "|" + dh.Item(7, i).Value.ToString + "|" + dh.Item(8, i).Value.ToString + "|" + dh.Item(9, i).Value.ToString + "|" + dh.Item(10, i).Value.ToString + "|" + dh.Item(11, i).Value.ToString)
             table.AddEmis("0", s1)
         Next
         table.AddEmis("0", "ACTUALISERHAPPY|")
     End Sub
 
-    Private Sub GlassButton0_Click(sender As Object, e As EventArgs) Handles GlassButton0.Click
+    Private Sub gbtnAdd_Click(sender As Object, e As EventArgs) Handles gbtnAdd.Click
         Dim onoff As String = "off"
         If rbtnHappyON.Checked = True Then onoff = "on"
         Dim t As String = "1"
@@ -74,12 +74,12 @@ Public Class basehappy
         dh.Rows.Add("Happy " + dh.Rows.Count.ToString, onoff, db.Value.ToString, df.Value.ToString, t, CheckBox1.Checked.ToString, CheckBox2.Checked.ToString, CheckBox3.Checked.ToString, CheckBox4.Checked.ToString, CheckBox5.Checked.ToString, CheckBox6.Checked.ToString, CheckBox7.Checked.ToString)
     End Sub
 
-    Private Sub GlassButton1_Click(sender As Object, e As EventArgs) Handles GlassButton1.Click
+    Private Sub gbtnRemove_Click(sender As Object, e As EventArgs) Handles gbtnRemove.Click
         If MessageBox.Show(Trans(78), Trans(77), MessageBoxButtons.YesNo) = DialogResult.Yes Then
             For i As Integer = dh.SelectedRows.Count - 1 To 0 Step -1
-                table.AddEmis("0", "SUPPRIMEHAPPY|" + dh.SelectedRows(i).Cells(0).Value)
+                Table.AddEmis("0", "SUPPRIMEHAPPY|" + dh.SelectedRows(i).Cells(0).Value)
             Next
-            table.AddEmis("0", "ACTUALISERHAPPY|")
+            Table.AddEmis("0", "ACTUALISERHAPPY|")
         End If
     End Sub
 

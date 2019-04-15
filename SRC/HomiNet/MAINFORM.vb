@@ -163,8 +163,8 @@ Public Class Mainform
     End Sub
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
         Dim versionN As String = Assembly.GetExecutingAssembly().GetName().Version.ToString()
-        Dim vi As FileVersionInfo = FileVersionInfo.GetVersionInfo(Reflection.Assembly.GetExecutingAssembly.Location)
-        String.Format("HomiNet Version: {0}, file version: {1}", versionN, vi.FileVersion)
+        Dim vi As FileVersionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly.Location)
+        'String.Format("HomiNet Version: {0}, file version: {1}", versionN, vi.FileVersion)
 #If Demo Then
         versionN += " Demo Edition"
 #End If
@@ -538,6 +538,7 @@ Public Class Mainform
         Next
 
     End Sub
+   
     Private Sub recoi_ligne(strmess As String)
         Dim ri1 As Integer
         Dim wRow As DataRow
@@ -557,6 +558,7 @@ Public Class Mainform
                     For i As Integer = 1 To Dv.Table.Columns.Count - 1
                         Dv.Table.Rows(ri1)(i) = Ts(i + 1)
                     Next
+
                     If Not (ViewByModele.dgvExtView.CurrentRow Is Nothing) AndAlso (nummodule = CInt(ViewByModele.dgvExtView.CurrentRow.Cells("nummodule").Value)) Then
                         ViewByModele.SetParams(ViewByModele.dgvExtView.SelectedRows(0))
                     End If
@@ -577,11 +579,14 @@ Public Class Mainform
     Public ReadOnly Property FieldAccess(nummodule As Integer, colonne As String) As Object
         Get
             Dim i As Integer = Rechmodule(nummodule)
-            If i = -1 Then
-                Return ""
-            Else
-                Return Dv(i)(colonne)
-            End If
+            Dim res = (From dr In Dv Where dr("nummodule") = nummodule Select dr(colonne)).FirstOrDefault()
+            Return If(res Is Nothing, "", res)
+            'If i = -1 Then
+            '    Return ""
+            'Else
+            '    Return Dv(i)(colonne)
+            'End If
+
         End Get
         'Set(ByVal value As Object)
         '    Dim i As Integer = rechmodule(nummodule)
@@ -771,17 +776,20 @@ Public Class Mainform
     '= False
     Private WithEvents _bgworkerErr As BackgroundWorker
     Private Sub ConErrAndSwErr(message As String)
-        If Maintable.Rows.Count = 0 Then
+        If Maintable.Rows.Count = 0 OrElse Not LireIniBoolSmart("HiddenValues", "ShowWarningsWindow", True) Then
             Return
         End If
-        CloseFormByCaption(Trans(144))
+        Dim minibarCount As Integer = (From row As DataRow In Maintable.Rows Where Not row("numchambre").ToString().ToUpper().StartsWith("R"c)).Count
+        Dim arrWarnings() As String = message.Split("|"c)
+        If (CInt(arrWarnings(1)) / minibarCount) * 100 > 15 OrElse CInt(arrWarnings(2)) > 0 Then
+            CloseFormByCaption(Trans(144))
 
-        _bgworkerErr = New BackgroundWorker()
-        WinManager.CloseMessageBox(TroubleMessageCaption, _bgworkerErr)
+            _bgworkerErr = New BackgroundWorker()
+            WinManager.CloseMessageBox(TroubleMessageCaption, _bgworkerErr)
+            _bgworkerErr.RunWorkerAsync(message) ' + "|"  + countOfPostingFromChkOut.ToString())
 
+        End If
 
-        _bgworkerErr.RunWorkerAsync(message) ' + "|"  + countOfPostingFromChkOut.ToString())
-        'End If
     End Sub
 
     Public Shared Sub CloseFormByCaption(captionText As String)

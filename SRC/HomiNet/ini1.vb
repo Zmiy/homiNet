@@ -6,19 +6,17 @@
 ' 
 ' To change this template use Tools | Options | Coding | Edit Standard Headers.
 '
-Imports System
+
 Imports System.Windows.Forms
-Imports System.Data
-Imports System.Drawing
 imports Microsoft.VisualBasic
 Imports System.Collections
 Imports System.Text
 
 Module ModINI1
     'Nom du fichier INI
-    Dim Fichier As String = Application.StartupPath & "\Language.ini"
+    Dim _fichier As String = Application.StartupPath & "\Language.ini"
     'Constante
-    Const MAX_ENTRY As Integer = 32768
+    Const MaxEntry As Integer = 32768
 #Region "Lire INI"
     Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (lpApplicationName As String, lpKeyName As String, lpDefault As String, lpReturnedString As StringBuilder, nSize As Integer, lpFileName As String) As Integer
     '   Cette API permet de lire des fichiers d'initialisations. La fonction retourne 0 si la lecture du fichier d'initialisation a échoué, sinon elle retourne 1. 
@@ -28,12 +26,12 @@ Module ModINI1
     'lpReturnedString contient la valeur de la clef si elle existe sinon elle contient la valeur lpDefault, 
     'nSize est la taille de la variable lpReturnedString en octet, 
     'lpFileName définit le nom du fichier d'initialisation. 
-    Function LireINIL(Entete As String, Variable As String) As String
+    Function LireInil(entete As String, variable As String) As String
         Dim defval As String = ""
         Try
-            Dim StrBuild As New StringBuilder(MAX_ENTRY)
-            Dim Ret As Integer = GetPrivateProfileString(Entete, Variable, defval, StrBuild, MAX_ENTRY, Fichier)
-            Return StrBuild.ToString
+            Dim strBuild As New StringBuilder(MaxEntry)
+            Dim Ret As Integer = GetPrivateProfileString(entete, Variable, defval, strBuild, MaxEntry, _fichier)
+            Return strBuild.ToString
         Catch
             Return defval
         End Try
@@ -48,13 +46,13 @@ Module ModINI1
     'lpString définit la valeur à ajouter, 
     'lpFileName définit le nom du fichier d'initialisation. 
     Function EcrireINIL(Entete As String, Variable As String, Valeur As String) As Boolean
-        WritePrivateProfileString(Entete, Variable, Valeur, Fichier)
+        WritePrivateProfileString(Entete, Variable, Valeur, _fichier)
     End Function
 #End Region
 
 #Region "Supprime INI"
     Function SupprimeINIL(Entete As String, Optional Variable As String = Nothing) As Boolean
-        WritePrivateProfileString(Entete, Variable, vbNullString, Fichier)
+        WritePrivateProfileString(Entete, Variable, vbNullString, _fichier)
     End Function
 #End Region
 
@@ -62,12 +60,12 @@ Module ModINI1
     Private Declare Function GetPrivateProfileSectionNames Lib "kernel32.dll" Alias "GetPrivateProfileSectionNamesA" (lpszReturnBuffer() As Byte, nSize As Integer, lpFileName As String) As Integer
     Function SectionsINIL() As ArrayList
         SectionsINIL = New ArrayList
-        Dim Buffer(MAX_ENTRY) As Byte
+        Dim Buffer(MaxEntry) As Byte
         Dim BuffStr As String
         Dim PrevPos As Integer = 0
         Dim Length As Integer
         Try
-            Length = GetPrivateProfileSectionNames(Buffer, MAX_ENTRY, Fichier)
+            Length = GetPrivateProfileSectionNames(Buffer, MaxEntry, _fichier)
         Catch
             Exit Function
         End Try

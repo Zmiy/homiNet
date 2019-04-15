@@ -303,7 +303,7 @@ Public Class Remplissage
             Case 2
                 setAlarme = New Integer() {1, 2, 3}
         End Select
-        Dim typeOfBar As Byte = CType(cmbExtension.SelectedItem, typeOfBar).Type
+        Dim typeOfBar As Byte = CType(cmbExtension.SelectedItem, TypeOfBar).Type
         If pnlExtention.Visible = False Then
             typeOfBar = 1
         End If

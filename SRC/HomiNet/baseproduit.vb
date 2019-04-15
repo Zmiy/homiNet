@@ -52,10 +52,10 @@ Public Class baseproduit
         dproduit.Rows.Add("*", "", "", "", "", "", "0", "0", "0", "0", "180", "1", "0", "0", False)
     End Sub
 
-    Public Sub clearproduit()
+    Public Sub Clearproduit()
         dproduit.Rows.Clear()
     End Sub
-    Public Sub addproduit(message As String())
+    Public Sub Addproduit(message As String())
         'Try
         '    Column4.Items.Clear()
         '    Column5.Items.Clear()
@@ -83,15 +83,20 @@ Public Class baseproduit
         For i As Integer = 0 To dproduit.Rows.Count - 1
             Dim safe As String = "0"
             If dproduit.Item(14, i).Value = True Then safe = "1"
-            Dim s1 As String = ("MAJPRODUIT|" + dproduit.Item(1, i).Value + "|" + dproduit.Item(2, i).Value + "|" + dproduit.Item(3, i).Value + "|" + dproduit.Item(4, i).Value + "|" + dproduit.Item(5, i).Value + "|" + dproduit.Item(6, i).Value + "|" + dproduit.Item(7, i).Value + "|" + dproduit.Item(8, i).Value + "|" + dproduit.Item(9, i).Value + "|" + dproduit.Item(10, i).Value + "|" + dproduit.Item(11, i).Value + "|" + dproduit.Item(12, i).Value + "|" + dproduit.Item(13, i).Value + "|" + safe + "|")
-            table.AddEmis("0", s1)
+            Dim s2 As String = "MAJPRODUIT|" + dproduit.Item(1, i).Value + "|" + dproduit.Item(2, i).Value + "|" + dproduit.Item(3, i).Value + "|" + dproduit.Item(4, i).Value + "|" + dproduit.Item(5, i).Value + "|" + dproduit.Item(6, i).Value + "|" + dproduit.Item(7, i).Value + "|" + dproduit.Item(8, i).Value + "|" + dproduit.Item(9, i).Value + "|" + dproduit.Item(10, i).Value + "|" + dproduit.Item(11, i).Value + "|" + dproduit.Item(12, i).Value + "|" + dproduit.Item(13, i).Value + "|" + safe + "|"
+            Dim s1 As String = "MAJPRODUIT"
+            For j As Integer = 1 To 13
+                s1 += "|" + dproduit.Item(j, i).Value
+            Next
+            s1 += "|" + safe + "|"
+            Table.AddEmis("0", s1)
             dproduit.Item(0, i).Value = ""
         Next
         table.AddEmis("0", "ACTUALISERPRODUIT|")
 
     End Sub
 
-    Private Sub dproduit_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dproduit.DataError
+    Private Sub dproduit_DataError(sender As Object, ex As DataGridViewDataErrorEventArgs) Handles dproduit.DataError
         Exit Sub
     End Sub
 
@@ -117,8 +122,8 @@ Public Class baseproduit
                             dproduit(12, i).Value = 0
                             dproduit(13, i).Value = 0
                         Case Else
-                            dproduit(12, i).Value = CInt(dproduit(11, i).Value) - 2
-                            dproduit(13, i).Value = CInt(dproduit(11, i).Value) - 1
+                            dproduit(12, i).Value = Convert.ToString(CInt(dproduit(11, i).Value) - 2)
+                            dproduit(13, i).Value = Convert.ToString(CInt(dproduit(11, i).Value) - 1)
                     End Select
 
             End Select

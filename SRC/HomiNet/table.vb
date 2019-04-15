@@ -1,4 +1,3 @@
-
 Imports System.IO
 Imports System.Data
 Imports System.ComponentModel
@@ -229,9 +228,9 @@ Public Class Table
         Label21.Text = Trans(253) + ":"
         Dim lblProduct As Label
         For casier As Integer = 1 To MaxCountOfProducts
-            lblProduct = grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
+            lblProduct = DirectCast(grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0), Label)
             lblProduct.Text = "Rack " + casier.ToString() + ":"
-            lblProduct = grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
+            lblProduct = DirectCast(grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0), Label)
             lblProduct.Text = ""
         Next
         'Label22.Text = trans(329) + ":"
@@ -456,7 +455,7 @@ Public Class Table
                     If tabsel(i) = True Then
                         If Dv1(i)("check") = Trans(22) Then
                             Dv1(i)("e") = "*"
-                            AddEmis(Dv1(i)("nummodule"), "CHECKIN")
+                            AddEmis(CInt(Dv1(i)("nummodule").ToString()), "CHECKIN")
                         End If
                     End If
                 Next
@@ -464,35 +463,35 @@ Public Class Table
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "CHECKOUT")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "CHECKOUT")
                     End If
                 Next
             Case "3" 'lock
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "LOCK")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "LOCK")
                     End If
                 Next
             Case "4" 'unlock
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "UNLOCK")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "UNLOCK")
                     End If
                 Next
             Case "5" 'test
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "TEST")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "TEST")
                     End If
                 Next
             Case "6" 'maintenance
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "MAINTENANCE")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "MAINTENANCE")
 
                     End If
                 Next
@@ -500,7 +499,7 @@ Public Class Table
                 For i = Dv1.Count - 1 To 0 Step -1
                     If tabsel(i) = True Then
                         Dv1(i)("e") = "*"
-                        AddEmis(Dv1(i)("nummodule"), "RENT")
+                        AddEmis(CInt(Dv1(i)("nummodule").ToString()), "RENT")
                     End If
                 Next
         End Select
@@ -526,7 +525,7 @@ Public Class Table
         tbFind.SelectAll()
         tbFind.AutoCompleteCustomSource.Clear()
         For i As Integer = 0 To dgvMain.Rows.Count - 1
-            tbFind.AutoCompleteCustomSource.Add(dgvMain.Item("numchambre", i).Value)
+            tbFind.AutoCompleteCustomSource.Add(dgvMain.Item("numchambre", i).Value.ToString())
         Next
     End Sub
     'search
@@ -575,7 +574,7 @@ Public Class Table
 
 
     Private Sub table_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
-        If Me.Visible = True Then
+        If Visible = True Then
             'Dim rb = (From item As Control In GroupBox1.Controls Where item.GetType() Is GetType(RadioButton) AndAlso CType(item, RadioButton).Checked Select item).ToList()
             RadioButton_CheckedChanged(Nothing, Nothing)
         End If
@@ -586,11 +585,11 @@ Public Class Table
         Try
             facture.Label7.Text = ""
             facture.Label8.Text = ""
-            facture.Label1.Text = Trans(15) + facture.dg1.CurrentRow.Cells("numchambre").Value
-            facture.Label3.Text = Trans(46) + ":  " + facture.dg1.CurrentRow.Cells("datecheckin").Value
+            facture.Label1.Text = Trans(15) + facture.dg1.CurrentRow.Cells("numchambre").Value.ToString()
+            facture.Label3.Text = Trans(46) + ":  " + facture.dg1.CurrentRow.Cells("datecheckin").Value.ToString()
             facture.rtf.Items.Clear()
-            facture.nummoduleaff = facture.dg1.CurrentRow.Cells("nummodule").Value
-            AddEmis(facture.dg1.CurrentRow.Cells("nummodule").Value, "FACTURE")
+            facture.nummoduleaff = CInt(facture.dg1.CurrentRow.Cells("nummodule").Value.ToString())
+            AddEmis(CInt(facture.dg1.CurrentRow.Cells("nummodule").Value.ToString()), "FACTURE")
 
         Catch ex As Exception
             facture.Label7.Text = ""
@@ -607,7 +606,8 @@ Public Class Table
         Loop Until Mainform.SpinningProgress1.AutoIncrement = False
         facture.GlassButton5_Click(Nothing, Nothing)
     End Sub
-    Private Sub dgvMain_RowEnterPerfomeAction()
+
+    Friend Sub dgvMain_RowEnterPerfomeAction()
         If dgvMain.SelectedRows.Count = 0 Then
             Exit Sub
         End If
@@ -622,31 +622,31 @@ Public Class Table
     Private Sub FillCurrentRoomInfo() 'left tab(0)
 
         If dgvMain.Rows.Count > 0 AndAlso dgvMain.Columns.Count > 0 Then
-            Dim nummodule As Integer = dgvMain.SelectedRows(0).Cells("nummodule").Value
-            Label1.Text = dgvMain.SelectedRows(0).Cells("numchambre").Value
-            Label7.Text = dgvMain.SelectedRows(0).Cells("check").Value
-            Label34.Text = dgvMain.SelectedRows(0).Cells("etatporte").Value
-            Label35.Text = dgvMain.SelectedRows(0).Cells("serrure").Value
-            Label36.Text = dgvMain.SelectedRows(0).Cells("etattemp").Value
-            Label37.Text = dgvMain.SelectedRows(0).Cells("ouverture").Value
-            Label38.Text = dgvMain.SelectedRows(0).Cells("nbconso").Value
-            Label39.Text = dgvMain.SelectedRows(0).Cells("factureclient").Value
-            Label40.Text = dgvMain.SelectedRows(0).Cells("dateremplissage").Value
-            Label41.Text = dgvMain.SelectedRows(0).Cells("numtelecommande").Value
-            Label42.Text = dgvMain.SelectedRows(0).Cells("datecheckin").Value
-            Label43.Text = dgvMain.SelectedRows(0).Cells("datecheckout").Value
-            Label44.Text = dgvMain.SelectedRows(0).Cells("datelock").Value
-            Label45.Text = dgvMain.SelectedRows(0).Cells("dateunlock").Value
-            Label46.Text = dgvMain.SelectedRows(0).Cells("datefermer").Value
-            Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value
+            Dim nummodule As Integer = CInt(dgvMain.SelectedRows(0).Cells("nummodule").Value.ToString())
+            Label1.Text = dgvMain.SelectedRows(0).Cells("numchambre").Value.ToString()
+            Label7.Text = dgvMain.SelectedRows(0).Cells("check").Value.ToString()
+            Label34.Text = dgvMain.SelectedRows(0).Cells("etatporte").Value.ToString()
+            Label35.Text = dgvMain.SelectedRows(0).Cells("serrure").Value.ToString()
+            Label36.Text = dgvMain.SelectedRows(0).Cells("etattemp").Value.ToString()
+            Label37.Text = dgvMain.SelectedRows(0).Cells("ouverture").Value.ToString()
+            Label38.Text = dgvMain.SelectedRows(0).Cells("nbconso").Value.ToString()
+            Label39.Text = dgvMain.SelectedRows(0).Cells("factureclient").Value.ToString()
+            Label40.Text = dgvMain.SelectedRows(0).Cells("dateremplissage").Value.ToString()
+            Label41.Text = dgvMain.SelectedRows(0).Cells("numtelecommande").Value.ToString()
+            Label42.Text = dgvMain.SelectedRows(0).Cells("datecheckin").Value.ToString()
+            Label43.Text = dgvMain.SelectedRows(0).Cells("datecheckout").Value.ToString()
+            Label44.Text = dgvMain.SelectedRows(0).Cells("datelock").Value.ToString()
+            Label45.Text = dgvMain.SelectedRows(0).Cells("dateunlock").Value.ToString()
+            Label46.Text = dgvMain.SelectedRows(0).Cells("datefermer").Value.ToString()
+            Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value.ToString()
             Dim lblProduct As Label
             For casier As Integer = 1 To MaxCountOfProducts
                 'lblProduct = New Label()
-                lblProduct = Me.grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
+                lblProduct = DirectCast(grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0), Label)
                 lblProduct.Text = journalrefill.nomproduit(nummodule, casier).nom
                 'lblProduct = New Label()
-                lblProduct = Me.grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
-                lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value
+                lblProduct = DirectCast(grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0), Label)
+                lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value.ToString()
             Next
 
         End If
@@ -654,17 +654,17 @@ Public Class Table
     Private Sub FillCurrentGuestHistory() 'left tab(1)
         rt.Clear()
         Try
-            Dim nummodule As Integer = dgvMain.SelectedRows(0).Cells("nummodule").Value
+            Dim nummodule As Integer = CInt(dgvMain.SelectedRows(0).Cells("nummodule").Value.ToString)
             AddEmis(0, "JOURNALHOMI|" + nummodule.ToString)
-            Label60.Text = MAINFORM.FieldAccess(nummodule, "numchambre").ToString
+            Label60.Text = dgvMain.SelectedRows(0).Cells("numchambre").Value.ToString() 'MAINFORM.FieldAccess(nummodule, "numchambre").ToString
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub dg1_MouseUp(sender As Object, e As MouseEventArgs) 'Handles dgvMain.MouseUp
-        FillCurrentGuestHistory()
-    End Sub
+    'Private Sub dg1_MouseUp(sender As Object, e As MouseEventArgs) 'Handles dgvMain.MouseUp
+    '    FillCurrentGuestHistory()
+    'End Sub
 
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tabcntrlExtendedRoomActivity.SelectedIndexChanged
         If tabcntrlExtendedRoomActivity.SelectedIndex = 1 Then
@@ -673,50 +673,50 @@ Public Class Table
         End If
 
     End Sub
-    Private Sub dg1_SelectionChanged(sender As Object, e As EventArgs) 'Handles dgvMain.SelectionChanged
-        Try
-            If dgvMain.SelectedRows.Count = 0 Then
-                Exit Sub
-            End If
-            If dgvMain.Rows.Count > 0 And dgvMain.Columns.Count > 0 Then
-                Dim nummodule As Integer = dgvMain.SelectedRows(0).Cells("nummodule").Value
-                If tabcntrlExtendedRoomActivity.SelectedIndex = 0 Then
-                    Label1.Text = dgvMain.SelectedRows(0).Cells("numchambre").Value
-                    Label7.Text = dgvMain.SelectedRows(0).Cells("check").Value
-                    Label34.Text = dgvMain.SelectedRows(0).Cells("etatporte").Value
-                    Label35.Text = dgvMain.SelectedRows(0).Cells("serrure").Value
-                    Label36.Text = dgvMain.SelectedRows(0).Cells("etattemp").Value
-                    Label37.Text = dgvMain.SelectedRows(0).Cells("ouverture").Value
-                    Label38.Text = dgvMain.SelectedRows(0).Cells("nbconso").Value
-                    Label39.Text = dgvMain.SelectedRows(0).Cells("factureclient").Value
-                    Label40.Text = dgvMain.SelectedRows(0).Cells("dateremplissage").Value
-                    Label41.Text = dgvMain.SelectedRows(0).Cells("numtelecommande").Value
-                    Label42.Text = dgvMain.SelectedRows(0).Cells("datecheckin").Value
-                    Label43.Text = dgvMain.SelectedRows(0).Cells("datecheckout").Value
-                    Label44.Text = dgvMain.SelectedRows(0).Cells("datelock").Value
-                    Label45.Text = dgvMain.SelectedRows(0).Cells("dateunlock").Value
-                    Label46.Text = dgvMain.SelectedRows(0).Cells("datefermer").Value
-                    Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value
-                    Dim lblProduct As Label
-                    For casier As Integer = 1 To MaxCountOfProducts
-                        'lblProduct = New Label()
-                        lblProduct = grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0)
-                        lblProduct.Text = journalrefill.nomproduit(nummodule, casier).nom
-                        'lblProduct = New Label()
-                        lblProduct = grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0)
-                        lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value
-                    Next
-                Else
-                End If
-            End If
+    'Private Sub dg1_SelectionChanged(sender As Object, e As EventArgs) 'Handles dgvMain.SelectionChanged
+    '    Try
+    '        If dgvMain.SelectedRows.Count = 0 Then
+    '            Exit Sub
+    '        End If
+    '        If dgvMain.Rows.Count > 0 And dgvMain.Columns.Count > 0 Then
+    '            Dim nummodule As Integer = CInt(dgvMain.SelectedRows(0).Cells("nummodule").Value.ToString())
+    '            If tabcntrlExtendedRoomActivity.SelectedIndex = 0 Then
+    '                Label1.Text = dgvMain.SelectedRows(0).Cells("numchambre").Value.ToString()
+    '                Label7.Text = dgvMain.SelectedRows(0).Cells("check").Value.ToString()
+    '                Label34.Text = dgvMain.SelectedRows(0).Cells("etatporte").Value.ToString()
+    '                Label35.Text = dgvMain.SelectedRows(0).Cells("serrure").Value.ToString()
+    '                Label36.Text = dgvMain.SelectedRows(0).Cells("etattemp").Value.ToString()
+    '                Label37.Text = dgvMain.SelectedRows(0).Cells("ouverture").Value.ToString()
+    '                Label38.Text = dgvMain.SelectedRows(0).Cells("nbconso").Value.ToString()
+    '                Label39.Text = dgvMain.SelectedRows(0).Cells("factureclient").Value.ToString()
+    '                Label40.Text = dgvMain.SelectedRows(0).Cells("dateremplissage").Value.ToString()
+    '                Label41.Text = dgvMain.SelectedRows(0).Cells("numtelecommande").Value.ToString()
+    '                Label42.Text = dgvMain.SelectedRows(0).Cells("datecheckin").Value.ToString()
+    '                Label43.Text = dgvMain.SelectedRows(0).Cells("datecheckout").Value.ToString()
+    '                Label44.Text = dgvMain.SelectedRows(0).Cells("datelock").Value.ToString()
+    '                Label45.Text = dgvMain.SelectedRows(0).Cells("dateunlock").Value.ToString()
+    '                Label46.Text = dgvMain.SelectedRows(0).Cells("datefermer").Value.ToString()
+    '                Label47.Text = dgvMain.SelectedRows(0).Cells("dateouvert").Value.ToString()
+    '                Dim lblProduct As Label
+    '                For casier As Integer = 1 To MaxCountOfProducts
+    '                    'lblProduct = New Label()
+    '                    lblProduct = DirectCast(grbProducts.Controls.Find("lblProductText" + casier.ToString(), True)(0), Label)
+    '                    lblProduct.Text = journalrefill.nomproduit(nummodule, casier).nom
+    '                    'lblProduct = New Label()
+    '                    lblProduct = DirectCast(grbProducts.Controls.Find("lblProductValue" + casier.ToString(), True)(0), Label)
+    '                    lblProduct.Text = dgvMain.SelectedRows(0).Cells("c" + casier.ToString()).Value.ToString()
+    '                Next
+    '            Else
+    '            End If
+    '        End If
 
-        Catch ex As Exception
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
     Public Sub Traitejournal(data As String)
         Try
-            Dim s As String() = data.Split(";")
+            Dim s As String() = data.Split(";"c)
             Dim c As Color = Color.Black
             Dim r As String = ""
             Select Case s(0)
@@ -768,13 +768,14 @@ Public Class Table
 
     Private Shared Function Convdate(s As String) As Integer
         Try
-            Dim t As String() = s.Split(" ")
-            Dim tj As String() = t(0).Split("/")
-            Dim th As String() = t(1).Split(":")
+            Dim t As String() = s.Split(" "c)
+            'Dim tj As String() = t(0).Split("/"c)
+            Dim th As String() = t(1).Split(":"c)
             Dim d As Integer = (CInt(th(0)) * 3600) + (CInt(th(1)) * 60) + CInt(th(2))
             Return d
 
         Catch ex As Exception
+            Return 0
         End Try
     End Function
 
@@ -818,7 +819,7 @@ Public Class Table
                     Case Trans(208).ToLower()
                         Dim ts As TimeSpan = New TimeSpan(1000000000)
                         Try
-                            ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateanomalie").Value)
+                            ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateanomalie").Value.ToString())
                         Catch ex As Exception
 
                         End Try
@@ -833,7 +834,7 @@ Public Class Table
                 If currRow.Cells("test").Value = Trans(208) Then 'And dgvMain.Columns("test").Index = dgvMain.CurrentCell.ColumnIndex Then
                     Dim ts As TimeSpan = New TimeSpan(1000000000)
                     Try
-                        ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateanomalie").Value)
+                        ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateanomalie").Value.ToString())
                     Catch ex As Exception
 
                     End Try
@@ -847,7 +848,7 @@ Public Class Table
                 If currRow.Cells("etatporte").Value = Trans(51) Then 'And dgvMain.Columns("test").Index = dgvMain.CurrentCell.ColumnIndex Then
                     Dim ts As TimeSpan = New TimeSpan(1000000000)
                     Try
-                        ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateouvert").Value)
+                        ts = DateTime.Now - DateTime.Parse(currRow.Cells("dateouvert").Value.ToString())
                     Catch ex As Exception
 
                     End Try
@@ -928,4 +929,5 @@ Public Class Table
 
 
 
+    
 End Class

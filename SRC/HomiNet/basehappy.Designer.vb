@@ -62,9 +62,9 @@ Partial Class basehappy
         Me.rbtnPrice3 = New System.Windows.Forms.RadioButton()
         Me.rbtnPrice2 = New System.Windows.Forms.RadioButton()
         Me.rbtnPrice1 = New System.Windows.Forms.RadioButton()
-        Me.GlassButton2 = New Glass.GlassButton()
-        Me.GlassButton1 = New Glass.GlassButton()
-        Me.GlassButton0 = New Glass.GlassButton()
+        Me.gbtnSend = New Glass.GlassButton()
+        Me.gbtnRemove = New Glass.GlassButton()
+        Me.gbtnAdd = New Glass.GlassButton()
         CType(Me.dh, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -381,70 +381,70 @@ Partial Class basehappy
         Me.rbtnPrice1.Text = "Price 1"
         Me.rbtnPrice1.UseVisualStyleBackColor = True
         '
-        'GlassButton2
+        'gbtnSend
         '
-        Me.GlassButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GlassButton2.AutoEllipsis = True
-        Me.GlassButton2.BackColor = System.Drawing.Color.Navy
-        Me.GlassButton2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton2.GlowColor = System.Drawing.Color.Blue
-        Me.GlassButton2.Image = Global.HomiNet.My.Resources.Resources.envoi24
-        Me.GlassButton2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.GlassButton2.Location = New System.Drawing.Point(616, 385)
-        Me.GlassButton2.Name = "GlassButton2"
-        Me.GlassButton2.OuterBorderColor = System.Drawing.Color.Transparent
-        Me.GlassButton2.ShineColor = System.Drawing.Color.Transparent
-        Me.GlassButton2.Size = New System.Drawing.Size(124, 33)
-        Me.GlassButton2.TabIndex = 34
-        Me.GlassButton2.Tag = "1"
-        Me.GlassButton2.Text = "envoi"
-        Me.GlassButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.gbtnSend.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gbtnSend.AutoEllipsis = True
+        Me.gbtnSend.BackColor = System.Drawing.Color.Navy
+        Me.gbtnSend.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbtnSend.GlowColor = System.Drawing.Color.Blue
+        Me.gbtnSend.Image = Global.HomiNet.My.Resources.Resources.envoi24
+        Me.gbtnSend.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.gbtnSend.Location = New System.Drawing.Point(616, 385)
+        Me.gbtnSend.Name = "gbtnSend"
+        Me.gbtnSend.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.gbtnSend.ShineColor = System.Drawing.Color.Transparent
+        Me.gbtnSend.Size = New System.Drawing.Size(124, 33)
+        Me.gbtnSend.TabIndex = 34
+        Me.gbtnSend.Tag = "1"
+        Me.gbtnSend.Text = "Send"
+        Me.gbtnSend.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
-        'GlassButton1
+        'gbtnRemove
         '
-        Me.GlassButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GlassButton1.AutoEllipsis = True
-        Me.GlassButton1.BackColor = System.Drawing.Color.Navy
-        Me.GlassButton1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton1.GlowColor = System.Drawing.Color.Red
-        Me.GlassButton1.Image = Global.HomiNet.My.Resources.Resources.moins24
-        Me.GlassButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.GlassButton1.Location = New System.Drawing.Point(473, 385)
-        Me.GlassButton1.Name = "GlassButton1"
-        Me.GlassButton1.OuterBorderColor = System.Drawing.Color.Transparent
-        Me.GlassButton1.ShineColor = System.Drawing.Color.Transparent
-        Me.GlassButton1.Size = New System.Drawing.Size(124, 33)
-        Me.GlassButton1.TabIndex = 33
-        Me.GlassButton1.Tag = "1"
-        Me.GlassButton1.Text = "supprimer"
-        Me.GlassButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.gbtnRemove.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.gbtnRemove.AutoEllipsis = True
+        Me.gbtnRemove.BackColor = System.Drawing.Color.Navy
+        Me.gbtnRemove.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbtnRemove.GlowColor = System.Drawing.Color.Red
+        Me.gbtnRemove.Image = Global.HomiNet.My.Resources.Resources.moins24
+        Me.gbtnRemove.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.gbtnRemove.Location = New System.Drawing.Point(473, 385)
+        Me.gbtnRemove.Name = "gbtnRemove"
+        Me.gbtnRemove.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.gbtnRemove.ShineColor = System.Drawing.Color.Transparent
+        Me.gbtnRemove.Size = New System.Drawing.Size(124, 33)
+        Me.gbtnRemove.TabIndex = 33
+        Me.gbtnRemove.Tag = "1"
+        Me.gbtnRemove.Text = "Remove"
+        Me.gbtnRemove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
-        'GlassButton0
+        'gbtnAdd
         '
-        Me.GlassButton0.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GlassButton0.AutoEllipsis = True
-        Me.GlassButton0.BackColor = System.Drawing.Color.Navy
-        Me.GlassButton0.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GlassButton0.GlowColor = System.Drawing.Color.Lime
-        Me.GlassButton0.Image = Global.HomiNet.My.Resources.Resources.plus24
-        Me.GlassButton0.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.GlassButton0.Location = New System.Drawing.Point(343, 385)
-        Me.GlassButton0.Name = "GlassButton0"
-        Me.GlassButton0.OuterBorderColor = System.Drawing.Color.Transparent
-        Me.GlassButton0.ShineColor = System.Drawing.Color.Transparent
-        Me.GlassButton0.Size = New System.Drawing.Size(124, 33)
-        Me.GlassButton0.TabIndex = 32
-        Me.GlassButton0.Tag = "1"
-        Me.GlassButton0.Text = "ajouter"
-        Me.GlassButton0.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.gbtnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.gbtnAdd.AutoEllipsis = True
+        Me.gbtnAdd.BackColor = System.Drawing.Color.Navy
+        Me.gbtnAdd.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gbtnAdd.GlowColor = System.Drawing.Color.Lime
+        Me.gbtnAdd.Image = Global.HomiNet.My.Resources.Resources.plus24
+        Me.gbtnAdd.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.gbtnAdd.Location = New System.Drawing.Point(343, 385)
+        Me.gbtnAdd.Name = "gbtnAdd"
+        Me.gbtnAdd.OuterBorderColor = System.Drawing.Color.Transparent
+        Me.gbtnAdd.ShineColor = System.Drawing.Color.Transparent
+        Me.gbtnAdd.Size = New System.Drawing.Size(124, 33)
+        Me.gbtnAdd.TabIndex = 32
+        Me.gbtnAdd.Tag = "1"
+        Me.gbtnAdd.Text = "Add"
+        Me.gbtnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'basehappy
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(253, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(752, 426)
-        Me.Controls.Add(Me.GlassButton2)
-        Me.Controls.Add(Me.GlassButton1)
-        Me.Controls.Add(Me.GlassButton0)
+        Me.Controls.Add(Me.gbtnSend)
+        Me.Controls.Add(Me.gbtnRemove)
+        Me.Controls.Add(Me.gbtnAdd)
         Me.Controls.Add(Me.dh)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox7)
@@ -484,9 +484,9 @@ Partial Class basehappy
     Friend WithEvents rbtnPrice3 As RadioButton
     Friend WithEvents rbtnPrice2 As RadioButton
     Friend WithEvents rbtnPrice1 As RadioButton
-    Friend WithEvents GlassButton2 As GlassButton
-    Friend WithEvents GlassButton1 As GlassButton
-    Friend WithEvents GlassButton0 As GlassButton
+    Friend WithEvents gbtnSend As GlassButton
+    Friend WithEvents gbtnRemove As GlassButton
+    Friend WithEvents gbtnAdd As GlassButton
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn

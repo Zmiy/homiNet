@@ -320,7 +320,7 @@ Partial Class ViewByModele
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(147, 30)
         Me.Label11.TabIndex = 7
-        Me.Label11.Text = "Not used plase"
+        Me.Label11.Text = "Not used place"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
@@ -781,9 +781,9 @@ Partial Class ViewByModele
     Friend WithEvents btnSend As Glass.GlassButton
     Friend WithEvents btnUnlock As Glass.GlassButton
     Friend WithEvents btnLock As Glass.GlassButton
-    Friend WithEvents lblCount As System.Windows.Forms.Label
     Friend WithEvents cmsFiltersForExtView As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents tsmiAll As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsmiToRefill As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsmiNeedManualRefill As System.Windows.Forms.ToolStripMenuItem
+    Public WithEvents lblCount As System.Windows.Forms.Label
 End Class

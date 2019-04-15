@@ -45,7 +45,10 @@
     <DefineTrace>true</DefineTrace>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,9 +56,12 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330tray8|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -65,7 +71,8 @@
     <DefineConstants>MiniBarVer="330",NET3_5</DefineConstants>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -76,6 +83,8 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330tray8|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -84,7 +93,8 @@
     <OutputPath>bin\x86\Debug330tray8\</OutputPath>
     <DefineConstants>MiniBarVer="330tray8"</DefineConstants>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\x86\Debug44\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -97,6 +107,8 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330-8|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -106,7 +118,8 @@
     <DefineConstants>MiniBarVer="330",NET3_5</DefineConstants>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -117,6 +130,8 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330-8|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -125,7 +140,8 @@
     <OutputPath>bin\x86\Debug330-8\</OutputPath>
     <DefineConstants>MiniBarVer="330tray8"</DefineConstants>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\x86\Debug44\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -138,20 +154,28 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DefineConstants>MiniBarVer="226"</DefineConstants>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -171,7 +195,10 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug330|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -185,8 +212,11 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <DefineConstants>MiniBarVer="330"</DefineConstants>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226|AnyCPU'">
     <DocumentationFile>HomiNet.xml</DocumentationFile>
@@ -198,7 +228,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -212,8 +245,11 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <DefineConstants>MiniBarVer="226"</DefineConstants>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226Demo|AnyCPU'">
     <DocumentationFile>HomiNet.xml</DocumentationFile>
@@ -224,7 +260,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug226Demo|x86'">
     <AssemblyName>$(AssemblyName)</AssemblyName>
@@ -237,8 +276,11 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release226|AnyCPU'">
     <DefineTrace>true</DefineTrace>
@@ -247,7 +289,8 @@
     <DocumentationFile>HomiNet.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisLogFile>D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\SRC\HomiNet\\..\..\bin\AnyCPU\Release\Net V3.5\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -257,11 +300,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release226|x86'">
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>pdbonly</DebugType>
     <CodeAnalysisLogFile>D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\SRC\HomiNet\\..\..\bin\x86\Release\Net V3.5\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
@@ -270,13 +316,16 @@
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release330|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisLogFile>D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\SRC\HomiNet\\..\..\bin\AnyCPU\Release\Net V3.5\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
@@ -286,11 +335,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release330|x86'">
     <Optimize>true</Optimize>
     <WarningLevel>1</WarningLevel>
-    <NoWarn>41998,41999,42004,42016,42017,42018,42019,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109,42353,42354,42355</NoWarn>
+    <NoWarn>
+    </NoWarn>
     <DebugType>pdbonly</DebugType>
     <CodeAnalysisLogFile>D:\Work Files OneDrive\OneDrive - My-Homi\Homi\homiNet\SRC\HomiNet\\..\..\bin\x86\Release\Net V3.5\HomiNet.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
@@ -299,6 +351,8 @@
     <CodeAnalysisRuleSetDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;D:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <DocumentationFile>HomiNet.xml</DocumentationFile>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <Import Project="configuration.target" />
   <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v3.5'">
@@ -313,6 +367,13 @@
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
     <OutputPath>$(BaseOutPath)bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'v4.6.1'">
+    <TargetFrameworkName>Net V4.6.1</TargetFrameworkName>
+    <DefineConstants>$(DefineConstants),NET4_61</DefineConstants>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Platform)\$(Configuration)\$(TargetFrameworkName)</IntermediateOutputPath>
+    <OutputPath>$(BaseOutPath)bin\$(Platform)\$(Configuration)\$(TargetFrameworkName)</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="GlassButton, Version=1.2.0.686, Culture=neutral, PublicKeyToken=2e983e6e44d23a4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -867,4 +928,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BeforeBuild">
+    <WriteLinesToFile File="My Project\VersionInfo.vb" Lines="&lt;Assembly:System.Reflection.AssemblyFileVersion(&quot;$([System.DateTime]::Now.ToString(&quot;dd.MM.yy.HHmm&quot;))&quot;)&gt;" Overwrite="true">
+    </WriteLinesToFile>
+    <ItemGroup Condition="Exists('My Project\VersionInfo.vb')">
+      <Compile Include="My Project\VersionInfo.vb" />
+    </ItemGroup>
+  </Target>
 </Project>
